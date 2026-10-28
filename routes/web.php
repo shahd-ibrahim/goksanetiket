@@ -52,14 +52,6 @@ Route::get('/{citySlug}-etiket-uretimi', [RegionalSeoController::class, 'cityHub
 Route::get('/{citySlug}-rulo-etiket', [RegionalSeoController::class, 'cityHub'])
     ->where('citySlug', '[a-z0-9\-]+');
 
-// Product + City Service Landing Page: /{serviceSlug}/{citySlug}
-Route::get('/{serviceSlug}/{citySlug}', [RegionalSeoController::class, 'serviceCity'])
-    ->name('regional.service')
-    ->where([
-        'serviceSlug' => '[a-z0-9\-]+',
-        'citySlug' => '[a-z0-9\-]+',
-    ]);
-
 // ==========================================
 // 3. ADMIN PANEL ROUTES
 // ==========================================
@@ -76,3 +68,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::put('/cities/{city}', [AdminCityController::class, 'update'])->name('cities.update');
     Route::resource('products', AdminProductController::class);
 });
+
+// ==========================================
+// 4. WILDCARD PRODUCT + CITY SERVICE ROUTE
+// ==========================================
+Route::get('/{serviceSlug}/{citySlug}', [RegionalSeoController::class, 'serviceCity'])
+    ->name('regional.service')
+    ->where([
+        'serviceSlug' => '[a-z0-9\-]+',
+        'citySlug' => '[a-z0-9\-]+',
+    ]);
