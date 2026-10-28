@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 
 class RegionalSeoController extends Controller
@@ -126,5 +127,80 @@ class RegionalSeoController extends Controller
         ];
 
         return view('pages.regional-service', array_merge($data, ['seo' => $seo]));
+    }
+
+    /**
+     * Dynamic XML Sitemap: Generates valid XML containing static pages,
+     * all 81 city hubs, and programmatic product/city landing pages.
+     */
+    public function sitemap(): Response
+    {
+        $xml = Cache::remember('sitemap_xml', now()->addDay(), function () {
+            $cities = City::orderBy('plate_code', 'asc')->get();
+            $products = Product::active()->get();
+
+            $urls = [];
+            $now = now()->toAtomString();
+
+            // 1. Static Pages
+            $staticRoutes = [
+                ['loc' => url('/'), 'priority' => '1.0', 'changefreq' => 'daily'],
+                ['loc' => route('regional.index'), 'priority' => '0.9', 'changefreq' => 'weekly'],
+                ['loc' => url('/hakkimizda'), 'priority' => '0.7', 'changefreq' => 'monthly'],
+                ['loc' => url('/iletisim'), 'priority' => '0.7', 'changefreq' => 'monthly'],
+            ];
+
+            foreach ($staticRoutes as $page) {
+                $urls[] = [
+                    'loc' => $page['loc'],
+                    'lastmod' => $now,
+                    'changefreq' => $page['changefreq'],
+                    'priority' => $page['priority'],
+                ];
+            }
+
+            // 2. All 81 City Hub URLs (/{citySlug}-etiket-fabrikasi)
+            foreach ($cities as $city) {
+                $urls[] = [
+                    'loc' => route('regional.city', ['citySlug' => $city->slug]),
+                    'lastmod' => $city->updated_at ? $city->updated_at->toAtomString() : $now,
+                    'changefreq' => 'weekly',
+                    'priority' => '0.9',
+                ];
+            }
+
+            // 3. Product / Regional Service URLs (/{serviceSlug}/{citySlug})
+            foreach ($products as $product) {
+                foreach ($cities as $city) {
+                    $urls[] = [
+                        'loc' => route('regional.service', ['serviceSlug' => $product->slug, 'citySlug' => $city->slug]),
+                        'lastmod' => $product->updated_at ? $product->updated_at->toAtomString() : $now,
+                        'changefreq' => 'weekly',
+                        'priority' => '0.8',
+                    ];
+                }
+            }
+
+            // Generate clean XML structure
+            $xmlOutput = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+            $xmlOutput .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+            foreach ($urls as $item) {
+                $xmlOutput .= "  <url>\n";
+                $xmlOutput .= "    <loc>" . htmlspecialchars($item['loc'], ENT_XML1, 'UTF-8') . "</loc>\n";
+                $xmlOutput .= "    <lastmod>" . $item['lastmod'] . "</lastmod>\n";
+                $xmlOutput .= "    <changefreq>" . $item['changefreq'] . "</changefreq>\n";
+                $xmlOutput .= "    <priority>" . $item['priority'] . "</priority>\n";
+                $xmlOutput .= "  </url>\n";
+            }
+
+            $xmlOutput .= '</urlset>';
+
+            return $xmlOutput;
+        });
+
+        return response($xml, 200, [
+            'Content-Type' => 'text/xml; charset=UTF-8',
+        ]);
     }
 }
