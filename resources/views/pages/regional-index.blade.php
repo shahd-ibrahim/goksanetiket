@@ -4,17 +4,19 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Göksan Etiket",
-  "url": "{{ url('/') }}",
-  "logo": "{{ asset('images/logo.png') }}",
-  "description": "Türkiye genelinde 81 il ve organize sanayi bölgelerine toptan rulo etiket üretimi ve doğrudan sevkiyat.",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+90-850-000-0000",
-    "contactType": "customer service",
-    "areaServed": "TR",
-    "availableLanguage": "Turkish"
+  "@type": "Manufacturer",
+  "name": "GÖKSAN Etiket • Matbaa • Ambalaj",
+  "url": "https://www.goksanetiket.com",
+  "logo": "https://www.goksanetiket.com/assets/images/logo.png",
+  "description": "Gaziantep 1. OSB'den Türkiye genelinde 81 il ve organize sanayi bölgelerine toptan rulo etiket, dokuma etiket ve ambalaj sevkiyatı.",
+  "telephone": "+90-342-503-4652",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1. Organize Sanayi Bölgesi 83105 Nolu Cadde No:31",
+    "addressLocality": "Şehitkamil",
+    "addressRegion": "Gaziantep",
+    "postalCode": "27000",
+    "addressCountry": "TR"
   }
 }
 </script>
@@ -30,7 +32,7 @@
   },{
     "@type": "ListItem",
     "position": 2,
-    "name": "Hizmet Bölgelerimiz (81 İl)",
+    "name": "Bölgesel Hizmetler (81 İl)",
     "item": "{{ route('regional.index') }}"
   }]
 }
@@ -38,92 +40,102 @@
 @endpush
 
 @section('content')
-<div class="container">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
     <!-- Hero Section -->
-    <section class="hero" style="text-align: center; max-width: 900px; margin: 0 auto;">
-        <div class="hero-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <section class="text-center max-w-4xl mx-auto space-y-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-orange-500/10 border border-orange-500/30 text-orange-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             Türkiye Geneli 81 İl ve Tüm Organize Sanayi Bölgeleri (OSB)
         </div>
-        <h1>Türkiye'nin Endüstriyel Rulo Etiket Üretim Merkezi</h1>
-        <p>
-            Fabrikamızdan Türkiye'nin her noktasına doğrudan toptan rulo baskı! İlinizi seçerek size özel teslimat sürelerini, organize sanayi sevkiyat avantajlarını ve rulo etiket fiyatlarını hemen inceleyin.
+
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+            Türkiye'nin Endüstriyel Rulo Etiket & Ambalaj Üretim Merkezi
+        </h1>
+
+        <p class="text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
+            Gaziantep 1. OSB fabrikamızdan Türkiye'nin her noktasına doğrudan toptan rulo baskı! İlinizi seçerek size özel teslimat sürelerini ve organize sanayi sevkiyat avantajlarını hemen inceleyin.
         </p>
 
-        <!-- Search bar for 81 cities -->
-        <div style="max-width: 580px; margin: 0 auto 36px; position: relative;">
-            <input type="text" id="citySearch" placeholder="İl veya OSB adı yazın (Örn: Bursa, İkitelli, Başpınar, Denizli)..." 
-                style="width: 100%; padding: 16px 24px; border-radius: 999px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; font-size: 1rem; outline: none; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+        <!-- Live Search Bar -->
+        <div class="max-w-xl mx-auto relative pt-2">
+            <input type="text" id="citySearch" placeholder="İl veya OSB adı yazın (Örn: Bursa, İkitelli, Başpınar, Denizli, OSTİM)..." 
+                   class="w-full px-6 py-4 rounded-2xl bg-navy-900 border border-navy-750 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-orange-500 shadow-2xl">
+            <svg class="w-5 h-5 text-slate-500 absolute right-5 top-7 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </div>
     </section>
 
     <!-- Key Metrics Stats -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 64px;">
-        <div class="card" style="text-align: center; padding: 28px 20px;">
-            <div style="font-size: 2.4rem; font-weight: 800; color: var(--primary-light); font-family: 'Space Grotesk', sans-serif;">81 İl</div>
-            <div style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">Tam Kapsama & Kapıya Teslim</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-navy-900 border border-navy-800 rounded-2xl p-6 text-center">
+            <div class="text-3xl font-black text-white font-mono">81 İl</div>
+            <div class="text-xs text-slate-400 mt-1">Tam Kapsama & Kapıya Teslim</div>
         </div>
-        <div class="card" style="text-align: center; padding: 28px 20px;">
-            <div style="font-size: 2.4rem; font-weight: 800; color: var(--accent); font-family: 'Space Grotesk', sans-serif;">350+</div>
-            <div style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">Organize Sanayi Bölgesi (OSB)</div>
+        <div class="bg-navy-900 border border-navy-800 rounded-2xl p-6 text-center">
+            <div class="text-3xl font-black text-orange-400 font-mono">350+</div>
+            <div class="text-xs text-slate-400 mt-1">Organize Sanayi Bölgesi (OSB)</div>
         </div>
-        <div class="card" style="text-align: center; padding: 28px 20px;">
-            <div style="font-size: 2.4rem; font-weight: 800; color: var(--success); font-family: 'Space Grotesk', sans-serif;">24-48 Saat</div>
-            <div style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">Hızlı Fabrika Çıkışı & Sevkiyat</div>
+        <div class="bg-navy-900 border border-navy-800 rounded-2xl p-6 text-center">
+            <div class="text-3xl font-black text-emerald-400 font-mono">24-48 Saat</div>
+            <div class="text-xs text-slate-400 mt-1">Hızlı Ambar & Express Sevk</div>
         </div>
-        <div class="card" style="text-align: center; padding: 28px 20px;">
-            <div style="font-size: 2.4rem; font-weight: 800; color: #a855f7; font-family: 'Space Grotesk', sans-serif;">8 Renk UV</div>
-            <div style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">Yüksek Hızlı Flekso & Dijital Baskı</div>
+        <div class="bg-navy-900 border border-navy-800 rounded-2xl p-6 text-center">
+            <div class="text-3xl font-black text-white font-mono">8 Renk UV</div>
+            <div class="text-xs text-slate-400 mt-1">Flekso Rulo Baskı Parkuru</div>
         </div>
     </div>
 
-    <!-- Cities Grouped By Geographical Region -->
-    <div id="regionsSection">
-        <h2 style="font-size: 1.85rem; font-weight: 700; margin-bottom: 32px; display: flex; align-items: center; gap: 12px;">
-            <span style="color: var(--primary-light);">📍</span> Coğrafi Bölgelere Göre Hizmet Ağımız
-        </h2>
+    <!-- Grouped Cities by Region -->
+    <div id="regionsSection" class="space-y-12">
+        <div class="border-b border-navy-850 pb-4 flex items-center justify-between">
+            <h2 class="text-2xl font-extrabold text-white flex items-center gap-2">
+                <span>📍</span> Coğrafi Bölgelere Göre Fabrika Dağıtım Ağı
+            </h2>
+            <span class="text-xs text-slate-400">81 İl İndeksi</span>
+        </div>
 
         @foreach($groupedCities as $regionName => $citiesList)
-            <div class="region-block" style="margin-bottom: 56px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 24px;">
-                    <h3 style="font-size: 1.4rem; font-weight: 700; color: #fff;">
+            <div class="region-block space-y-4">
+                <div class="flex items-center justify-between border-b border-navy-850 pb-2">
+                    <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
                         {{ $regionName }} Bölgesi
                     </h3>
-                    <span style="background: rgba(255, 255, 255, 0.08); padding: 4px 12px; border-radius: 999px; font-size: 0.85rem; color: var(--text-muted);">
+                    <span class="text-xs text-slate-500 font-bold bg-navy-950 px-2 py-0.5 rounded-full border border-navy-800">
                         {{ $citiesList->count() }} İl
                     </span>
                 </div>
 
-                <div class="grid-3 city-grid">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 city-grid">
                     @foreach($citiesList as $city)
-                        <div class="card city-card" data-name="{{ mb_strtolower($city->name, 'UTF-8') }}" data-zones="{{ mb_strtolower($city->industrial_zones, 'UTF-8') }}" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="city-card bg-navy-900 border border-navy-800 hover:border-orange-500/50 rounded-2xl p-5 transition-all duration-200 hover:-translate-y-0.5 shadow-lg flex flex-col justify-between"
+                             data-name="{{ mb_strtolower($city->name, 'UTF-8') }}" 
+                             data-zones="{{ mb_strtolower($city->industrial_zones, 'UTF-8') }}">
                             <div>
-                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-                                    <div style="display: flex; align-items: center; gap: 10px;">
-                                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(2, 132, 199, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); font-weight: 800; font-family: 'Space Grotesk', sans-serif; color: var(--primary-light); font-size: 0.95rem;">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-8 h-8 rounded-lg bg-navy-950 border border-navy-750 font-mono font-bold text-xs text-orange-400 flex items-center justify-center">
                                             {{ $city->formatted_plate }}
                                         </span>
-                                        <h4 style="font-size: 1.25rem; font-weight: 700;">
-                                            <a href="{{ route('regional.city', ['citySlug' => $city->slug]) }}" style="color: #fff;">
+                                        <h4 class="text-base font-bold text-white">
+                                            <a href="{{ route('regional.city', ['citySlug' => $city->slug]) }}" class="hover:text-orange-400 transition-colors">
                                                 {{ $city->name }}
                                             </a>
                                         </h4>
                                     </div>
-
-                                    <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.82rem; color: var(--accent); background: rgba(245, 158, 11, 0.1); padding: 4px 10px; border-radius: 999px; font-weight: 600;">
+                                    <span class="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">
                                         ⚡ {{ $city->delivery_time }}
                                     </span>
                                 </div>
 
-                                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5;">
-                                    <strong style="color: #cbd5e1;">Sanayi & OSB:</strong> {{ \Illuminate\Support\Str::limit($city->industrial_zones, 95) }}
+                                <p class="text-xs text-slate-400 leading-relaxed mb-4 line-clamp-2">
+                                    <strong class="text-slate-300">OSB:</strong> {{ $city->industrial_zones }}
                                 </p>
                             </div>
 
-                            <div style="border-top: 1px solid var(--border-color); padding-top: 14px; display: flex; align-items: center; justify-content: space-between;">
-                                <a href="{{ route('regional.city', ['citySlug' => $city->slug]) }}" style="font-size: 0.88rem; font-weight: 600; color: var(--primary-light); display: inline-flex; align-items: center; gap: 6px;">
-                                    {{ $city->name }} Etiket Fabrikası
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            <div class="pt-3 border-t border-navy-800 flex items-center justify-between">
+                                <a href="{{ route('regional.city', ['citySlug' => $city->slug]) }}" class="text-xs font-semibold text-orange-400 hover:text-orange-300 flex items-center gap-1">
+                                    <span>{{ $city->name }} Etiket Fabrikası</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                                 </a>
                             </div>
                         </div>
@@ -132,41 +144,6 @@
             </div>
         @endforeach
     </div>
-
-    <!-- Active Products Section -->
-    <section id="urunler" style="margin: 80px 0 32px;">
-        <div style="text-align: center; max-width: 700px; margin: 0 auto 48px;">
-            <div class="hero-badge">Üretim Yelpazemiz</div>
-            <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 14px;">Endüstriyel Rulo Etiket Çözümleri</h2>
-            <p style="color: var(--text-muted);">En zorlu sanayi şartlarına, soğuk havaya, kimyasallara ve yüksek sürtünmeye dayanıklı etiket çeşitleri.</p>
-        </div>
-
-        <div class="grid-4">
-            @foreach($products as $product)
-                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
-                    <div>
-                        <div style="width: 100%; height: 160px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 18px; background: #1e293b;">
-                            @if(!empty($product->images) && count($product->images) > 0)
-                                <img src="{{ $product->images[0] }}" alt="{{ $product->title }}" style="width: 100%; height: 100%; object-fit: cover;">
-                            @else
-                                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-dim); font-size: 0.9rem;">Göksan Etiket</div>
-                            @endif
-                        </div>
-                        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; color: #fff;">
-                            {{ $product->title }}
-                        </h3>
-                        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
-                            {{ \Illuminate\Support\Str::limit($product->short_description, 110) }}
-                        </p>
-                    </div>
-
-                    <a href="{{ route('regional.service', ['serviceSlug' => $product->slug, 'citySlug' => 'istanbul']) }}" class="btn btn-primary" style="width: 100%; font-size: 0.88rem;">
-                        Ürünü İncele & Fiyat Al
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    </section>
 </div>
 
 @push('scripts')
@@ -190,7 +167,6 @@
                 }
             });
 
-            // Hide empty region blocks during search
             regionBlocks.forEach(block => {
                 const visibleCards = block.querySelectorAll('.city-card[style*="display: flex"], .city-card:not([style*="display"])');
                 const anyVisible = Array.from(visibleCards).some(c => c.style.display !== 'none');

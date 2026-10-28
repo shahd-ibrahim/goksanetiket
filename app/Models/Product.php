@@ -24,6 +24,7 @@ class Product extends Model
     protected $fillable = [
         'title',
         'slug',
+        'category',
         'short_description',
         'content',
         'images',
@@ -48,5 +49,13 @@ class Product extends Model
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
+    }
+
+    /**
+     * Scope a query to a specific category.
+     */
+    public function scopeCategory($query, string $category)
+    {
+        return $query->where('category', $category);
     }
 }

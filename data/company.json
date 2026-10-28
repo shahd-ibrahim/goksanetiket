@@ -1,0 +1,18 @@
+{
+  "name": "GÖKSAN Etiket • Matbaa • Ambalaj",
+  "short_name": "Göksan Etiket",
+  "domain": "https://www.goksanetiket.com",
+  "email": "info@goksanetiket.com",
+  "phone": "+90 342 503 46 52",
+  "phone_clean": "+903425034652",
+  "whatsapp": "+90 533 024 63 38",
+  "whatsapp_clean": "905330246338",
+  "address": "1. Organize Sanayi Bölgesi 83105 Nolu Cadde No:31 Şehitkamil / GAZİANTEP",
+  "city": "Gaziantep",
+  "country": "Türkiye",
+  "brand_colors": {
+    "primary_navy": "#162c42",
+    "accent_orange": "#ea6110",
+    "light_slate": "#f8fafc"
+  }
+}

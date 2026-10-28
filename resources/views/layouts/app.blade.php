@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $seo['title'] ?? 'Göksan Etiket | Endüstriyel Rulo Etiket Fabrikası' }}</title>
-    <meta name="description" content="{{ $seo['description'] ?? 'Türkiye genelinde 81 il ve organize sanayi bölgelerine doğrudan toptan rulo etiket üretimi ve hızlı sevkiyat.' }}">
+    <title>{{ $seo['title'] ?? 'GÖKSAN Etiket • Matbaa • Ambalaj | Endüstriyel Rulo Baskı Fabrikası' }}</title>
+    <meta name="description" content="{{ $seo['description'] ?? 'Gaziantep 1. OSB tesislerimizde toptan rulo etiket, dokuma etiket, karton kutu ambalaj ve barkod çözümleri. 81 ilimize 24-48 saatte doğrudan sevkiyat.' }}">
     <link rel="canonical" href="{{ $seo['canonical'] ?? url()->current() }}">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Meta -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $seo['canonical'] ?? url()->current() }}">
-    <meta property="og:title" content="{{ $seo['title'] ?? 'Göksan Etiket' }}">
+    <meta property="og:title" content="{{ $seo['title'] ?? 'GÖKSAN Etiket • Matbaa • Ambalaj' }}">
     <meta property="og:description" content="{{ $seo['description'] ?? '' }}">
-    <meta property="og:image" content="{{ asset('images/og-goksan-etiket.jpg') }}">
+    <meta property="og:image" content="{{ asset('assets/images/og-goksan.jpg') }}">
+    <meta name="theme-color" content="#162c42">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS with Göksan Brand Colors -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -27,14 +28,19 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            900: '#0c4a6e',
+                        navy: {
+                            950: '#070e16',
+                            900: '#0b1622',
+                            850: '#102133',
+                            800: '#162c42', // Primary Dark Navy
+                            700: '#1e3c5a',
+                            600: '#2a537c',
+                        },
+                        orange: {
+                            400: '#ff7728',
+                            500: '#ea6110', // Vibrant Accent Orange
+                            600: '#d45307',
+                            700: '#ad4003',
                         }
                     }
                 }
@@ -42,430 +48,254 @@
         }
     </script>
 
-    <!-- Schema.org JSON-LD -->
-    @stack('schema')
-
     <style>
         :root {
-            --bg-dark: #0a0f1d;
-            --bg-card: #131b2e;
-            --bg-card-hover: #1b2640;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --primary: #0284c7;
-            --primary-light: #38bdf8;
-            --primary-glow: rgba(56, 189, 248, 0.25);
-            --accent: #f59e0b;
-            --accent-glow: rgba(245, 158, 11, 0.2);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-dim: #64748b;
-            --success: #10b981;
-            --radius-lg: 16px;
-            --radius-md: 10px;
-            --radius-sm: 6px;
-            --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --brand-navy: #162c42;
+            --brand-orange: #ea6110;
+            --brand-light: #f8fafc;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: #0b1622;
+            color: #f8fafc;
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Ambient Glow Background */
-        .ambient-glow {
+        /* Ambient Glow */
+        .ambient-navy-glow {
             position: fixed;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 1000px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(2, 132, 199, 0.12) 0%, rgba(2, 132, 199, 0) 70%);
+            width: 1200px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(22, 44, 66, 0.45) 0%, rgba(234, 97, 16, 0.08) 40%, rgba(11, 22, 34, 0) 70%);
             pointer-events: none;
             z-index: 0;
         }
-
-        /* Header */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(10, 15, 29, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 76px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 800;
-            font-size: 1.35rem;
-            letter-spacing: -0.5px;
-        }
-
-        .logo-badge {
-            background: linear-gradient(135deg, #0284c7, #2563eb);
-            color: #fff;
-            padding: 6px 10px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            box-shadow: 0 0 20px var(--primary-glow);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 22px;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #0284c7, #0369a1);
-            color: #fff;
-            box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #0369a1, #075985);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(2, 132, 199, 0.45);
-        }
-
-        .btn-whatsapp {
-            background: #25D366;
-            color: #fff;
-            font-weight: 700;
-        }
-
-        .btn-whatsapp:hover {
-            background: #20ba59;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
-        }
-
-        /* Hero */
-        .hero {
-            position: relative;
-            z-index: 1;
-            padding: 64px 0 48px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(2, 132, 199, 0.12);
-            color: var(--primary-light);
-            border: 1px solid rgba(56, 189, 248, 0.25);
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -1px;
-            margin-bottom: 18px;
-            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 780px;
-            margin-bottom: 32px;
-        }
-
-        /* Card Styles */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(56, 189, 248, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
-        }
-
-        /* Grid */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        /* Breadcrumbs */
-        .breadcrumb-nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.88rem;
-            color: var(--text-dim);
-            margin-bottom: 24px;
-        }
-
-        .breadcrumb-nav a {
-            color: var(--text-muted);
-        }
-
-        .breadcrumb-nav a:hover {
-            color: var(--primary-light);
-        }
-
-        /* Floating CTA */
-        .floating-cta {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            z-index: 999;
-        }
-
-        .fab {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 22px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-            transition: var(--transition);
-        }
-
-        .fab:hover {
-            transform: translateY(-3px) scale(1.02);
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 96px;
-            background: #070a14;
-            border-top: 1px solid var(--border-color);
-            padding: 64px 0 32px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-
-        .footer-col h4 {
-            font-size: 1.05rem;
-            color: #fff;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-light);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--border-color);
-            padding-top: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: var(--text-dim);
-            font-size: 0.88rem;
-        }
-
-        @media (max-width: 900px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .nav-links {
-                display: none;
-            }
-        }
     </style>
+
+    <!-- Schema.org Manufacturer & LocalBusiness JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Manufacturer",
+      "name": "GÖKSAN Etiket • Matbaa • Ambalaj",
+      "alternateName": "Göksan Etiket",
+      "url": "https://www.goksanetiket.com",
+      "logo": "https://www.goksanetiket.com/assets/images/logo.png",
+      "description": "Gaziantep 1. Organize Sanayi Bölgesinde endüstriyel rulo etiket, dokuma etiket, karton kutu ambalaj ve barkod üretimi.",
+      "telephone": "+90-342-503-4652",
+      "email": "info@goksanetiket.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1. Organize Sanayi Bölgesi 83105 Nolu Cadde No:31",
+        "addressLocality": "Şehitkamil",
+        "addressRegion": "Gaziantep",
+        "postalCode": "27000",
+        "addressCountry": "TR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "37.1118",
+        "longitude": "37.3482"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:30",
+        "closes": "18:30"
+      }
+    }
+    </script>
+    @stack('schema')
 </head>
-<body>
-    <div class="ambient-glow"></div>
+<body class="min-h-screen flex flex-col selection:bg-orange-500 selection:text-white">
+    <div class="ambient-navy-glow"></div>
 
-    <header>
-        <div class="container nav-inner">
-            <a href="{{ route('regional.index') }}" class="logo">
-                <span class="logo-badge">GÖKSAN</span>
-                <span>ETİKET FABRİKASI</span>
-            </a>
-            
-            <ul class="nav-links">
-                <li><a href="{{ route('regional.index') }}">Tüm Şehirler (81 İl)</a></li>
-                <li><a href="#urunler">Ürün Çeşitlerimiz</a></li>
-                <li><a href="#hakkimizda">Fabrikamız</a></li>
-                <li><a href="#iletisim">İletişim & Teklif</a></li>
-            </ul>
+    <!-- Top Info Bar -->
+    <div class="bg-navy-950 border-b border-navy-850 text-xs text-slate-400 relative z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="flex items-center gap-4 text-[11px] sm:text-xs">
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <strong class="text-slate-300">Merkez Fabrika:</strong> 1. OSB 83105 Nolu Cad. No:31 Şehitkamil / GAZİANTEP
+                </span>
+                <span class="hidden md:inline text-slate-600">|</span>
+                <span class="hidden md:inline">81 İle 24-48 Saatte Ambar & Kargo Sevkiyatı</span>
+            </div>
 
-            <div style="display: flex; gap: 12px; align-items: center;">
-                <a href="https://wa.me/905300000000?text=Merhaba,%20rulo%20etiket%20teklifi%20almak%20istiyorum." target="_blank" class="btn btn-whatsapp">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
-                    WhatsApp Teklif
+            <div class="flex items-center gap-4 text-xs">
+                <a href="mailto:info@goksanetiket.com" class="hover:text-orange-400 transition-colors hidden sm:flex items-center gap-1">
+                    <span>✉ info@goksanetiket.com</span>
                 </a>
-                <a href="tel:+908500000000" class="btn btn-primary">
-                    0850 000 00 00
+                <a href="tel:+903425034652" class="hover:text-white font-semibold flex items-center gap-1">
+                    <span>📞 0342 503 46 52</span>
                 </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-navy-900/90 backdrop-blur-xl border-b border-navy-850">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="{{ route('home') }}" class="flex items-center gap-3 group">
+                    <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-black text-lg px-3 py-1.5 rounded-xl font-mono shadow-lg shadow-orange-500/25 group-hover:scale-105 transition-transform">
+                        GÖKSAN
+                    </div>
+                    <div>
+                        <span class="block font-black text-sm md:text-base tracking-tight text-white group-hover:text-orange-400 transition-colors">
+                            ETİKET • MATBAA • AMBALAJ
+                        </span>
+                        <span class="block text-[10px] text-slate-400 tracking-wider uppercase font-semibold">
+                            Gaziantep 1. OSB Üretim Tesisi
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Nav Links -->
+                <nav class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-300">
+                    <a href="{{ route('home') }}" class="hover:text-orange-400 transition-colors {{ request()->routeIs('home') ? 'text-orange-400' : '' }}">
+                        Ana Sayfa
+                    </a>
+                    <a href="{{ route('corporate.about') }}" class="hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.about') ? 'text-orange-400' : '' }}">
+                        Kurumsal
+                    </a>
+                    <a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.etiket') ? 'text-orange-400' : '' }}">
+                        Etiket Çözümleri
+                    </a>
+                    <a href="{{ route('corporate.tekstil') }}" class="hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.tekstil') ? 'text-orange-400' : '' }}">
+                        Tekstil & Dokuma
+                    </a>
+                    <a href="{{ route('corporate.ambalaj') }}" class="hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.ambalaj') ? 'text-orange-400' : '' }}">
+                        Matbaa & Ambalaj
+                    </a>
+                    <a href="{{ route('regional.index') }}" class="hover:text-orange-400 transition-colors {{ request()->routeIs('regional.*') ? 'text-orange-400' : '' }}">
+                        Bölgesel Hizmetler (81 İl)
+                    </a>
+                    <a href="{{ route('corporate.contact') }}" class="hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.contact') ? 'text-orange-400' : '' }}">
+                        İletişim
+                    </a>
+                </nav>
+
+                <!-- Quick CTAs -->
+                <div class="flex items-center gap-3">
+                    <a href="https://wa.me/905330246338?text={{ urlencode('Merhaba, Göksan Etiket fiyat teklifi almak istiyorum.') }}" target="_blank"
+                       class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs shadow-lg shadow-emerald-500/20 hover:-translate-y-0.5 transition-all">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+                        <span class="hidden sm:inline">WhatsApp</span> Teklif
+                    </a>
+
+                    <a href="tel:+903425034652" 
+                       class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy-800 hover:bg-orange-500 text-white font-bold text-xs border border-navy-700 hover:border-orange-500 shadow-md transition-all">
+                        <svg class="w-3.5 h-3.5 text-orange-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        0342 503 46 52
+                    </a>
+                </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <!-- Main Content Body -->
+    <main class="flex-1 relative z-10">
         @yield('content')
     </main>
 
-    <!-- Floating Action Buttons -->
-    <div class="floating-cta">
-        <a href="https://wa.me/905300000000?text=Merhaba,%20etiket%20fiyat%20teklifi%20almak%20istiyorum." target="_blank" class="fab btn-whatsapp">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
-            Hızlı Fiyat Teklifi
+    <!-- Floating Action WhatsApp CTA -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <a href="https://wa.me/905330246338?text={{ urlencode('Merhaba, toptan etiket ve ambalaj fiyat teklifi almak istiyorum.') }}" target="_blank"
+           class="inline-flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm shadow-2xl shadow-emerald-500/40 hover:-translate-y-1 hover:scale-105 transition-all">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+            <span>WhatsApp Hızlı Fiyat</span>
         </a>
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="logo" style="margin-bottom: 16px;">
-                        <span class="logo-badge">GÖKSAN</span>
-                        <span>ETİKET</span>
+    <!-- Corporate Footer -->
+    <footer class="bg-navy-950 border-t border-navy-850 pt-16 pb-8 text-slate-400 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-navy-850">
+                <!-- Col 1: Brand & Identity -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-orange-500 text-white font-black text-base px-3 py-1 rounded-lg font-mono">
+                            GÖKSAN
+                        </span>
+                        <span class="font-extrabold text-white text-base">ETİKET • MATBAA • AMBALAJ</span>
                     </div>
-                    <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.7;">
-                        Türkiye'nin lider endüstriyel rulo etiket üreticisi. 81 ilin tamamındaki organize sanayi bölgelerine (OSB), gıda, kimya, otomotiv, tekstil ve lojistik sektörlerine doğrudan fabrikadan toptan sevkiyat.
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Gaziantep 1. Organize Sanayi Bölgesinde kurulu modern entegre tesislerimizde, endüstriyel rulo etiket, dokuma arma, karton sallama etiket ve ofset kutu ambalaj imalatı gerçekleştiriyoruz. 81 ilin tüm sanayi bölgelerine doğrudan sevkiyat.
                     </p>
+                    <div class="pt-2 text-xs text-slate-300 space-y-1">
+                        <div>🏭 <strong>Vergi Dairesi:</strong> Şehitkamil V.D.</div>
+                        <div>🌐 <strong>Web:</strong> https://www.goksanetiket.com</div>
+                    </div>
                 </div>
 
-                <div class="footer-col">
-                    <h4>Popüler Ürünler</h4>
-                    <ul class="footer-links">
-                        <li><a href="{{ route('regional.service', ['serviceSlug' => 'kuse-etiket', 'citySlug' => 'istanbul']) }}">Kuşe Rulo Etiket</a></li>
-                        <li><a href="{{ route('regional.service', ['serviceSlug' => 'termal-etiket', 'citySlug' => 'istanbul']) }}">Termal Barkod Etiketi</a></li>
-                        <li><a href="{{ route('regional.service', ['serviceSlug' => 'pp-opak-etiket', 'citySlug' => 'istanbul']) }}">PP Opak Plastik Etiket</a></li>
-                        <li><a href="{{ route('regional.service', ['serviceSlug' => 'silver-mat-etiket', 'citySlug' => 'istanbul']) }}">Silver Mat Demirbaş Etiketi</a></li>
-                        <li><a href="{{ route('regional.service', ['serviceSlug' => 'japon-akmaz-etiket', 'citySlug' => 'istanbul']) }}">Japon Akmaz Yıkama Etiketi</a></li>
+                <!-- Col 2: Core Modules -->
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider border-l-2 border-orange-500 pl-2">
+                        Üretim Alanlarımız
+                    </h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors">Termal & Kuşe Rulo Etiket</a></li>
+                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors">PP Opak & Şeffaf Plastik Etiket</a></li>
+                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors">Silver Mat Demirbaş Etiketi</a></li>
+                        <li><a href="{{ route('corporate.tekstil') }}" class="hover:text-orange-400 transition-colors">Dokuma & Yaka Ense Etiketi</a></li>
+                        <li><a href="{{ route('corporate.tekstil') }}" class="hover:text-orange-400 transition-colors">Karton Sallama Etiketi (Hang Tag)</a></li>
+                        <li><a href="{{ route('corporate.ambalaj') }}" class="hover:text-orange-400 transition-colors">Karton Kutu & Özel Ambalaj</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-col">
-                    <h4>Bölgelerimiz</h4>
-                    <ul class="footer-links">
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'istanbul']) }}">İstanbul Etiket Fabrikası</a></li>
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'bursa']) }}">Bursa Etiket Fabrikası</a></li>
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'gaziantep']) }}">Gaziantep Etiket Fabrikası</a></li>
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'izmir']) }}">İzmir Etiket Fabrikası</a></li>
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'ankara']) }}">Ankara Etiket Fabrikası</a></li>
+                <!-- Col 3: Regional Hubs -->
+                <div class="lg:col-span-2 space-y-3">
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider border-l-2 border-orange-500 pl-2">
+                        Bölgesel Ağımız
+                    </h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'gaziantep']) }}" class="hover:text-orange-400 transition-colors">Gaziantep Etiket Fabrikası</a></li>
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'istanbul']) }}" class="hover:text-orange-400 transition-colors">İstanbul Etiket Fabrikası</a></li>
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'bursa']) }}" class="hover:text-orange-400 transition-colors">Bursa Etiket Fabrikası</a></li>
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'izmir']) }}" class="hover:text-orange-400 transition-colors">İzmir Etiket Fabrikası</a></li>
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'ankara']) }}" class="hover:text-orange-400 transition-colors">Ankara Etiket Fabrikası</a></li>
+                        <li><a href="{{ route('regional.index') }}" class="text-orange-400 font-semibold hover:underline">Tüm 81 İli İncele &rarr;</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-col">
-                    <h4>Fabrika & İletişim</h4>
-                    <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 12px;">
-                        📍 <strong>Merkez Üretim Tesisi:</strong> Başpınar OSB 3. Bölge, Gaziantep / Türkiye
-                    </p>
-                    <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 8px;">
-                        📞 <strong>Santral:</strong> 0850 000 00 00
-                    </p>
-                    <p style="color: var(--text-muted); font-size: 0.92rem;">
-                        ✉️ <strong>E-Posta:</strong> info@goksanetiket.com
-                    </p>
+                <!-- Col 4: Corporate Contact -->
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider border-l-2 border-orange-500 pl-2">
+                        Fabrika & İletişim
+                    </h4>
+                    <div class="space-y-2.5 text-xs">
+                        <p class="leading-relaxed">
+                            📍 <strong>Fabrika:</strong> 1. Organize Sanayi Bölgesi 83105 Nolu Cadde No:31 Şehitkamil / GAZİANTEP
+                        </p>
+                        <p>
+                            📞 <strong>Santral:</strong> <a href="tel:+903425034652" class="text-white hover:text-orange-400 font-bold">+90 342 503 46 52</a>
+                        </p>
+                        <p>
+                            📱 <strong>WhatsApp / Mobil:</strong> <a href="https://wa.me/905330246338" target="_blank" class="text-emerald-400 hover:underline font-bold">+90 533 024 63 38</a>
+                        </p>
+                        <p>
+                            ✉ <strong>E-Posta:</strong> <a href="mailto:info@goksanetiket.com" class="text-slate-300 hover:text-orange-400">info@goksanetiket.com</a>
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <p>&copy; {{ date('Y') }} Göksan Etiket San. ve Tic. Ltd. Şti. Tüm Hakları Saklıdır.</p>
-                <p>Türkiye Geneli 81 İl Programmatic SEO Altyapısı</p>
+            <!-- Bottom Copyright & Sitemap -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <p>&copy; {{ date('Y') }} GÖKSAN Etiket • Matbaa • Ambalaj San. ve Tic. Ltd. Şti. Tüm Hakları Saklıdır.</p>
+                <div class="flex items-center gap-4">
+                    <a href="{{ route('sitemap') }}" class="hover:text-orange-400 transition-colors">XML Sitemap</a>
+                    <span>•</span>
+                    <a href="{{ route('admin.login') }}" class="hover:text-orange-400 transition-colors">Yönetici Girişi</a>
+                </div>
             </div>
         </div>
     </footer>
