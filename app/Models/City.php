@@ -28,6 +28,9 @@ class City extends Model
         'region',
         'industrial_zones',
         'delivery_time',
+        'seo_title',
+        'seo_description',
+        'custom_content',
     ];
 
     /**

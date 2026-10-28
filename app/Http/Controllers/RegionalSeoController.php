@@ -79,9 +79,17 @@ class RegionalSeoController extends Controller
             ];
         });
 
+        $title = !empty($city->seo_title) 
+            ? $city->seo_title 
+            : "{$city->name} Etiket Fabrikası - Toptan Rulo & Baskılı Etiket Üretimi | Göksan Etiket";
+
+        $description = !empty($city->seo_description)
+            ? $city->seo_description
+            : "{$city->name} ve {$city->industrial_zones} için toptan rulo etiket üretimi. {$city->delivery_time} hızlı teslimat garantisi ve fabrika fiyatlarıyla hemen teklif alın.";
+
         $seo = [
-            'title' => "{$city->name} Etiket Fabrikası - Toptan Rulo & Baskılı Etiket Üretimi | Göksan Etiket",
-            'description' => "{$city->name} ve {$city->industrial_zones} için toptan rulo etiket üretimi. {$city->delivery_time} hızlı teslimat garantisi ve fabrika fiyatlarıyla hemen teklif alın.",
+            'title' => $title,
+            'description' => $description,
             'canonical' => route('regional.city', ['citySlug' => $city->slug]),
         ];
 
