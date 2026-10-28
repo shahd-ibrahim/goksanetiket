@@ -80,7 +80,7 @@ class RegionalSeoController extends Controller
         });
 
         $seo = [
-            'title' => "{$city->name} Etiket Fabrikası - Endüstriyel Rulo Baskı | Göksan Etiket",
+            'title' => "{$city->name} Etiket Fabrikası - Toptan Rulo & Baskılı Etiket Üretimi | Göksan Etiket",
             'description' => "{$city->name} ve {$city->industrial_zones} için toptan rulo etiket üretimi. {$city->delivery_time} hızlı teslimat garantisi ve fabrika fiyatlarıyla hemen teklif alın.",
             'canonical' => route('regional.city', ['citySlug' => $city->slug]),
         ];
