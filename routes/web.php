@@ -9,14 +9,27 @@ use App\Http\Controllers\RegionalSeoController;
 use Illuminate\Support\Facades\Route;
 
 // ==========================================
+// 0. LANGUAGE SWITCHER (TR / AR + RTL)
+// ==========================================
+Route::get('/lang/{locale}', function (string $locale) {
+    if (in_array($locale, ['tr', 'ar'])) {
+        session(['locale' => $locale]);
+        app()->setLocale($locale);
+    }
+    return back();
+})->name('set-locale');
+
+// ==========================================
 // 1. CORPORATE & MODULE ROUTES
 // ==========================================
-
 Route::get('/', [CorporateController::class, 'home'])->name('home');
 Route::get('/kurumsal', [CorporateController::class, 'about'])->name('corporate.about');
 Route::get('/hakkimizda', function () {
     return redirect()->route('corporate.about', [], 301);
 });
+Route::get('/makine-parkuru', [CorporateController::class, 'machinery'])->name('corporate.machinery');
+Route::get('/sektorler', [CorporateController::class, 'sectors'])->name('corporate.sectors');
+Route::get('/teklif-al', [CorporateController::class, 'rfq'])->name('corporate.rfq');
 
 // Core Modules
 Route::get('/etiket-cozumleri', [CorporateController::class, 'etiketCozumleri'])->name('corporate.etiket');
@@ -31,10 +44,8 @@ Route::get('/sitemap.xml', [RegionalSeoController::class, 'sitemap'])->name('sit
 // ==========================================
 // 2. REGIONAL SEO ENGINE (81 İL SİSTEMİ)
 // ==========================================
-
-// Regional Index
-Route::get('/bolgesel-hizmetler', [RegionalSeoController::class, 'index'])->name('regional.index');
-Route::get('/hizmet-bolgelerimiz', function () {
+Route::get('/hizmet-bolgelerimiz', [RegionalSeoController::class, 'index'])->name('regional.index');
+Route::get('/bolgesel-hizmetler', function () {
     return redirect()->route('regional.index', [], 301);
 });
 Route::get('/etiket-hizmet-bolgeleri', function () {
@@ -55,7 +66,6 @@ Route::get('/{citySlug}-rulo-etiket', [RegionalSeoController::class, 'cityHub'])
 // ==========================================
 // 3. ADMIN PANEL ROUTES
 // ==========================================
-
 Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
 Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
 Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');

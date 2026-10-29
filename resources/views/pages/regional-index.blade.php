@@ -7,7 +7,7 @@
   "@type": "Manufacturer",
   "name": "GÖKSAN Etiket • Matbaa • Ambalaj",
   "url": "https://www.goksanetiket.com",
-  "logo": "https://www.goksanetiket.com/assets/images/logo.png",
+  "logo": "{{ asset('images/logo.png') }}",
   "description": "Gaziantep 1. OSB'den Türkiye genelinde 81 il ve organize sanayi bölgelerine toptan rulo etiket, dokuma etiket ve ambalaj sevkiyatı.",
   "telephone": "+90-342-503-4652",
   "address": {
@@ -32,7 +32,7 @@
   },{
     "@type": "ListItem",
     "position": 2,
-    "name": "Bölgesel Hizmetler (81 İl)",
+    "name": "Hizmet Bölgelerimiz (81 İl)",
     "item": "{{ route('regional.index') }}"
   }]
 }
@@ -40,140 +40,168 @@
 @endpush
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-    <!-- Hero Section -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center space-x-2 text-xs text-slate-500">
+        <a href="{{ url('/') }}" class="hover:text-orange-600">Ana Sayfa</a>
+        <span>/</span>
+        <span class="text-slate-900 font-bold">Hizmet Bölgelerimiz (81 İl)</span>
+    </nav>
+
+    <!-- Header & Live Search Bar -->
     <section class="text-center max-w-4xl mx-auto space-y-6">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-orange-500/10 border border-orange-500/30 text-orange-400">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            Türkiye Geneli 81 İl ve Tüm Organize Sanayi Bölgeleri (OSB)
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-orange-50 border border-orange-200 text-orange-700">
+            <svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Türkiye Geneli 81 İl ve Organize Sanayi Bölgeleri (OSB)
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-            Türkiye'nin Endüstriyel Rulo Etiket & Ambalaj Üretim Merkezi
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            Türkiye'nin Endüstriyel Rulo Etiket & Ambalaj Fabrikası
         </h1>
 
-        <p class="text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            Gaziantep 1. OSB fabrikamızdan Türkiye'nin her noktasına doğrudan toptan rulo baskı! İlinizi seçerek size özel teslimat sürelerini ve organize sanayi sevkiyat avantajlarını hemen inceleyin.
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            Gaziantep 1. OSB modern tesislerimizden 81 ilimizin tüm organize sanayi bölgelerine doğrudan toptan rulo baskı! İlinizi seçerek teslimat sürelerini ve OSB lojistik avantajlarını inceleyin.
         </p>
 
-        <!-- Live Search Bar -->
+        <!-- Live Instant Search Bar -->
         <div class="max-w-xl mx-auto relative pt-2">
-            <input type="text" id="citySearch" placeholder="İl veya OSB adı yazın (Örn: Bursa, İkitelli, Başpınar, Denizli, OSTİM)..." 
-                   class="w-full px-6 py-4 rounded-2xl bg-navy-900 border border-navy-750 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-orange-500 shadow-2xl">
-            <svg class="w-5 h-5 text-slate-500 absolute right-5 top-7 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="citySearch" placeholder="İl veya sanayi bölgesi arayın (Örn: Bursa, İkitelli, Başpınar, Gebze, Denizli)..." 
+                   class="w-full px-5 py-4 pl-12 rounded-2xl bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-md transition-all">
+            <svg class="w-5 h-5 text-slate-400 absolute left-4 top-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </div>
     </section>
 
-    <!-- Key Metrics Stats -->
+    <!-- Key Metrics Stats (Light Theme) -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-navy-900 border border-navy-800 rounded-2xl p-6 text-center">
-            <div class="text-3xl font-black text-white font-mono">81 İl</div>
-            <div class="text-xs text-slate-400 mt-1">Tam Kapsama & Kapıya Teslim</div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 text-center shadow-xs">
+            <div class="text-2xl sm:text-3xl font-black text-slate-900 font-mono">81 İl</div>
+            <div class="text-xs text-slate-500 mt-1">Tam Kapsama & Kapıya Teslim</div>
         </div>
-        <div class="bg-navy-900 border border-navy-800 rounded-2xl p-6 text-center">
-            <div class="text-3xl font-black text-orange-400 font-mono">350+</div>
-            <div class="text-xs text-slate-400 mt-1">Organize Sanayi Bölgesi (OSB)</div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 text-center shadow-xs">
+            <div class="text-2xl sm:text-3xl font-black text-orange-600 font-mono">350+</div>
+            <div class="text-xs text-slate-500 mt-1">Organize Sanayi Bölgesi (OSB)</div>
         </div>
-        <div class="bg-navy-900 border border-navy-800 rounded-2xl p-6 text-center">
-            <div class="text-3xl font-black text-emerald-400 font-mono">24-48 Saat</div>
-            <div class="text-xs text-slate-400 mt-1">Hızlı Ambar & Express Sevk</div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 text-center shadow-xs">
+            <div class="text-2xl sm:text-3xl font-black text-emerald-600 font-mono">24-48 Saat</div>
+            <div class="text-xs text-slate-500 mt-1">Hızlı Ambar & Express Sevk</div>
         </div>
-        <div class="bg-navy-900 border border-navy-800 rounded-2xl p-6 text-center">
-            <div class="text-3xl font-black text-white font-mono">8 Renk UV</div>
-            <div class="text-xs text-slate-400 mt-1">Flekso Rulo Baskı Parkuru</div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 text-center shadow-xs">
+            <div class="text-2xl sm:text-3xl font-black text-slate-900 font-mono">8 Renk UV</div>
+            <div class="text-xs text-slate-500 mt-1">Flekso Rulo Baskı Parkuru</div>
         </div>
     </div>
 
-    <!-- Grouped Cities by Region -->
+    <!-- Grouped Cities by Region (Clean Directory Cards) -->
     <div id="regionsSection" class="space-y-12">
-        <div class="border-b border-navy-850 pb-4 flex items-center justify-between">
-            <h2 class="text-2xl font-extrabold text-white flex items-center gap-2">
+        <div class="border-b border-slate-200 pb-4 flex items-center justify-between">
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
                 <span>📍</span> Coğrafi Bölgelere Göre Fabrika Dağıtım Ağı
             </h2>
-            <span class="text-xs text-slate-400">81 İl İndeksi</span>
+            <span class="text-xs font-semibold text-slate-500">81 İl İndeksi</span>
         </div>
 
         @foreach($groupedCities as $regionName => $citiesList)
             <div class="region-block space-y-4">
-                <div class="flex items-center justify-between border-b border-navy-850 pb-2">
-                    <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
-                        {{ $regionName }} Bölgesi
+                <div class="flex items-center justify-between border-b border-slate-200/80 pb-2">
+                    <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2 uppercase tracking-wide">
+                        <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+                        <span>{{ $regionName }} Bölgesi</span>
                     </h3>
-                    <span class="text-xs text-slate-500 font-bold bg-navy-950 px-2 py-0.5 rounded-full border border-navy-800">
+                    <span class="text-[11px] font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
                         {{ $citiesList->count() }} İl
                     </span>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 city-grid">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     @foreach($citiesList as $city)
-                        <div class="city-card bg-navy-900 border border-navy-800 hover:border-orange-500/50 rounded-2xl p-5 transition-all duration-200 hover:-translate-y-0.5 shadow-lg flex flex-col justify-between"
-                             data-name="{{ mb_strtolower($city->name, 'UTF-8') }}" 
-                             data-zones="{{ mb_strtolower($city->industrial_zones, 'UTF-8') }}">
+                        <a href="{{ route('regional.city', ['citySlug' => $city->slug]) }}" 
+                           class="city-card bg-white border border-slate-200 hover:border-orange-500 p-4 rounded-2xl shadow-xs hover:shadow-md transition-all group flex flex-col justify-between"
+                           data-city-name="{{ mb_strtolower($city->name, 'UTF-8') }}"
+                           data-industrial-zones="{{ mb_strtolower($city->industrial_zones ?? '', 'UTF-8') }}">
                             <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <div class="flex items-center gap-2.5">
-                                        <span class="w-8 h-8 rounded-lg bg-navy-950 border border-navy-750 font-mono font-bold text-xs text-orange-400 flex items-center justify-center">
-                                            {{ $city->formatted_plate }}
-                                        </span>
-                                        <h4 class="text-base font-bold text-white">
-                                            <a href="{{ route('regional.city', ['citySlug' => $city->slug]) }}" class="hover:text-orange-400 transition-colors">
-                                                {{ $city->name }}
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <span class="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">
-                                        ⚡ {{ $city->delivery_time }}
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-mono font-bold text-slate-400 group-hover:text-orange-600 transition-colors">
+                                        #{{ sprintf('%02d', $city->plate_code) }}
+                                    </span>
+                                    <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">
+                                        {{ $city->delivery_time ?? '24-48 Saat' }}
                                     </span>
                                 </div>
 
-                                <p class="text-xs text-slate-400 leading-relaxed mb-4 line-clamp-2">
-                                    <strong class="text-slate-300">OSB:</strong> {{ $city->industrial_zones }}
+                                <h4 class="text-base font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
+                                    {{ $city->name }}
+                                </h4>
+
+                                <p class="text-[11px] text-slate-500 line-clamp-2 mt-1 leading-relaxed">
+                                    {{ $city->industrial_zones ?? 'Organize Sanayi Bölgesi ve sanayi siteleri' }}
                                 </p>
                             </div>
 
-                            <div class="pt-3 border-t border-navy-800 flex items-center justify-between">
-                                <a href="{{ route('regional.city', ['citySlug' => $city->slug]) }}" class="text-xs font-semibold text-orange-400 hover:text-orange-300 flex items-center gap-1">
-                                    <span>{{ $city->name }} Etiket Fabrikası</span>
-                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                                </a>
+                            <div class="pt-3 border-t border-slate-100 mt-3 flex items-center justify-between text-[11px] font-semibold text-orange-600 group-hover:translate-x-1 transition-transform">
+                                <span>Etiket Fabrikası &rarr;</span>
+                                <span class="text-slate-400 font-normal">Toptan Fiyat</span>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             </div>
         @endforeach
     </div>
+
+    <!-- No Search Results Found Alert -->
+    <div id="noResults" class="hidden text-center py-16 bg-white border border-slate-200 rounded-3xl space-y-3">
+        <span class="text-4xl">🔍</span>
+        <h3 class="text-base font-bold text-slate-800">Aradığınız il veya OSB bulunamadı</h3>
+        <p class="text-xs text-slate-500">Lütfen farklı bir şehir veya organize sanayi bölgesi adı giriniz.</p>
+    </div>
 </div>
 
-@push('scripts')
+<!-- Instant Real-Time Search Filter Script -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('citySearch');
-        const cards = document.querySelectorAll('.city-card');
+        const cityCards = document.querySelectorAll('.city-card');
         const regionBlocks = document.querySelectorAll('.region-block');
+        const noResults = document.getElementById('noResults');
 
-        searchInput.addEventListener('input', function (e) {
-            const query = e.target.value.trim().toLowerCase();
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.trim().toLowerCase();
+                let anyVisible = false;
 
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                const zones = card.getAttribute('data-zones');
+                regionBlocks.forEach(block => {
+                    let visibleInRegion = 0;
+                    const cards = block.querySelectorAll('.city-card');
 
-                if (name.includes(query) || zones.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
+                    cards.forEach(card => {
+                        const cityName = card.getAttribute('data-city-name') || '';
+                        const osb = card.getAttribute('data-industrial-zones') || '';
+
+                        if (cityName.includes(query) || osb.includes(query)) {
+                            card.classList.remove('hidden');
+                            visibleInRegion++;
+                            anyVisible = true;
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+
+                    if (visibleInRegion > 0) {
+                        block.classList.remove('hidden');
+                    } else {
+                        block.classList.add('hidden');
+                    }
+                });
+
+                if (noResults) {
+                    if (!anyVisible) {
+                        noResults.classList.remove('hidden');
+                    } else {
+                        noResults.classList.add('hidden');
+                    }
                 }
             });
-
-            regionBlocks.forEach(block => {
-                const visibleCards = block.querySelectorAll('.city-card[style*="display: flex"], .city-card:not([style*="display"])');
-                const anyVisible = Array.from(visibleCards).some(c => c.style.display !== 'none');
-                block.style.display = anyVisible ? 'block' : 'none';
-            });
-        });
+        }
     });
 </script>
-@endpush
 @endsection

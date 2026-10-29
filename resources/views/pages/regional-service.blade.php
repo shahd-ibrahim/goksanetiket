@@ -57,190 +57,103 @@
 @endpush
 
 @section('content')
-<div class="container">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-12">
     <!-- Breadcrumb -->
-    <nav class="breadcrumb-nav" style="margin-top: 24px;">
-        <a href="{{ url('/') }}">Ana Sayfa</a>
+    <nav class="flex items-center space-x-2 text-xs text-slate-500">
+        <a href="{{ url('/') }}" class="hover:text-orange-600">Ana Sayfa</a>
         <span>/</span>
-        <a href="{{ route('regional.index') }}">Hizmet Bölgeleri</a>
+        <a href="{{ route('regional.index') }}" class="hover:text-orange-600">Hizmet Bölgeleri</a>
         <span>/</span>
-        <a href="{{ route('regional.city', ['citySlug' => $city->slug]) }}">{{ $city->name }} Etiket Fabrikası</a>
+        <a href="{{ route('regional.city', ['citySlug' => $city->slug]) }}" class="hover:text-orange-600">{{ $city->name }} Etiket Fabrikası</a>
         <span>/</span>
-        <span style="color: var(--primary-light);">{{ $product->title }}</span>
+        <span class="text-orange-600 font-bold">{{ $product->title }}</span>
     </nav>
 
     <!-- Product & City Hero -->
-    <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; margin: 24px 0 64px; align-items: center;">
-        <!-- Images -->
-        <div>
-            <div style="width: 100%; height: 380px; border-radius: var(--radius-lg); overflow: hidden; background: #131b2e; border: 1px solid var(--border-color); position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
-                @if(!empty($product->images) && count($product->images) > 0)
-                    <img src="{{ $product->images[0] }}" alt="{{ $city->name }} {{ $product->title }}" style="width: 100%; height: 100%; object-fit: cover;">
-                @else
-                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-dim);">Göksan Etiket</div>
-                @endif
-                <div style="position: absolute; top: 16px; left: 16px; background: rgba(10, 15, 29, 0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; color: var(--primary-light);">
-                    📍 {{ $city->name }} İmalatı & Doğrudan Sevkiyat
+    <div class="bg-gradient-to-br from-slate-50 via-white to-orange-50/30 border border-slate-200 rounded-3xl p-8 md:p-12 shadow-xs">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Left: Hero Content -->
+            <div class="lg:col-span-7 space-y-5">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-800">
+                        {{ $city->name }} Toptan İmalat
+                    </span>
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+                        ⚡ {{ $city->delivery_time ?? '24-48 Saat' }} Teslimat
+                    </span>
                 </div>
-            </div>
-        </div>
 
-        <!-- Hero Content -->
-        <div>
-            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 14px;">
-                <span class="hero-badge" style="margin-bottom: 0;">
-                    Fabrikadan {{ $city->name }} Sevkiyatı
-                </span>
-                <span style="background: rgba(245, 158, 11, 0.15); color: var(--accent); padding: 4px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 700;">
-                    ⚡ {{ $city->delivery_time }}
-                </span>
-            </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+                    {{ $city->name }} {{ $product->title }}
+                </h1>
 
-            <h1 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; color: #fff;">
-                {{ $city->name }} {{ $product->title }}
-            </h1>
-
-            <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">
-                {{ $product->short_description }}
-            </p>
-
-            <div class="card" style="margin-bottom: 24px; padding: 18px 20px; background: rgba(255, 255, 255, 0.03);">
-                <div style="font-size: 0.85rem; color: var(--primary-light); font-weight: 700; margin-bottom: 4px;">
-                    🏭 {{ $city->name }} HEDEF SANAYİ BÖLGELERİ:
-                </div>
-                <div style="font-size: 0.92rem; color: #e2e8f0;">
-                    {{ $city->industrial_zones }}
-                </div>
-            </div>
-
-            <div style="display: flex; flex-wrap: wrap; gap: 14px;">
-                <a href="https://wa.me/905300000000?text={{ urlencode('Merhaba, ' . $city->name . ' adresimiz için ' . $product->title . ' fiyat teklifi ve numune talep ediyorum.') }}" target="_blank" class="btn btn-whatsapp" style="padding: 14px 28px; font-size: 1rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
-                    WhatsApp ile {{ $city->name }} Fiyatı Al
-                </a>
-                <a href="tel:+908500000000" class="btn btn-primary" style="padding: 14px 28px; font-size: 1rem;">
-                    0850 000 00 00
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product Detailed Content & Specifications -->
-    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; margin-bottom: 64px;">
-        <!-- Left: Technical Article -->
-        <div>
-            <div class="card" style="padding: 36px 32px; line-height: 1.8;">
-                <h2 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 18px;">
-                    {{ $city->name }} Sanayi Kuruluşları İçin {{ $product->title }}
-                </h2>
-
-                <p style="color: var(--text-muted); margin-bottom: 18px;">
-                    {{ $product->content }}
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+                    {{ $product->short_description }} {{ $city->name }} genelindeki tüm fabrikalar ve organize sanayi kuruluşları için toptan üretim avantajı.
                 </p>
 
-                <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin: 24px 0 12px;">
-                    {{ $city->name }} İline Özel Sevkiyat & Sipariş Avantajları
-                </h3>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs text-xs text-slate-700">
+                    <strong class="text-slate-900 block mb-1">🏭 {{ $city->name }} Hedef Sanayi Alanları:</strong>
+                    {{ $city->industrial_zones ?? $city->name . ' Organize Sanayi Bölgesi' }}
+                </div>
 
-                <ul style="color: var(--text-muted); padding-left: 20px; margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px;">
-                    <li><strong>Doğrudan Üretici Güvencesi:</strong> Aracı ve toptancı payı olmaksızın en rekabetçi rulo etiket birim maliyetleri.</li>
-                    <li><strong>{{ $city->industrial_zones }} Bölgesine Hızlı İntikal:</strong> {{ $city->delivery_time }} içerisinde ambar ve kargo teslimi.</li>
-                    <li><strong>Masaüstü ve Endüstriyel Yazıcı Uyumu:</strong> Zebra, TSC, Argox, Honeywell ve Sato yazıcılarla %100 uyumlu rulo sarımı ve kuka seçenekleri.</li>
-                    <li><strong>Ücretsiz Numune:</strong> {{ $city->name }} merkez veya ilçelerindeki üretim tesisinize deneme numunesi gönderimi.</li>
-                </ul>
-
-                <div style="background: rgba(2, 132, 199, 0.08); border-left: 4px solid var(--primary-light); padding: 16px 20px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                    <p style="font-size: 0.95rem; color: #e2e8f0; margin: 0;">
-                        💡 <strong>Özel Ebat & Baskı Talepleri:</strong> Standart ölçülerin yanı sıra istediğiniz en, boy ve özel bıçak kesiminde baskılı veya baskısız rulo etiket üretebiliyoruz.
-                    </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="https://wa.me/905330246338?text={{ urlencode('Merhaba, ' . $city->name . ' fabrikamız için ' . $product->title . ' fiyat teklifi almak istiyoruz.') }}" target="_blank"
+                       class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-md transition-all">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+                        <span>WhatsApp ile {{ $city->name }} Fiyatı Al</span>
+                    </a>
+                    <a href="tel:+903425034652" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-800 font-bold text-xs shadow-xs transition-all">
+                        <span>📞 +90 342 503 46 52</span>
+                    </a>
                 </div>
             </div>
-        </div>
 
-        <!-- Right: Technical Specs Table -->
-        <div>
-            <div class="card" style="padding: 32px 28px;">
-                <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-                    ⚙️ Teknik Özellikler
-                </h3>
+            <!-- Right: Product Card / Specs -->
+            <div class="lg:col-span-5">
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-md space-y-4">
+                    <div class="h-48 bg-slate-50 rounded-2xl overflow-hidden flex items-center justify-center border border-slate-100">
+                        @if(!empty($product->images) && count($product->images) > 0)
+                            <img src="{{ $product->images[0] }}" alt="{{ $city->name }} {{ $product->title }}" class="w-full h-full object-cover">
+                        @else
+                            <div class="text-center p-4">
+                                <span class="text-4xl">🏷️</span>
+                                <span class="block text-xs font-bold text-slate-500 mt-2">{{ $product->title }}</span>
+                            </div>
+                        @endif
+                    </div>
 
-                @if(!empty($product->specs) && is_array($product->specs))
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
-                        <tbody>
-                            @foreach($product->specs as $specKey => $specValue)
-                                <tr style="border-bottom: 1px solid var(--border-color);">
-                                    <td style="padding: 12px 0; color: var(--text-muted); font-weight: 600; width: 40%;">{{ $specKey }}</td>
-                                    <td style="padding: 12px 0; color: #f1f5f9; text-align: right;">{{ $specValue }}</td>
-                                </tr>
+                    @if(!empty($product->specs) && is_array($product->specs))
+                        <div class="space-y-2 text-xs border-t border-slate-100 pt-3">
+                            <span class="font-bold text-slate-900 block">Teknik Özellikler:</span>
+                            @foreach($product->specs as $key => $val)
+                                <div class="flex justify-between py-1 border-b border-slate-50">
+                                    <span class="text-slate-500">{{ $key }}:</span>
+                                    <span class="font-semibold text-slate-800">{{ $val }}</span>
+                                </div>
                             @endforeach
-                            <tr style="border-bottom: 1px solid var(--border-color);">
-                                <td style="padding: 12px 0; color: var(--text-muted); font-weight: 600;">Hedef İl</td>
-                                <td style="padding: 12px 0; color: var(--primary-light); font-weight: 700; text-align: right;">{{ $city->name }} ({{ $city->formatted_plate }})</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 12px 0; color: var(--text-muted); font-weight: 600;">Teslim Süresi</td>
-                                <td style="padding: 12px 0; color: var(--accent); font-weight: 700; text-align: right;">{{ $city->delivery_time }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                @endif
-
-                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center;">
-                    <a href="https://wa.me/905300000000?text={{ urlencode($city->name . ' için ' . $product->title . ' teknik numune ve fiyat teklifi istiyorum.') }}" target="_blank" class="btn btn-whatsapp" style="width: 100%;">
-                        Ücretsiz Numune Talep Et
-                    </a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Cross-Selling Other Products in this City -->
-    @if(isset($otherProducts) && $otherProducts->count() > 0)
-        <section style="margin-bottom: 64px;">
-            <div style="margin-bottom: 28px;">
-                <div class="hero-badge">{{ $city->name }} İçin Diğer Çözümler</div>
-                <h3 style="font-size: 1.6rem; font-weight: 800; color: #fff;">
-                    {{ $city->name }} Sanayisinde Tercih Edilen Diğer Etiket Türleri
-                </h3>
-            </div>
-
-            <div class="grid-3">
-                @foreach($otherProducts as $other)
-                    <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <h4 style="font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 8px;">
-                                <a href="{{ route('regional.service', ['serviceSlug' => $other->slug, 'citySlug' => $city->slug]) }}">
-                                    {{ $city->name }} {{ $other->title }}
-                                </a>
-                            </h4>
-                            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">
-                                {{ \Illuminate\Support\Str::limit($other->short_description, 95) }}
-                            </p>
-                        </div>
-                        <a href="{{ route('regional.service', ['serviceSlug' => $other->slug, 'citySlug' => $city->slug]) }}" style="font-size: 0.88rem; color: var(--primary-light); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-                            İncele & Fiyat Al &rarr;
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </section>
-    @endif
-
-    <!-- Regional Cross-linking: Same Product in Other Cities of the Region -->
-    @if(isset($otherCities) && $otherCities->count() > 0)
-        <section style="margin-bottom: 48px; border-top: 1px solid var(--border-color); padding-top: 40px;">
-            <h4 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; color: var(--text-muted);">
-                {{ $city->region }} Bölgesindeki Diğer İllerde {{ $product->title }}:
-            </h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                @foreach($otherCities as $otherCity)
-                    <a href="{{ route('regional.service', ['serviceSlug' => $product->slug, 'citySlug' => $otherCity->slug]) }}" 
-                       style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 999px; font-size: 0.85rem; color: #cbd5e1;">
-                        {{ $otherCity->name }} {{ $product->title }}
-                    </a>
-                @endforeach
-            </div>
-        </section>
+    <!-- Other Regional Cities -->
+    @if(isset($otherCities) && $otherCities->isNotEmpty())
+    <div class="border-t border-slate-200 pt-10">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-800 mb-4">
+            {{ $city->region }} Bölgesinde {{ $product->title }} İmalatı
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            @foreach($otherCities as $oc)
+                <a href="{{ route('regional.service', ['serviceSlug' => $product->slug, 'citySlug' => $oc->slug]) }}" 
+                   class="bg-white border border-slate-200 hover:border-orange-500 p-3 rounded-xl text-center shadow-xs hover:shadow-md transition-all group">
+                    <span class="block text-xs font-bold text-slate-800 group-hover:text-orange-600">{{ $oc->name }}</span>
+                    <span class="block text-[10px] text-slate-400 mt-0.5">{{ $oc->delivery_time }}</span>
+                </a>
+            @endforeach
+        </div>
+    </div>
     @endif
 </div>
 @endsection
