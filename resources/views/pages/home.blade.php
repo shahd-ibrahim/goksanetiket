@@ -8,43 +8,43 @@
 @section('content')
 <div class="space-y-20 pb-16">
 
-    <!-- 1. SPLIT HERO SECTION (PREMIUM LIGHT THEME) -->
-    <section class="relative pt-10 pb-16 md:pt-16 md:pb-24 bg-gradient-to-b from-slate-50 via-white to-slate-50/50 border-b border-slate-200/80 overflow-hidden">
+    <!-- 1. SPLIT HERO SECTION (PREMIUM LIGHT & DARK THEME) -->
+    <section class="relative pt-10 pb-16 md:pt-16 md:pb-24 bg-gradient-to-b from-slate-50 via-white to-slate-50/50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950/50 border-b border-slate-200/80 dark:border-slate-800 overflow-hidden transition-colors">
         <!-- Soft decorative background glow -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-tr from-amber-100/40 via-orange-100/30 to-blue-100/30 blur-3xl pointer-events-none -z-10"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-tr from-amber-100/40 via-orange-100/30 to-blue-100/30 dark:from-amber-900/10 dark:via-orange-900/10 dark:to-blue-900/10 blur-3xl pointer-events-none -z-10"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
                 <!-- Left Hero Content -->
                 <div class="lg:col-span-7 space-y-6 text-{{ $isRtl ? 'right' : 'left' }}">
                     <!-- Live Production Badge -->
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-orange-50 border border-orange-200 text-orange-700 shadow-xs">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-orange-50 dark:bg-orange-950/50 border border-orange-200 dark:border-orange-800 text-orange-700 dark:text-orange-300 shadow-xs">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         <span>{{ __('hero_badge') }}</span>
                     </div>
 
                     <!-- Main Headline -->
-                    <h1 class="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-slate-900 leading-[1.15]">
+                    <h1 class="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.15]">
                         {{ __('hero_title') }}
                     </h1>
 
                     <!-- Subtitle -->
-                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal">
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-normal">
                         {{ __('hero_subtitle') }}
                     </p>
 
                     <!-- 3 Value Propositions Checkmarks -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs font-semibold text-slate-700">
-                        <div class="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-xs">
-                            <span class="text-emerald-600 font-bold text-sm">✓</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs font-semibold text-slate-700 dark:text-slate-200">
+                        <div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+                            <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
                             <span>{{ __('val_prop_factory_price') }}</span>
                         </div>
-                        <div class="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-xs">
-                            <span class="text-emerald-600 font-bold text-sm">✓</span>
+                        <div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+                            <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
                             <span>{{ __('val_prop_flexo') }}</span>
                         </div>
-                        <div class="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-xs">
-                            <span class="text-emerald-600 font-bold text-sm">✓</span>
+                        <div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+                            <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
                             <span>{{ __('val_prop_shipping') }}</span>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                             <span>{{ __('btn_whatsapp') }}</span>
                         </a>
 
-                        <a href="tel:+903425034652" class="hidden sm:inline-flex items-center gap-2 px-5 py-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 text-sm font-bold shadow-xs transition-all">
+                        <a href="tel:+903425034652" class="hidden sm:inline-flex items-center gap-2 px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-bold shadow-xs transition-all">
                             <span dir="ltr">📞 +90 342 503 46 52</span>
                         </a>
                     </div>
@@ -71,14 +71,14 @@
 
                 <!-- Right Hero Visual Showcase Card -->
                 <div class="lg:col-span-5">
-                    <div class="relative bg-white border border-slate-200/90 rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-200/60 overflow-hidden">
+                    <div class="relative bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-200/60 dark:shadow-none overflow-hidden transition-colors">
                         <!-- Top status bar -->
-                        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                        <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-6">
                             <div class="flex items-center gap-2">
                                 <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-                                <span class="text-xs font-mono font-bold text-slate-800 tracking-wider">{{ __('factory_automation') }}</span>
+                                <span class="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 tracking-wider">{{ __('factory_automation') }}</span>
                             </div>
-                            <span class="text-[11px] bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-semibold">{{ __('factory_osb_short') }}</span>
+                            <span class="text-[11px] bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full font-semibold">{{ __('factory_osb_short') }}</span>
                         </div>
 
                         <!-- Graphical Roll Label Illustration with Specifications -->
@@ -113,27 +113,27 @@
 
                         <!-- 3 Floating Quality Guarantee Badges -->
                         <div class="space-y-3">
-                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-800">
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200">
                                 <span class="text-lg">🏆</span>
                                 <div>
-                                    <strong class="block text-slate-900">{{ __('badge_iso') }}</strong>
-                                    <span class="text-[11px] text-slate-500">{{ __('badge_iso_sub') }}</span>
+                                    <strong class="block text-slate-900 dark:text-white">{{ __('badge_iso') }}</strong>
+                                    <span class="text-[11px] text-slate-500 dark:text-slate-400">{{ __('badge_iso_sub') }}</span>
                                 </div>
                             </div>
 
-                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-800">
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200">
                                 <span class="text-lg">🍃</span>
                                 <div>
-                                    <strong class="block text-slate-900">{{ __('badge_food_grade') }}</strong>
-                                    <span class="text-[11px] text-slate-500">{{ __('badge_food_grade_sub') }}</span>
+                                    <strong class="block text-slate-900 dark:text-white">{{ __('badge_food_grade') }}</strong>
+                                    <span class="text-[11px] text-slate-500 dark:text-slate-400">{{ __('badge_food_grade_sub') }}</span>
                                 </div>
                             </div>
 
-                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-800">
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200">
                                 <span class="text-lg">📐</span>
                                 <div>
-                                    <strong class="block text-slate-900">{{ __('badge_dies') }}</strong>
-                                    <span class="text-[11px] text-slate-500">{{ __('badge_dies_sub') }}</span>
+                                    <strong class="block text-slate-900 dark:text-white">{{ __('badge_dies') }}</strong>
+                                    <span class="text-[11px] text-slate-500 dark:text-slate-400">{{ __('badge_dies_sub') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -146,21 +146,21 @@
     <!-- 2. TRUST & TECHNICAL STATS BAR -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs text-center">
-                <div class="text-2xl sm:text-3xl font-black text-slate-900 font-mono">{{ __('metric_flexo') }}</div>
-                <div class="text-xs text-slate-500 mt-1 font-medium">{{ __('stat_res_sub') }}</div>
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-xs text-center transition-colors">
+                <div class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">{{ __('metric_flexo') }}</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">{{ __('stat_res_sub') }}</div>
             </div>
-            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs text-center">
-                <div class="text-2xl sm:text-3xl font-black text-orange-600 font-mono">{{ __('metric_capacity') }}</div>
-                <div class="text-xs text-slate-500 mt-1 font-medium">{{ __('stat_cap_sub') }}</div>
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-xs text-center transition-colors">
+                <div class="text-2xl sm:text-3xl font-black text-orange-600 dark:text-orange-400 font-mono">{{ __('metric_capacity') }}</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">{{ __('stat_cap_sub') }}</div>
             </div>
-            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs text-center">
-                <div class="text-2xl sm:text-3xl font-black text-emerald-600 font-mono">{{ __('metric_delivery') }}</div>
-                <div class="text-xs text-slate-500 mt-1 font-medium">{{ __('stat_deliv_sub') }}</div>
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-xs text-center transition-colors">
+                <div class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 font-mono">{{ __('metric_delivery') }}</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">{{ __('stat_deliv_sub') }}</div>
             </div>
-            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs text-center">
-                <div class="text-2xl sm:text-3xl font-black text-slate-900 font-mono">%100</div>
-                <div class="text-xs text-slate-500 mt-1 font-medium">{{ __('stat_price_sub') }}</div>
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-xs text-center transition-colors">
+                <div class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">%100</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">{{ __('stat_price_sub') }}</div>
             </div>
         </div>
     </section>
@@ -168,156 +168,156 @@
     <!-- 3. PRODUCTS SECTION (MODERN TABBED / GRID INDUSTRIAL CATEGORIES) -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <span class="text-xs font-bold uppercase tracking-widest text-orange-600">{{ __('sec_portfolio_badge') }}</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <span class="text-xs font-bold uppercase tracking-widest text-orange-600 dark:text-orange-400">{{ __('sec_portfolio_badge') }}</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 {{ __('sec_portfolio_title') }}
             </h2>
-            <p class="text-sm sm:text-base text-slate-600">
+            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400">
                 {{ __('sec_portfolio_subtitle') }}
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Card 1: Rulo & Termal Etiketler -->
-            <div class="bg-white border border-slate-200 hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 dark:hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
                 <div>
-                    <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-12 h-12 rounded-2xl bg-orange-50 dark:bg-orange-950/50 text-orange-600 dark:text-orange-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
                         🏷️
                     </div>
-                    <span class="text-[11px] font-mono font-bold text-orange-600 uppercase">#01</span>
-                    <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">{{ __('cat_rulo') }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                    <span class="text-[11px] font-mono font-bold text-orange-600 dark:text-orange-400 uppercase">#01</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1 mb-2">{{ __('cat_rulo') }}</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                         {{ __('cat_rulo_desc') }}
                     </p>
                     
-                    <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3 mb-6">
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_rulo_b1') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_rulo_b2') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_rulo_b3') }}</div>
+                    <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 mb-6">
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_rulo_b1') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_rulo_b2') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_rulo_b3') }}</div>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <a href="{{ route('corporate.etiket') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs text-center border border-slate-200 transition-colors">
+                    <a href="{{ route('corporate.etiket') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs text-center border border-slate-200 dark:border-slate-700 transition-colors">
                         {{ __('btn_details') }}
                     </a>
-                    <a href="#rfq-wizard" onclick="selectRfqType('Rulo Kuşe')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors">
+                    <a href="#rfq-wizard" onclick="selectRfqType('Rulo Kuşe')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors shadow-xs">
                         {{ __('btn_get_price') }}
                     </a>
                 </div>
             </div>
 
             <!-- Card 2: Plastik & PP Opak Etiketler -->
-            <div class="bg-white border border-slate-200 hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 dark:hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
                 <div>
-                    <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
                         🛡️
                     </div>
-                    <span class="text-[11px] font-mono font-bold text-blue-600 uppercase">#02</span>
-                    <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">{{ __('cat_plastik') }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                    <span class="text-[11px] font-mono font-bold text-blue-600 dark:text-blue-400 uppercase">#02</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1 mb-2">{{ __('cat_plastik') }}</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                         {{ __('cat_plastik_desc') }}
                     </p>
                     
-                    <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3 mb-6">
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_plastik_b1') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_plastik_b2') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_plastik_b3') }}</div>
+                    <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 mb-6">
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_plastik_b1') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_plastik_b2') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_plastik_b3') }}</div>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <a href="{{ route('corporate.etiket') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs text-center border border-slate-200 transition-colors">
+                    <a href="{{ route('corporate.etiket') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs text-center border border-slate-200 dark:border-slate-700 transition-colors">
                         {{ __('btn_details') }}
                     </a>
-                    <a href="#rfq-wizard" onclick="selectRfqType('PP Opak')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors">
+                    <a href="#rfq-wizard" onclick="selectRfqType('PP Opak')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors shadow-xs">
                         {{ __('btn_get_price') }}
                     </a>
                 </div>
             </div>
 
             <!-- Card 3: Tekstil & Dokuma Etiketler -->
-            <div class="bg-white border border-slate-200 hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 dark:hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
                 <div>
-                    <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
                         🧵
                     </div>
-                    <span class="text-[11px] font-mono font-bold text-amber-600 uppercase">#03</span>
-                    <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">{{ __('cat_tekstil') }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                    <span class="text-[11px] font-mono font-bold text-amber-600 dark:text-amber-400 uppercase">#03</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1 mb-2">{{ __('cat_tekstil') }}</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                         {{ __('cat_tekstil_desc') }}
                     </p>
                     
-                    <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3 mb-6">
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_tekstil_b1') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_tekstil_b2') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_tekstil_b3') }}</div>
+                    <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 mb-6">
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_tekstil_b1') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_tekstil_b2') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_tekstil_b3') }}</div>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <a href="{{ route('corporate.tekstil') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs text-center border border-slate-200 transition-colors">
+                    <a href="{{ route('corporate.tekstil') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs text-center border border-slate-200 dark:border-slate-700 transition-colors">
                         {{ __('btn_details') }}
                     </a>
-                    <a href="#rfq-wizard" onclick="selectRfqType('Japon Akmaz')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors">
+                    <a href="#rfq-wizard" onclick="selectRfqType('Japon Akmaz')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors shadow-xs">
                         {{ __('btn_get_price') }}
                     </a>
                 </div>
             </div>
 
             <!-- Card 4: Güvenlik & Barkod Etiketleri -->
-            <div class="bg-white border border-slate-200 hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 dark:hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
                 <div>
-                    <div class="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
                         🔒
                     </div>
-                    <span class="text-[11px] font-mono font-bold text-red-600 uppercase">#04</span>
-                    <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">{{ __('cat_guvenlik') }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                    <span class="text-[11px] font-mono font-bold text-red-600 dark:text-red-400 uppercase">#04</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1 mb-2">{{ __('cat_guvenlik') }}</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                         {{ __('cat_guvenlik_desc') }}
                     </p>
                     
-                    <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3 mb-6">
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_guvenlik_b1') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_guvenlik_b2') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_guvenlik_b3') }}</div>
+                    <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 mb-6">
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_guvenlik_b1') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_guvenlik_b2') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_guvenlik_b3') }}</div>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <a href="{{ route('corporate.etiket') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs text-center border border-slate-200 transition-colors">
+                    <a href="{{ route('corporate.etiket') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs text-center border border-slate-200 dark:border-slate-700 transition-colors">
                         {{ __('btn_details') }}
                     </a>
-                    <a href="#rfq-wizard" onclick="selectRfqType('Güvenlik VOID')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors">
+                    <a href="#rfq-wizard" onclick="selectRfqType('Güvenlik VOID')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors shadow-xs">
                         {{ __('btn_get_price') }}
                     </a>
                 </div>
             </div>
 
             <!-- Card 5: Matbaa & Kutu Ambalaj -->
-            <div class="bg-white border border-slate-200 hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 dark:hover:border-orange-500 rounded-3xl p-6 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group">
                 <div>
-                    <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
                         📦
                     </div>
-                    <span class="text-[11px] font-mono font-bold text-purple-600 uppercase">#05</span>
-                    <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">{{ __('cat_ozel') }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                    <span class="text-[11px] font-mono font-bold text-purple-600 dark:text-purple-400 uppercase">#05</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1 mb-2">{{ __('cat_ozel') }}</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                         {{ __('cat_ozel_desc') }}
                     </p>
                     
-                    <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3 mb-6">
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_ozel_b1') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_ozel_b2') }}</div>
-                        <div class="flex items-center gap-2"><span class="text-emerald-600">✓</span> {{ __('cat_ozel_b3') }}</div>
+                    <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 mb-6">
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_ozel_b1') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_ozel_b2') }}</div>
+                        <div class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {{ __('cat_ozel_b3') }}</div>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <a href="{{ route('corporate.ambalaj') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs text-center border border-slate-200 transition-colors">
+                    <a href="{{ route('corporate.ambalaj') }}" class="flex-1 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs text-center border border-slate-200 dark:border-slate-700 transition-colors">
                         {{ __('btn_details') }}
                     </a>
-                    <a href="#rfq-wizard" onclick="selectRfqType('Karton Kutu')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors">
+                    <a href="#rfq-wizard" onclick="selectRfqType('Karton Kutu')" class="px-3.5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors shadow-xs">
                         {{ __('btn_get_price') }}
                     </a>
                 </div>
@@ -352,43 +352,43 @@
 
     <!-- 4. MODERN MACHINERY & PRODUCTION CAPABILITIES -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 md:p-12">
+        <div class="bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 md:p-12 transition-colors">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-5 space-y-4">
-                    <span class="text-xs font-bold uppercase tracking-widest text-orange-600">{{ __('nav_machinery') }}</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                    <span class="text-xs font-bold uppercase tracking-widest text-orange-600 dark:text-orange-400">{{ __('nav_machinery') }}</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                         {{ __('machinery_title') }}
                     </h2>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                         {{ __('machinery_subtitle') }}
                     </p>
                     <div class="pt-2">
-                        <a href="{{ route('corporate.machinery') }}" class="inline-flex items-center gap-2 text-xs font-bold text-orange-600 hover:text-orange-700">
+                        <a href="{{ route('corporate.machinery') }}" class="inline-flex items-center gap-2 text-xs font-bold text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300">
                             {{ __('btn_view_machinery') }} &rarr;
                         </a>
                     </div>
                 </div>
 
                 <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs">
                         <span class="text-2xl">🖨️</span>
-                        <h4 class="text-sm font-bold text-slate-900 mt-2 mb-1">{{ __('machinery_m1_title') }}</h4>
-                        <p class="text-xs text-slate-500">{{ __('machinery_m1_desc') }}</p>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-1">{{ __('machinery_m1_title') }}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">{{ __('machinery_m1_desc') }}</p>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs">
                         <span class="text-2xl">✂️</span>
-                        <h4 class="text-sm font-bold text-slate-900 mt-2 mb-1">{{ __('machinery_m2_title') }}</h4>
-                        <p class="text-xs text-slate-500">{{ __('machinery_m2_desc') }}</p>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-1">{{ __('machinery_m2_title') }}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">{{ __('machinery_m2_desc') }}</p>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs">
                         <span class="text-2xl">✨</span>
-                        <h4 class="text-sm font-bold text-slate-900 mt-2 mb-1">{{ __('machinery_m3_title') }}</h4>
-                        <p class="text-xs text-slate-500">{{ __('machinery_m3_desc') }}</p>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-1">{{ __('machinery_m3_title') }}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">{{ __('machinery_m3_desc') }}</p>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs">
                         <span class="text-2xl">🔄</span>
-                        <h4 class="text-sm font-bold text-slate-900 mt-2 mb-1">{{ __('machinery_m4_title') }}</h4>
-                        <p class="text-xs text-slate-500">{{ __('machinery_m4_desc') }}</p>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-1">{{ __('machinery_m4_title') }}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">{{ __('machinery_m4_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -397,15 +397,15 @@
 
     <!-- 5. INTERACTIVE RFQ & WHATSAPP ENGINE -->
     <section id="rfq-wizard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white border-2 border-orange-500/20 rounded-3xl p-6 sm:p-10 shadow-xl">
+        <div class="bg-white dark:bg-slate-900 border-2 border-orange-500/20 dark:border-orange-500/30 rounded-3xl p-6 sm:p-10 shadow-xl transition-colors">
             <div class="max-w-3xl mx-auto text-center mb-10 space-y-2">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-300">
                     ⚡ {{ __('rfq_title') }}
                 </span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                     {{ __('rfq_title') }}
                 </h2>
-                <p class="text-xs sm:text-sm text-slate-600">
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
                     {{ __('rfq_subtitle') }}
                 </p>
             </div>
@@ -415,17 +415,17 @@
                 @csrf
 
                 <!-- Step 1: Label Specs -->
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 space-y-4">
-                    <div class="flex items-center gap-2 border-b border-slate-200 pb-3">
+                <div class="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700 space-y-4">
+                    <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700 pb-3">
                         <span class="w-6 h-6 rounded-full bg-orange-600 text-white font-bold text-xs flex items-center justify-center">1</span>
-                        <h3 class="text-sm font-bold text-slate-900">{{ __('rfq_step1') }}</h3>
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">{{ __('rfq_step1') }}</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <!-- Label Type -->
                         <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_label_type') }}</label>
-                            <select id="rfq_type" name="product_type" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs font-medium focus:outline-none focus:border-orange-500">
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_label_type') }}</label>
+                            <select id="rfq_type" name="product_type" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs font-medium focus:outline-none focus:border-orange-500">
                                 <option value="{{ __('opt_rulo_kuse') }}">{{ __('opt_rulo_kuse') }}</option>
                                 <option value="{{ __('opt_eko_termal') }}">{{ __('opt_eko_termal') }}</option>
                                 <option value="{{ __('opt_lamine_termal') }}">{{ __('opt_lamine_termal') }}</option>
@@ -441,15 +441,15 @@
 
                         <!-- Dimensions -->
                         <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_dimensions') }}</label>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_dimensions') }}</label>
                             <input type="text" id="rfq_dims" name="dimensions" placeholder="{{ __('rfq_dimensions_ph') }}"
-                                   class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:outline-none focus:border-orange-500">
+                                   class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:outline-none focus:border-orange-500">
                         </div>
 
                         <!-- Quantity -->
                         <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_quantity') }}</label>
-                            <select id="rfq_qty" name="quantity" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs font-medium focus:outline-none focus:border-orange-500">
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_quantity') }}</label>
+                            <select id="rfq_qty" name="quantity" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs font-medium focus:outline-none focus:border-orange-500">
                                 <option value="{{ __('opt_qty_1k') }}">{{ __('opt_qty_1k') }}</option>
                                 <option value="{{ __('opt_qty_5k') }}">{{ __('opt_qty_5k') }}</option>
                                 <option value="{{ __('opt_qty_10k') }}" selected>{{ __('opt_qty_10k') }}</option>
@@ -462,36 +462,36 @@
                 </div>
 
                 <!-- Step 2: Contact & Target City -->
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 space-y-4">
-                    <div class="flex items-center gap-2 border-b border-slate-200 pb-3">
+                <div class="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700 space-y-4">
+                    <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700 pb-3">
                         <span class="w-6 h-6 rounded-full bg-orange-600 text-white font-bold text-xs flex items-center justify-center">2</span>
-                        <h3 class="text-sm font-bold text-slate-900">{{ __('rfq_step2') }}</h3>
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">{{ __('rfq_step2') }}</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_company') }}</label>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_company') }}</label>
                             <input type="text" id="rfq_name" name="name" placeholder="{{ __('rfq_company_ph') }}"
-                                   class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:outline-none focus:border-orange-500">
+                                   class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:outline-none focus:border-orange-500">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_phone') }} *</label>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_phone') }} *</label>
                             <input type="tel" id="rfq_phone" name="phone" required placeholder="05XX XXX XX XX"
-                                   class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:outline-none focus:border-orange-500">
+                                   class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:outline-none focus:border-orange-500">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_city') }}</label>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_city') }}</label>
                             <input type="text" id="rfq_city" name="city" placeholder="Gaziantep OSB, Bursa, Kocaeli..."
-                                   class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:outline-none focus:border-orange-500">
+                                   class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:outline-none focus:border-orange-500">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_notes') }}</label>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_notes') }}</label>
                         <textarea id="rfq_notes" name="note" rows="2" placeholder="{{ __('rfq_notes_ph') }}"
-                                  class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:outline-none focus:border-orange-500"></textarea>
+                                  class="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:outline-none focus:border-orange-500"></textarea>
                     </div>
                 </div>
 

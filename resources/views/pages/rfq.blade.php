@@ -8,47 +8,47 @@
 @section('content')
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-12">
     <!-- Breadcrumbs -->
-    <nav class="flex items-center space-x-2 text-xs text-slate-500">
-        <a href="{{ route('home') }}" class="hover:text-orange-600">{{ __('nav_home') }}</a>
+    <nav class="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
+        <a href="{{ route('home') }}" class="hover:text-orange-600 dark:hover:text-orange-400">{{ __('nav_home') }}</a>
         <span>/</span>
-        <span class="text-slate-900 font-bold">{{ __('rfq_title') }}</span>
+        <span class="text-slate-900 dark:text-white font-bold">{{ __('rfq_title') }}</span>
     </nav>
 
     <!-- Header -->
     <div class="text-center max-w-3xl mx-auto space-y-3">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-300">
             ⚡ {{ __('rfq_title') }}
         </span>
-        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
             {{ __('rfq_title') }}
         </h1>
-        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
             {{ __('rfq_subtitle') }}
         </p>
     </div>
 
     @if(session('quote_success'))
-        <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold text-center shadow-xs">
+        <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-semibold text-center shadow-xs">
             🎉 {{ session('quote_success') }}
         </div>
     @endif
 
     <!-- Wizard Box -->
-    <div class="bg-white border-2 border-orange-500/20 rounded-3xl p-6 sm:p-10 shadow-xl space-y-8">
+    <div class="bg-white dark:bg-slate-900 border-2 border-orange-500/20 dark:border-orange-500/30 rounded-3xl p-6 sm:p-10 shadow-xl space-y-8 transition-colors">
         <form id="dedicatedRfqForm" action="{{ route('corporate.quote') }}" method="POST" class="space-y-8">
             @csrf
 
             <!-- Step 1: Specifications -->
-            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
-                <div class="flex items-center gap-2 border-b border-slate-200 pb-3">
+            <div class="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700 space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
+                <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700 pb-3">
                     <span class="w-6 h-6 rounded-full bg-orange-600 text-white font-bold text-xs flex items-center justify-center">1</span>
-                    <h3 class="text-sm font-bold text-slate-900">{{ __('rfq_step1') }}</h3>
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white">{{ __('rfq_step1') }}</h3>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_label_type') }}</label>
-                        <select id="rfq_type" name="product_type" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs font-medium focus:outline-none focus:border-orange-500">
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_label_type') }}</label>
+                        <select id="rfq_type" name="product_type" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs font-medium focus:outline-none focus:border-orange-500">
                             <option value="{{ __('opt_rulo_kuse') }}">{{ __('opt_rulo_kuse') }}</option>
                             <option value="{{ __('opt_eko_termal') }}">{{ __('opt_eko_termal') }}</option>
                             <option value="{{ __('opt_lamine_termal') }}">{{ __('opt_lamine_termal') }}</option>
@@ -63,14 +63,14 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_dimensions') }}</label>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_dimensions') }}</label>
                         <input type="text" id="rfq_dims" name="dimensions" placeholder="{{ __('rfq_dimensions_ph') }}"
-                               class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:outline-none focus:border-orange-500">
+                               class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:outline-none focus:border-orange-500">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_quantity') }}</label>
-                        <select id="rfq_qty" name="quantity" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs font-medium focus:outline-none focus:border-orange-500">
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_quantity') }}</label>
+                        <select id="rfq_qty" name="quantity" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs font-medium focus:outline-none focus:border-orange-500">
                             <option value="{{ __('opt_qty_1k') }}">{{ __('opt_qty_1k') }}</option>
                             <option value="{{ __('opt_qty_5k') }}">{{ __('opt_qty_5k') }}</option>
                             <option value="{{ __('opt_qty_10k') }}" selected>{{ __('opt_qty_10k') }}</option>
@@ -83,28 +83,28 @@
             </div>
 
             <!-- Step 2: Contact Information -->
-            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
-                <div class="flex items-center gap-2 border-b border-slate-200 pb-3">
+            <div class="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700 space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
+                <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700 pb-3">
                     <span class="w-6 h-6 rounded-full bg-orange-600 text-white font-bold text-xs flex items-center justify-center">2</span>
-                    <h3 class="text-sm font-bold text-slate-900">{{ __('rfq_step2') }}</h3>
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white">{{ __('rfq_step2') }}</h3>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_company') }}</label>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_company') }}</label>
                         <input type="text" id="rfq_name" name="name" placeholder="{{ __('rfq_company_ph') }}"
-                               class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:outline-none focus:border-orange-500">
+                               class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:outline-none focus:border-orange-500">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_phone') }} *</label>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_phone') }} *</label>
                         <input type="tel" id="rfq_phone" name="phone" required placeholder="05XX XXX XX XX"
-                               class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:outline-none focus:border-orange-500">
+                               class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:outline-none focus:border-orange-500">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_city') }}</label>
-                        <select id="rfq_city" name="city" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs font-medium focus:outline-none focus:border-orange-500">
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_city') }}</label>
+                        <select id="rfq_city" name="city" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs font-medium focus:outline-none focus:border-orange-500">
                             @foreach($cities as $city)
                                 <option value="{{ $city->name }}" {{ $city->slug === 'gaziantep' ? 'selected' : '' }}>
                                     {{ $city->name }} (#{{ sprintf('%02d', $city->plate_code) }})
@@ -115,9 +115,9 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1.5">{{ __('rfq_notes') }}</label>
+                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{{ __('rfq_notes') }}</label>
                     <textarea id="rfq_notes" name="note" rows="3" placeholder="{{ __('rfq_notes_ph') }}"
-                              class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:outline-none focus:border-orange-500"></textarea>
+                              class="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:outline-none focus:border-orange-500"></textarea>
                 </div>
             </div>
 
