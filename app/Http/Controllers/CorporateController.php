@@ -14,37 +14,38 @@ class CorporateController extends Controller
     public function home()
     {
         $allProducts = Product::active()->get();
+        $isAr = app()->getLocale() === 'ar';
 
         // 5 Core B2B Catalog Categories
         $catalog = [
             'rulo' => [
                 'name' => __('cat_rulo'),
                 'icon' => '🏷️',
-                'description' => 'Kuşe, Direkt Termal, Eko Termal ve Lamine rulo barkod etiketleri.',
+                'description' => __('cat_rulo_desc'),
                 'products' => $allProducts->whereIn('slug', ['kuse-etiket', 'termal-etiket', 'barkod-etiketi'])->values(),
             ],
             'plastik' => [
                 'name' => __('cat_plastik'),
                 'icon' => '🛡️',
-                'description' => 'Suya, yağa, sürtünmeye ve kimyasallara dayanıklı polipropilen ve metalize etiketler.',
+                'description' => __('cat_plastik_desc'),
                 'products' => $allProducts->whereIn('slug', ['pp-opak-etiket', 'seffaf-etiket', 'silver-mat-etiket'])->values(),
             ],
             'tekstil' => [
                 'name' => __('cat_tekstil'),
                 'icon' => '🧵',
-                'description' => '90°C kaynatmaya dayanıklı Japon akmaz kumaş şeritler ve jakarlı dokuma armalar.',
+                'description' => __('cat_tekstil_desc'),
                 'products' => $allProducts->whereIn('slug', ['japon-akmaz-etiket', 'dokuma-etiket', 'karton-sallama-etiket'])->values(),
             ],
             'guvenlik' => [
                 'name' => __('cat_guvenlik'),
                 'icon' => '🔒',
-                'description' => 'Söküldüğünde iz bırakan Güvenlik VOID, garanti ve seri numaralı güvenlik etiketleri.',
+                'description' => __('cat_guvenlik_desc'),
                 'products' => $allProducts->whereIn('slug', ['guvenlik-void-etiket'])->values(),
             ],
             'ozel' => [
                 'name' => __('cat_ozel'),
                 'icon' => '✨',
-                'description' => 'Varak yaldız, gofre kabartma ve ofset baskılı özel karton kutu ambalaj çözümleri.',
+                'description' => __('cat_ozel_desc'),
                 'products' => $allProducts->whereIn('slug', ['kutu-ambalaj', 'ozel-kesim-etiket', 'endustriyel-ambalaj'])->values(),
             ],
         ];
@@ -53,8 +54,12 @@ class CorporateController extends Controller
         $keyHubs = City::whereIn('slug', ['gaziantep', 'istanbul', 'bursa', 'kocaeli', 'ankara', 'izmir', 'adana', 'tekirdag'])->get();
 
         $seo = [
-            'title' => 'GÖKSAN Etiket • Endüstriyel Rulo Etiket & Ambalaj Fabrikası | goksanetiket.com',
-            'description' => 'Gaziantep 1. OSB tesislerimizde toptan rulo etiket, dokuma arma, karton kutu ambalaj ve barkod çözümleri. 81 ilimizin organize sanayi bölgelerine 24-48 saatte ambar sevkiyatı.',
+            'title' => $isAr 
+                ? 'مصنع غوكسان • ملصقات الرول الصناعية والتغليف والباركود | goksanetiket.com' 
+                : 'GÖKSAN Etiket • Endüstriyel Rulo Etiket & Ambalaj Fabrikası | goksanetiket.com',
+            'description' => $isAr 
+                ? 'من منشآتنا بالمنطقة الصناعية الأولى بغازي عنتاب نوفر ملصقات الرول، علامات النسيج، وعلب التغليف بالجملة. شحن لـ 81 محافظة خلال 24-48 ساعة.' 
+                : 'Gaziantep 1. OSB tesislerimizde toptan rulo etiket, dokuma arma, karton kutu ambalaj ve barkod çözümleri. 81 ilimizin organize sanayi bölgelerine 24-48 saatte ambar sevkiyatı.',
             'canonical' => url('/'),
         ];
 
@@ -66,9 +71,13 @@ class CorporateController extends Controller
      */
     public function about()
     {
+        $isAr = app()->getLocale() === 'ar';
+
         $seo = [
-            'title' => 'Kurumsal | GÖKSAN Etiket • Matbaa • Ambalaj Sanayi',
-            'description' => 'Gaziantep 1. OSB tesislerimizde son teknoloji 8 renk UV flekso ve ofset parkurumuzla Türkiye sanayisine doğrudan üretici etiket ve ambalaj çözümleri sunuyoruz.',
+            'title' => $isAr ? 'من نحن | مصنع غوكسان للملصقات والتغليف' : 'Kurumsal | GÖKSAN Etiket • Matbaa • Ambalaj Sanayi',
+            'description' => $isAr 
+                ? 'منشأة متكاملة في غازي عنتاب لطباعة الفليكسو UV 8 ألوان وتصنيع علب الكرتون والملصقات الصناعية.' 
+                : 'Gaziantep 1. OSB tesislerimizde son teknoloji 8 renk UV flekso ve ofset parkurumuzla Türkiye sanayisine doğrudan üretici etiket ve ambalaj çözümleri sunuyoruz.',
             'canonical' => route('corporate.about'),
         ];
 
@@ -80,9 +89,13 @@ class CorporateController extends Controller
      */
     public function machinery()
     {
+        $isAr = app()->getLocale() === 'ar';
+
         $seo = [
-            'title' => 'Üretim Parkuru & Makine Parkı | Göksan Etiket',
-            'description' => '8 Renk UV Flexo baskı hatları, dijital rulo sonlandırma, varak yaldız üniteleri ve otomatik dilimleme makinelerimizle sıfır hata toleransı.',
+            'title' => $isAr ? 'خطوط الإنتاج ومعدات المصنع | غوكسان' : 'Üretim Parkuru & Makine Parkı | Göksan Etiket',
+            'description' => $isAr 
+                ? 'خطوط طباعة فليكسو UV 8 ألوان، وحدات تشطيب وقص رقمي، طباعة فويل وتقطيع رول أوتوماتيكي.' 
+                : '8 Renk UV Flexo baskı hatları, dijital rulo sonlandırma, varak yaldız üniteleri ve otomatik dilimleme makinelerimizle sıfır hata toleransı.',
             'canonical' => route('corporate.machinery'),
         ];
 
@@ -94,9 +107,13 @@ class CorporateController extends Controller
      */
     public function sectors()
     {
+        $isAr = app()->getLocale() === 'ar';
+
         $seo = [
-            'title' => 'Sektörel Etiket Çözümleri | Göksan Etiket',
-            'description' => 'Gıda, kozmetik, tekstil, kimya, lojistik ve otomotiv sektörlerinin özel şartnamelerine tam uyumlu endüstriyel etiket ve ambalaj üretimi.',
+            'title' => $isAr ? 'القطاعات والخبرات الصناعية | غوكسان' : 'Sektörel Etiket Çözümleri | Göksan Etiket',
+            'description' => $isAr 
+                ? 'حلول ملصقات وتغليف مخصصة للأغذية، مستحضرات التجميل، المنسوجات، الكيماويات واللوجستيات.' 
+                : 'Gıda, kozmetik, tekstil, kimya, lojistik ve otomotiv sektörlerinin özel şartnamelerine tam uyumlu endüstriyel etiket ve ambalaj üretimi.',
             'canonical' => route('corporate.sectors'),
         ];
 
@@ -110,10 +127,13 @@ class CorporateController extends Controller
     {
         $products = Product::active()->get();
         $cities = City::orderBy('name')->get();
+        $isAr = app()->getLocale() === 'ar';
 
         $seo = [
-            'title' => 'Online Fiyat Teklifi Al (RFQ) | Göksan Etiket',
-            'description' => '2 adımda rulo etiket veya ambalaj özellikleri seçin, anında fabrikadan doğrudan toptan birim fiyat teklifinizi ve WhatsApp onayınızı alın.',
+            'title' => $isAr ? 'معالج طلب عرض السعر الفوري (RFQ) | غوكسان' : 'Online Fiyat Teklifi Al (RFQ) | Göksan Etiket',
+            'description' => $isAr 
+                ? 'حدد مواصفات الملصق أو التغليف واحصل على عرض سعر فوري بأسعار المصنع المباشرة عبر واتساب.' 
+                : '2 adımda rulo etiket veya ambalaj özellikleri seçin, anında fabrikadan doğrudan toptan birim fiyat teklifinizi ve WhatsApp onayınızı alın.',
             'canonical' => route('corporate.rfq'),
         ];
 
@@ -126,10 +146,13 @@ class CorporateController extends Controller
     public function etiketCozumleri()
     {
         $products = Product::active()->category('rulo-barkod')->get();
+        $isAr = app()->getLocale() === 'ar';
 
         $seo = [
-            'title' => 'Rulo Etiket & Barkod Çözümleri | Göksan Etiket',
-            'description' => 'Termal etiket, kuşe etiket, PP opak ve silver mat demirbaş etiketleri. 8 renge kadar UV flekso rulo baskı ve toptan fabrika fiyatları.',
+            'title' => $isAr ? 'ملصقات الرول والباركود | غوكسان' : 'Rulo Etiket & Barkod Çözümleri | Göksan Etiket',
+            'description' => $isAr 
+                ? 'ملصقات حرارية، كوشيه، بولي بروبيلين وسيلفر مات ميتالايز للأصول بأسعار المصنع المباشرة.' 
+                : 'Termal etiket, kuşe etiket, PP opak ve silver mat demirbaş etiketleri. 8 renge kadar UV flekso rulo baskı ve toptan fabrika fiyatları.',
             'canonical' => route('corporate.etiket'),
         ];
 
@@ -142,10 +165,13 @@ class CorporateController extends Controller
     public function tekstilEtiketleri()
     {
         $products = Product::active()->category('tekstil-dokuma')->get();
+        $isAr = app()->getLocale() === 'ar';
 
         $seo = [
-            'title' => 'Tekstil & Dokuma Etiketleri | Göksan Etiket',
-            'description' => 'Dokuma etiket, saten yıkama talimatı (Japon akmaz) ve özel kesimli karton sallama etiketleri. Tekstil ve hazır giyim sanayine özel çözümler.',
+            'title' => $isAr ? 'ملصقات النسيج وأشرطة الغسيل | غوكسان' : 'Tekstil & Dokuma Etiketleri | Göksan Etiket',
+            'description' => $isAr 
+                ? 'شارات جاكار منسوجة، أشرطة قماش ياباني للغسيل القاسي وبطاقات كرتون تعليق مصممة للألبسة.' 
+                : 'Dokuma etiket, saten yıkama talimatı (Japon akmaz) ve özel kesimli karton sallama etiketleri. Tekstil ve hazır giyim sanayine özel çözümler.',
             'canonical' => route('corporate.tekstil'),
         ];
 
@@ -158,10 +184,13 @@ class CorporateController extends Controller
     public function matbaaAmbalaj()
     {
         $products = Product::active()->category('matbaa-ambalaj')->get();
+        $isAr = app()->getLocale() === 'ar';
 
         $seo = [
-            'title' => 'Matbaa & Kutu Ambalaj Çözümleri | Göksan Etiket',
-            'description' => 'Karton kutu ambalaj, özel bıçak kesimli endüstriyel etiketler ve mukavva kutu çözümleri. Üretici güvencesiyle yüksek mukavemetli ambalaj.',
+            'title' => $isAr ? 'علب الكرتون والتغليف الفاخر | غوكسان' : 'Matbaa & Kutu Ambalaj Çözümleri | Göksan Etiket',
+            'description' => $isAr 
+                ? 'علب كرتون مطبوعة أوفست، طباعة فويل ذهبي، وتغليف صناعي مقاوم مطابق لمعايير التصدير.' 
+                : 'Karton kutu ambalaj, özel bıçak kesimli endüstriyel etiketler ve mukavva kutu çözümleri. Üretici güvencesiyle yüksek mukavemetli ambalaj.',
             'canonical' => route('corporate.ambalaj'),
         ];
 
@@ -173,9 +202,13 @@ class CorporateController extends Controller
      */
     public function contact()
     {
+        $isAr = app()->getLocale() === 'ar';
+
         $seo = [
-            'title' => 'İletişim & Fabrika Adresi | GÖKSAN Etiket • Matbaa • Ambalaj',
-            'description' => 'Gaziantep 1. OSB merkez fabrikamız ile iletişime geçin. Telefon: +90 342 503 46 52, WhatsApp: +90 533 024 63 38.',
+            'title' => $isAr ? 'اتصل بنا وعنوان المصنع | غوكسان للملصقات' : 'İletişim & Fabrika Adresi | GÖKSAN Etiket • Matbaa • Ambalaj',
+            'description' => $isAr 
+                ? 'تواصل مع مصنعنا بالمنطقة الصناعية الأولى بغازي عنتاب. هاتف: 03425034652، واتساب: 05330246338.' 
+                : 'Gaziantep 1. OSB merkez fabrikamız ile iletişime geçin. Telefon: +90 342 503 46 52, WhatsApp: +90 533 024 63 38.',
             'canonical' => route('corporate.contact'),
         ];
 

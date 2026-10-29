@@ -145,7 +145,7 @@
                     <span>✉ info@goksanetiket.com</span>
                 </a>
                 <a href="tel:+903425034652" class="hover:text-white font-semibold flex items-center gap-1 text-slate-200">
-                    <span>📞 +90 342 503 46 52</span>
+                    <span dir="ltr">📞 +90 342 503 46 52</span>
                 </a>
 
                 <!-- Language Switcher [TR] / [AR] -->
@@ -172,12 +172,12 @@
                     <img src="{{ asset('images/logo.png') }}" 
                          alt="GÖKSAN Etiket • Matbaa • Ambalaj" 
                          class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105">
-                    <div class="hidden xl:block border-l border-slate-200 pl-3">
+                    <div class="hidden xl:block {{ $isRtl ? 'border-r pr-3' : 'border-l pl-3' }} border-slate-200">
                         <span class="block text-xs font-bold text-slate-900 tracking-wide">
                             GÖKSAN ETİKET
                         </span>
                         <span class="block text-[10px] text-slate-500 uppercase tracking-wider">
-                            Gaziantep 1. OSB
+                            {{ __('factory_loc_short') }}
                         </span>
                     </div>
                 </a>
@@ -199,21 +199,21 @@
                                 <span class="text-xl">🏷️</span>
                                 <div>
                                     <span class="block text-xs font-bold text-slate-900 group-hover/item:text-orange-600">{{ __('nav_rulo_etiket') }}</span>
-                                    <span class="block text-[11px] text-slate-500">Termal, Kuşe, PP Opak, Barkod</span>
+                                    <span class="block text-[11px] text-slate-500">{{ __('nav_rulo_etiket_sub') }}</span>
                                 </div>
                             </a>
                             <a href="{{ route('corporate.tekstil') }}" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
                                 <span class="text-xl">🧵</span>
                                 <div>
                                     <span class="block text-xs font-bold text-slate-900 group-hover/item:text-orange-600">{{ __('nav_tekstil_etiket') }}</span>
-                                    <span class="block text-[11px] text-slate-500">Japon Akmaz, Jakarlı Dokuma</span>
+                                    <span class="block text-[11px] text-slate-500">{{ __('nav_tekstil_etiket_sub') }}</span>
                                 </div>
                             </a>
                             <a href="{{ route('corporate.ambalaj') }}" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
                                 <span class="text-xl">📦</span>
                                 <div>
                                     <span class="block text-xs font-bold text-slate-900 group-hover/item:text-orange-600">{{ __('nav_matbaa_ambalaj') }}</span>
-                                    <span class="block text-[11px] text-slate-500">Karton Kutu, Özel Kesim, Varak</span>
+                                    <span class="block text-[11px] text-slate-500">{{ __('nav_matbaa_ambalaj_sub') }}</span>
                                 </div>
                             </a>
                         </div>
@@ -253,7 +253,7 @@
                     <a href="{{ route('corporate.rfq') }}" 
                        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-xs shadow-md shadow-orange-500/20 hover:-translate-y-0.5 transition-all">
                         <span>{{ __('btn_quote') }}</span>
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        <svg class="w-3.5 h-3.5 {{ $isRtl ? 'rotate-180' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
 
                     <!-- Mobile Menu Trigger -->
@@ -278,7 +278,7 @@
             <a href="{{ route('corporate.contact') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 hover:bg-slate-50">{{ __('nav_contact') }}</a>
             
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-xs text-slate-500">Dil / Language:</span>
+                <span class="text-xs text-slate-500">{{ $isRtl ? 'اللغة / Dil:' : 'Dil / Language:' }}</span>
                 <div class="flex items-center gap-2">
                     <a href="{{ route('set-locale', ['locale' => 'tr']) }}" class="px-3 py-1 rounded text-xs font-bold {{ $locale === 'tr' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-700' }}">Türkçe</a>
                     <a href="{{ route('set-locale', ['locale' => 'ar']) }}" class="px-3 py-1 rounded text-xs font-bold {{ $locale === 'ar' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-700' }}">العربية</a>
@@ -302,16 +302,16 @@
                         <img src="{{ asset('images/logo.png') }}" alt="GÖKSAN" class="h-10 w-auto brightness-0 invert">
                         <div>
                             <span class="block text-sm font-black text-white">GÖKSAN ETİKET</span>
-                            <span class="block text-[11px] text-slate-400">Matbaa • Ambalaj Sanayi</span>
+                            <span class="block text-[11px] text-slate-400">{{ __('brand_tagline') }}</span>
                         </div>
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed">
-                        Gaziantep 1. OSB modern tesislerimizde 8 renk UV flekso ve dijital sonlandırma ile endüstriyel rulo etiket, dokuma arma ve kutu ambalaj üretimi yapıyoruz.
+                        {{ __('footer_desc') }}
                     </p>
                     <div class="text-xs text-slate-400 space-y-1">
-                        <div>📍 1. OSB 83105 Nolu Cad. No:31 Şehitkamil / GAZİANTEP</div>
-                        <div>📞 <a href="tel:+903425034652" class="hover:text-white">+90 342 503 46 52</a></div>
-                        <div>📱 <a href="https://wa.me/905330246338" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-bold">+90 533 024 63 38 (WhatsApp)</a></div>
+                        <div>📍 {{ __('factory_loc') }}</div>
+                        <div>📞 <a href="tel:+903425034652" class="hover:text-white" dir="ltr">+90 342 503 46 52</a></div>
+                        <div>📱 <a href="https://wa.me/905330246338" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-bold" dir="ltr">+90 533 024 63 38 (WhatsApp)</a></div>
                         <div>✉ <a href="mailto:info@goksanetiket.com" class="hover:text-white">info@goksanetiket.com</a></div>
                     </div>
                 </div>
@@ -322,28 +322,27 @@
                         {{ __('nav_products') }}
                     </h4>
                     <ul class="space-y-2 text-xs text-slate-400">
-                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors">Termal & Kuşe Rulo Etiket</a></li>
-                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors">PP Opak & Şeffaf Plastik Etiket</a></li>
-                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors">Silver Mat & Demirbaş Barkod</a></li>
-                        <li><a href="{{ route('corporate.tekstil') }}" class="hover:text-orange-400 transition-colors">Japon Akmaz Kumaş Şeritler</a></li>
-                        <li><a href="{{ route('corporate.tekstil') }}" class="hover:text-orange-400 transition-colors">Jakarlı Tafta / Saten Dokuma Etiket</a></li>
-                        <li><a href="{{ route('corporate.ambalaj') }}" class="hover:text-orange-400 transition-colors">Ofset Baskılı Karton Kutu Ambalaj</a></li>
-                        <li><a href="{{ route('corporate.ambalaj') }}" class="hover:text-orange-400 transition-colors">Özel Kesim & Varak Yaldızlı Etiket</a></li>
+                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors">{{ __('cat_rulo') }}</a></li>
+                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors">{{ __('cat_plastik') }}</a></li>
+                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-400 transition-colors">{{ __('cat_guvenlik') }}</a></li>
+                        <li><a href="{{ route('corporate.tekstil') }}" class="hover:text-orange-400 transition-colors">{{ __('cat_tekstil') }}</a></li>
+                        <li><a href="{{ route('corporate.ambalaj') }}" class="hover:text-orange-400 transition-colors">{{ __('cat_ozel') }}</a></li>
+                        <li><a href="{{ route('corporate.ambalaj') }}" class="hover:text-orange-400 transition-colors">{{ __('cat_custom_dies_title') }}</a></li>
                     </ul>
                 </div>
 
                 <!-- Col 3: Bölgesel Dağıtım Hubları -->
                 <div class="space-y-3">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-white border-b border-slate-800 pb-2">
-                        Bölgesel Sevkiyat Hubları
+                        {{ __('footer_regional_hubs') }}
                     </h4>
                     <ul class="space-y-2 text-xs text-slate-400">
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'gaziantep']) }}" class="hover:text-orange-400 transition-colors">Gaziantep OSB Etiket Fabrikası</a></li>
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'gaziantep']) }}" class="hover:text-orange-400 transition-colors">Gaziantep OSB</a></li>
                         <li><a href="{{ route('regional.city', ['citySlug' => 'istanbul']) }}" class="hover:text-orange-400 transition-colors">İstanbul İkitelli & Dudullu OSB</a></li>
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'bursa']) }}" class="hover:text-orange-400 transition-colors">Bursa Demirtaş & DOSAB Etiket</a></li>
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'kocaeli']) }}" class="hover:text-orange-400 transition-colors">Kocaeli Gebze & GOSB Etiket</a></li>
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'ankara']) }}" class="hover:text-orange-400 transition-colors">Ankara OSTİM & İvedik Etiket</a></li>
-                        <li><a href="{{ route('regional.city', ['citySlug' => 'izmir']) }}" class="hover:text-orange-400 transition-colors">İzmir Kemalpaşa & İAOSB Etiket</a></li>
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'bursa']) }}" class="hover:text-orange-400 transition-colors">Bursa Demirtaş (DOSAB)</a></li>
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'kocaeli']) }}" class="hover:text-orange-400 transition-colors">Kocaeli Gebze (GOSB)</a></li>
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'ankara']) }}" class="hover:text-orange-400 transition-colors">Ankara OSTİM & İvedik OSB</a></li>
+                        <li><a href="{{ route('regional.city', ['citySlug' => 'izmir']) }}" class="hover:text-orange-400 transition-colors">İzmir Kemalpaşa (İAOSB)</a></li>
                         <li class="pt-2"><a href="{{ route('regional.index') }}" class="text-orange-400 hover:text-orange-300 font-bold flex items-center gap-1">{{ __('btn_view_all_provinces') }} &rarr;</a></li>
                     </ul>
                 </div>
@@ -351,16 +350,16 @@
                 <!-- Col 4: Kurumsal & Sertifikalar -->
                 <div class="space-y-3">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-white border-b border-slate-800 pb-2">
-                        Kurumsal Güvence
+                        {{ __('footer_corporate_trust') }}
                     </h4>
                     <p class="text-xs text-slate-400 leading-relaxed">
-                        Üretim süreçlerimiz ISO 9001 kalite standartlarına ve Tarım/Gıda uyumluluğu sertifikalarına sahiptir.
+                        {{ __('footer_trust_desc') }}
                     </p>
                     <div class="flex flex-wrap gap-2 pt-1">
                         <span class="px-2.5 py-1 rounded bg-slate-800 text-[10px] font-bold text-slate-300 border border-slate-700">ISO 9001:2015</span>
-                        <span class="px-2.5 py-1 rounded bg-slate-800 text-[10px] font-bold text-slate-300 border border-slate-700">Gıda Temas Onaylı</span>
-                        <span class="px-2.5 py-1 rounded bg-slate-800 text-[10px] font-bold text-slate-300 border border-slate-700">8 Renk UV Flexo</span>
-                        <span class="px-2.5 py-1 rounded bg-slate-800 text-[10px] font-bold text-emerald-400 border border-slate-700">81 İl Ambar Sevki</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-[10px] font-bold text-slate-300 border border-slate-700">{{ __('badge_food_grade') }}</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-[10px] font-bold text-slate-300 border border-slate-700">{{ __('metric_flexo') }}</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-[10px] font-bold text-emerald-400 border border-slate-700">{{ __('val_prop_shipping') }}</span>
                     </div>
                     <div class="pt-3">
                         <a href="{{ route('corporate.rfq') }}" class="block w-full py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs text-center transition-colors">
@@ -373,10 +372,10 @@
             <!-- Bottom Copyright & Credits -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
                 <div>
-                    &copy; {{ date('Y') }} GÖKSAN Etiket • Matbaa • Ambalaj San. Tic. Ltd. Şti. Tüm Hakları Saklıdır.
+                    &copy; {{ date('Y') }} GÖKSAN Etiket • Matbaa • Ambalaj San. Tic. Ltd. Şti. {{ __('footer_copyright') }}
                 </div>
                 <div class="flex items-center gap-4">
-                    <a href="{{ route('sitemap') }}" class="hover:text-slate-400">Sitemap XML</a>
+                    <a href="{{ route('sitemap') }}" class="hover:text-slate-400">{{ __('footer_sitemap') }}</a>
                     <span>•</span>
                     <a href="{{ route('corporate.about') }}" class="hover:text-slate-400">{{ __('nav_about') }}</a>
                     <span>•</span>

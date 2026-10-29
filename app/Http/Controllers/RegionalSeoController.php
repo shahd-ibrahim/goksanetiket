@@ -44,9 +44,15 @@ class RegionalSeoController extends Controller
             ];
         });
 
+        $isAr = app()->getLocale() === 'ar';
+
         $seo = [
-            'title' => 'Türkiye Geneli Etiket Fabrikası & Rulo Baskı Çözümleri | Göksan Etiket',
-            'description' => '81 ilimizin tüm organize sanayi bölgelerine (OSB) 24-48 saatte doğrudan sevkiyat. Kuşe, termal, PP opak ve endüstriyel rulo etiket imalatçısı Göksan Etiket.',
+            'title' => $isAr 
+                ? 'مصنع الملصقات الصناعية والرول لكافة المحافظات | غوكسان' 
+                : 'Türkiye Geneli Etiket Fabrikası & Rulo Baskı Çözümleri | Göksan Etiket',
+            'description' => $isAr 
+                ? 'شحن وتوريد مباشر لكافة المناطق الصناعية في 81 محافظة تركية خلال 24-48 ساعة من مصنع غوكسان.' 
+                : '81 ilimizin tüm organize sanayi bölgelerine (OSB) 24-48 saatte doğrudan sevkiyat. Kuşe, termal, PP opak ve endüstriyel rulo etiket imalatçısı Göksan Etiket.',
             'canonical' => route('regional.index'),
         ];
 
@@ -59,6 +65,7 @@ class RegionalSeoController extends Controller
     public function cityHub(string $citySlug)
     {
         $city = City::where('slug', $citySlug)->firstOrFail();
+        $isAr = app()->getLocale() === 'ar';
 
         $cacheKey = "regional_city_{$citySlug}";
 
@@ -79,13 +86,18 @@ class RegionalSeoController extends Controller
             ];
         });
 
-        $title = !empty($city->seo_title) 
-            ? $city->seo_title 
-            : "{$city->name} Etiket Fabrikası - Toptan Rulo & Baskılı Etiket Üretimi | Göksan Etiket";
+        if ($isAr) {
+            $title = "مصنع ملصقات {$city->name} - طباعة رول وتغليف بالجملة | غوكسان";
+            $description = "إنتاج وتوريد ملصقات الرول والباركود لمنشآت {$city->name} والمناطق الصناعية التابعة لها مع شحن مباشر وسريع بأسعار المصنع.";
+        } else {
+            $title = !empty($city->seo_title) 
+                ? $city->seo_title 
+                : "{$city->name} Etiket Fabrikası - Toptan Rulo & Baskılı Etiket Üretimi | Göksan Etiket";
 
-        $description = !empty($city->seo_description)
-            ? $city->seo_description
-            : "{$city->name} ve {$city->industrial_zones} için toptan rulo etiket üretimi. {$city->delivery_time} hızlı teslimat garantisi ve fabrika fiyatlarıyla hemen teklif alın.";
+            $description = !empty($city->seo_description)
+                ? $city->seo_description
+                : "{$city->name} ve {$city->industrial_zones} için toptan rulo etiket üretimi. {$city->delivery_time} hızlı teslimat garantisi ve fabrika fiyatlarıyla hemen teklif alın.";
+        }
 
         $seo = [
             'title' => $title,
@@ -103,6 +115,7 @@ class RegionalSeoController extends Controller
     {
         $product = Product::where('slug', $serviceSlug)->where('is_active', true)->firstOrFail();
         $city = City::where('slug', $citySlug)->firstOrFail();
+        $isAr = app()->getLocale() === 'ar';
 
         $cacheKey = "regional_service_{$serviceSlug}_{$citySlug}";
 
@@ -128,9 +141,17 @@ class RegionalSeoController extends Controller
             ];
         });
 
+        if ($isAr) {
+            $title = "{$product->title} {$city->name} - أسعار المصنع مباشرة | غوكسان";
+            $description = "تصنيع وتوريد {$product->title} لمنطقة {$city->name} الصناعية بجودة عالية وأسعار جملة من المصنع مباشرة.";
+        } else {
+            $title = "{$city->name} {$product->title} - Fabrika Fiyatları | Göksan Etiket";
+            $description = "{$city->name} ve çevresindeki sanayi kuruluşları için {$product->title} imalatı. {$city->delivery_time} teslimat, yüksek baskı kalitesi ve toptan rulo etiket çözümleri.";
+        }
+
         $seo = [
-            'title' => "{$city->name} {$product->title} - Fabrika Fiyatları | Göksan Etiket",
-            'description' => "{$city->name} ve çevresindeki sanayi kuruluşları için {$product->title} imalatı. {$city->delivery_time} teslimat, yüksek baskı kalitesi ve toptan rulo etiket çözümleri.",
+            'title' => $title,
+            'description' => $description,
             'canonical' => route('regional.service', ['serviceSlug' => $product->slug, 'citySlug' => $city->slug]),
         ];
 
@@ -154,7 +175,10 @@ class RegionalSeoController extends Controller
             $staticRoutes = [
                 ['loc' => url('/'), 'priority' => '1.0', 'changefreq' => 'daily'],
                 ['loc' => route('regional.index'), 'priority' => '0.9', 'changefreq' => 'weekly'],
-                ['loc' => url('/hakkimizda'), 'priority' => '0.7', 'changefreq' => 'monthly'],
+                ['loc' => url('/kurumsal'), 'priority' => '0.7', 'changefreq' => 'monthly'],
+                ['loc' => url('/makine-parkuru'), 'priority' => '0.8', 'changefreq' => 'monthly'],
+                ['loc' => url('/sektorler'), 'priority' => '0.8', 'changefreq' => 'monthly'],
+                ['loc' => url('/teklif-al'), 'priority' => '0.9', 'changefreq' => 'weekly'],
                 ['loc' => url('/iletisim'), 'priority' => '0.7', 'changefreq' => 'monthly'],
             ];
 

@@ -1,5 +1,22 @@
 @extends('layouts.app')
 
+@php
+    $locale = app()->getLocale();
+    $isRtl = ($locale === 'ar');
+
+    $regionKey = match($city->region) {
+        'Marmara' => 'region_marmara',
+        'Ege' => 'region_ege',
+        'İç Anadolu' => 'region_ic_anadolu',
+        'Akdeniz' => 'region_akdeniz',
+        'Karadeniz' => 'region_karadeniz',
+        'Güneydoğu Anadolu' => 'region_guneydogu',
+        'Doğu Anadolu' => 'region_dogu',
+        default => null,
+    };
+    $displayRegionName = $regionKey ? __($regionKey) : $city->region;
+@endphp
+
 @push('schema')
 <script type="application/ld+json">
 {
@@ -51,51 +68,19 @@
   "itemListElement": [{
     "@type": "ListItem",
     "position": 1,
-    "name": "Ana Sayfa",
+    "name": "{{ __('nav_home') }}",
     "item": "{{ url('/') }}"
   },{
     "@type": "ListItem",
     "position": 2,
-    "name": "Hizmet Bölgelerimiz",
+    "name": "{{ __('nav_regions') }}",
     "item": "{{ route('regional.index') }}"
   },{
     "@type": "ListItem",
     "position": 3,
-    "name": "{{ $city->name }} Etiket Fabrikası",
+    "name": "{{ $city->name }} {{ __('city_card_link') }}",
     "item": "{{ route('regional.city', ['citySlug' => $city->slug]) }}"
   }]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "{{ $city->name }} içine rulo etiket siparişlerinde teslimat süresi nedir?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "{{ $city->name }} ve bağlı organize sanayi bölgelerine üretim sonrası sevkiyat süremiz {{ $city->delivery_time }}dir. Acil siparişlerde anlaşmalı ambar ve özel ekspres sevkiyat sunulmaktadır."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "{{ $city->name }} organize sanayi bölgelerine toptan sevkiyat yapıyor musunuz?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Evet, {{ $city->industrial_zones }} başta olmak üzere {{ $city->name }} genelindeki tüm fabrikalara doğrudan kapıya teslim rulo etiket ve ambalaj sevkiyatı yapıyoruz."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "{{ $city->name }} firmaları için ücretsiz numune kiti gönderiyor musunuz?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Evet, {{ $city->name }} genelindeki tüm kurumsal ve endüstriyel firmalara kuşe, termal, PP opak ve kumaş numune kitlerimizi ücretsiz olarak kargoluyoruz."
-      }
-    }
-  ]
 }
 </script>
 @endpush
@@ -106,11 +91,11 @@
     <div class="border-b border-slate-200 bg-slate-50/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <nav class="flex items-center space-x-2 text-xs text-slate-500">
-                <a href="{{ url('/') }}" class="hover:text-orange-600">Ana Sayfa</a>
+                <a href="{{ url('/') }}" class="hover:text-orange-600">{{ __('nav_home') }}</a>
                 <span>/</span>
-                <a href="{{ route('regional.index') }}" class="hover:text-orange-600">Hizmet Bölgelerimiz</a>
+                <a href="{{ route('regional.index') }}" class="hover:text-orange-600">{{ __('nav_regions') }}</a>
                 <span>/</span>
-                <span class="text-orange-600 font-bold">{{ $city->name }} Etiket Fabrikası</span>
+                <span class="text-orange-600 font-bold">{{ $city->name }} {{ __('city_card_link') }}</span>
             </nav>
         </div>
     </div>
@@ -119,44 +104,44 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-gradient-to-br from-slate-50 via-white to-orange-50/30 border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-sm">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-8 space-y-5">
+                <div class="lg:col-span-8 space-y-5 text-{{ $isRtl ? 'right' : 'left' }}">
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-800">
-                            Plaka: #{{ sprintf('%02d', $city->plate_code) }} • {{ $city->region }} Bölgesi
+                            #{{ sprintf('%02d', $city->plate_code) }} • {{ $displayRegionName }}
                         </span>
                         <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 flex items-center gap-1.5">
                             <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-                            Teslimat: {{ $city->delivery_time ?? '24-48 Saat' }}
+                            {{ __('city_delivery_time') }} {{ $isRtl ? __('stat_fast_delivery') : ($city->delivery_time ?? '24-48 Saat') }}
                         </span>
                     </div>
 
                     <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-                        {{ $city->name }} Etiket Fabrikası
+                        {{ $city->name }} {{ __('city_card_link') }}
                         <span class="block text-orange-600 text-2xl sm:text-3xl md:text-4xl font-extrabold mt-1">
-                            Toptan Rulo, Barkod & Kutu Ambalaj İmalatı
+                            {{ __('city_factory_h1_sub') }}
                         </span>
                     </h1>
 
                     <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
-                        {{ $city->name }} ve <strong class="text-slate-900">{{ $city->industrial_zones ?? 'Organize Sanayi Bölgesi' }}</strong> tesisleri için doğrudan üreticiden toptan rulo etiket, jakarlı dokuma arma ve ofset kutu ambalaj çözümleri. Aracısız fabrika fiyatı ve <strong class="text-slate-900">{{ $city->delivery_time ?? '24-48 saat' }}</strong> hızlı ambar sevkiyatı garantisi.
+                        {{ $city->name }} {{ __('city_hero_desc') }}
                     </p>
 
                     <!-- CTAs -->
                     <div class="flex flex-wrap items-center gap-4 pt-3">
                         <a href="#cityQuoteForm" 
                            class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-xs shadow-md shadow-orange-500/20 transition-all">
-                            <span>{{ $city->name }} İçin Fiyat Al</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            <span>{{ __('btn_quote') }}</span>
+                            <svg class="w-4 h-4 {{ $isRtl ? 'rotate-180' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </a>
 
-                        <a href="https://wa.me/905330246338?text={{ urlencode('Merhaba Göksan Etiket, ' . $city->name . ' fabrikamız için toptan rulo etiket fiyat teklifi almak istiyoruz.') }}" target="_blank"
+                        <a href="https://wa.me/905330246338?text={{ urlencode(__('whatsapp_prefill') . ' ' . $city->name) }}" target="_blank"
                            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-sm transition-all">
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
-                            <span>{{ $city->name }} WhatsApp Hattı</span>
+                            <span>{{ __('btn_whatsapp') }}</span>
                         </a>
 
                         <a href="tel:+903425034652" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-800 font-bold text-xs shadow-xs transition-all">
-                            <span>📞 0342 503 46 52</span>
+                            <span dir="ltr">📞 +90 342 503 46 52</span>
                         </a>
                     </div>
                 </div>
@@ -165,32 +150,32 @@
                 <div class="lg:col-span-4">
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-md space-y-4">
                         <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                            <span class="text-xs font-mono font-bold text-orange-600 uppercase">SEVKİYAT PLANI</span>
-                            <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded font-bold">● Aktif Hat</span>
+                            <span class="text-xs font-mono font-bold text-orange-600 uppercase">{{ __('city_shipping_plan') }}</span>
+                            <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded font-bold">● {{ __('city_active_line') }}</span>
                         </div>
 
                         <div class="space-y-3 text-xs text-slate-700">
                             <div class="flex justify-between items-center py-1 border-b border-slate-100">
-                                <span class="text-slate-500">Hedef İl:</span>
+                                <span class="text-slate-500">{{ __('city_target_city') }}</span>
                                 <strong class="text-slate-900">{{ $city->name }}</strong>
                             </div>
                             <div class="flex justify-between items-center py-1 border-b border-slate-100">
-                                <span class="text-slate-500">Teslim Süresi:</span>
-                                <strong class="text-emerald-600">{{ $city->delivery_time ?? '24-48 Saat' }}</strong>
+                                <span class="text-slate-500">{{ __('city_delivery_time') }}</span>
+                                <strong class="text-emerald-600">{{ $isRtl ? __('stat_fast_delivery') : ($city->delivery_time ?? '24-48 Saat') }}</strong>
                             </div>
                             <div class="flex justify-between items-center py-1 border-b border-slate-100">
-                                <span class="text-slate-500">Ambar Noktası:</span>
-                                <strong class="text-slate-900">Anlaşmalı OSB Ambarı</strong>
+                                <span class="text-slate-500">{{ __('city_hub_point') }}</span>
+                                <strong class="text-slate-900">{{ __('city_hub_val') }}</strong>
                             </div>
                             <div class="flex justify-between items-center py-1">
-                                <span class="text-slate-500">Numune Kiti:</span>
-                                <strong class="text-orange-600">Ücretsiz Adrese Teslim</strong>
+                                <span class="text-slate-500">{{ __('city_sample_kit') }}</span>
+                                <strong class="text-orange-600">{{ __('city_sample_kit_val') }}</strong>
                             </div>
                         </div>
 
                         <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-600">
-                            <strong>Öncelikli Sanayi Alanları:</strong><br>
-                            {{ $city->industrial_zones ?? $city->name . ' Organize Sanayi Bölgesi' }}
+                            <strong>{{ __('city_priority_zones') }}</strong><br>
+                            {{ $city->industrial_zones ?? ($city->name . ' OSB') }}
                         </div>
                     </div>
                 </div>
@@ -201,33 +186,33 @@
     <!-- 3 Local Advantage Cards -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-2">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-2 text-{{ $isRtl ? 'right' : 'left' }}">
                 <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-xl mb-3">
                     🚚
                 </div>
-                <h3 class="text-base font-bold text-slate-900">{{ $city->name }} Hızlı Lojistik & Ambar</h3>
+                <h3 class="text-base font-bold text-slate-900">{{ $city->name }} {{ __('city_adv_logistics_title') }}</h3>
                 <p class="text-xs text-slate-600 leading-relaxed">
-                    Gaziantep merkez fabrikamızdan her gün {{ $city->name }} yönüne çıkan ambar ve kargo araçlarımız sayesinde acil rulo etiket ihtiyaçlarınız {{ $city->delivery_time }} içinde kapınızda.
+                    {{ __('city_adv_logistics_desc') }}
                 </p>
             </div>
 
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-2">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-2 text-{{ $isRtl ? 'right' : 'left' }}">
                 <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-3">
                     📦
                 </div>
-                <h3 class="text-base font-bold text-slate-900">{{ $city->name }} Ücretsiz Numune Kiti</h3>
+                <h3 class="text-base font-bold text-slate-900">{{ $city->name }} {{ __('city_adv_sample_title') }}</h3>
                 <p class="text-xs text-slate-600 leading-relaxed">
-                    Etiket türüne, yapışkan gücüne (akrilik, nonperm, hotmelt) ve kuka çapına karar vermeden önce adresinize özel ücretsiz numune kataloğumuzu kargoluyoruz.
+                    {{ __('city_adv_sample_desc') }}
                 </p>
             </div>
 
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-2">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-2 text-{{ $isRtl ? 'right' : 'left' }}">
                 <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-3">
                     💰
                 </div>
-                <h3 class="text-base font-bold text-slate-900">Doğrudan Üretici Fabrika Fiyatı</h3>
+                <h3 class="text-base font-bold text-slate-900">{{ __('city_adv_price_title') }}</h3>
                 <p class="text-xs text-slate-600 leading-relaxed">
-                    Aracı, komisyoncu veya bayi payı olmadan doğrudan Gaziantep 1. OSB tesislerimizin toptan birim maliyetleriyle en rekabetçi fiyat teklifini sunuyoruz.
+                    {{ __('city_adv_price_desc') }}
                 </p>
             </div>
         </div>
@@ -236,42 +221,42 @@
     <!-- Available Product Solutions for City -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-10 space-y-2">
-            <span class="text-xs font-bold uppercase tracking-widest text-orange-600">{{ $city->name }} İÇİN ÜRETİM GRUPLARI</span>
+            <span class="text-xs font-bold uppercase tracking-widest text-orange-600">{{ __('city_prod_badge') }} {{ $city->name }}</span>
             <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                {{ $city->name }} Sanayisine Özel Etiket & Ambalaj Çözümleri
+                {{ $city->name }} {{ __('city_prod_title') }}
             </h2>
             <p class="text-xs sm:text-sm text-slate-600">
-                8 renge kadar UV flekso baskı ve mikron hassasiyetinde kesim parkurumuzla üretilmektedir.
+                {{ __('city_prod_subtitle') }}
             </p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3">
                 <span class="text-2xl">🏷️</span>
-                <h4 class="text-sm font-bold text-slate-900">Termal & Kuşe Rulo Etiket</h4>
-                <p class="text-xs text-slate-500">Barkod yazıcılar için eko termal, lamine termal ve kuşe rulo etiketler.</p>
-                <div class="text-[11px] font-semibold text-orange-600">25mm / 40mm / 76mm Kuka</div>
+                <h4 class="text-sm font-bold text-slate-900">{{ __('cat_rulo') }}</h4>
+                <p class="text-xs text-slate-500">{{ __('cat_rulo_desc') }}</p>
+                <div class="text-[11px] font-semibold text-orange-600">{{ __('cat_rulo_b1') }}</div>
             </div>
 
             <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3">
                 <span class="text-2xl">🛡️</span>
-                <h4 class="text-sm font-bold text-slate-900">PP Opak & Plastik Etiket</h4>
-                <p class="text-xs text-slate-500">Su, kimyasal, yağ ve sürtünmeye dayanıklı yırtılmaz polipropilen etiketler.</p>
-                <div class="text-[11px] font-semibold text-orange-600">Dış Ortam & Soğuk Hava</div>
+                <h4 class="text-sm font-bold text-slate-900">{{ __('cat_plastik') }}</h4>
+                <p class="text-xs text-slate-500">{{ __('cat_plastik_desc') }}</p>
+                <div class="text-[11px] font-semibold text-orange-600">{{ __('cat_plastik_b1') }}</div>
             </div>
 
             <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3">
                 <span class="text-2xl">🧵</span>
-                <h4 class="text-sm font-bold text-slate-900">Tekstil & Japon Akmaz</h4>
-                <p class="text-xs text-slate-500">90°C yıkamaya dayanıklı kumaş şeritler ve jakarlı dokuma marka armaları.</p>
-                <div class="text-[11px] font-semibold text-orange-600">Ağır Yıkama Dayanımlı</div>
+                <h4 class="text-sm font-bold text-slate-900">{{ __('cat_tekstil') }}</h4>
+                <p class="text-xs text-slate-500">{{ __('cat_tekstil_desc') }}</p>
+                <div class="text-[11px] font-semibold text-orange-600">{{ __('cat_tekstil_b1') }}</div>
             </div>
 
             <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3">
                 <span class="text-2xl">📦</span>
-                <h4 class="text-sm font-bold text-slate-900">Karton Kutu Ambalaj</h4>
-                <p class="text-xs text-slate-500">Ofset baskılı dip kilitli karton kutular ve varak yaldızlı ürün ambalajları.</p>
-                <div class="text-[11px] font-semibold text-orange-600">Gıda & İhracat Uyumlu</div>
+                <h4 class="text-sm font-bold text-slate-900">{{ __('cat_ozel') }}</h4>
+                <p class="text-xs text-slate-500">{{ __('cat_ozel_desc') }}</p>
+                <div class="text-[11px] font-semibold text-orange-600">{{ __('cat_ozel_b1') }}</div>
             </div>
         </div>
     </section>
@@ -281,13 +266,13 @@
         <div class="bg-white border-2 border-orange-500/20 rounded-3xl p-6 sm:p-10 shadow-lg">
             <div class="text-center mb-6 space-y-2">
                 <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-800">
-                    {{ $city->name }} FABRİKA FİYAT TEKLİFİ
+                    {{ $city->name }} {{ __('city_quote_badge') }}
                 </span>
                 <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900">
-                    {{ $city->name }} İçin 15 Dakikada Fiyat Teklifi Alın
+                    {{ $city->name }} {{ __('city_quote_title') }}
                 </h3>
                 <p class="text-xs text-slate-600">
-                    Mühendislerimiz talebinize göre birim maliyetinizi ve ambar sevkiyat planınızı hemen hazırlasın.
+                    {{ __('city_quote_desc') }}
                 </p>
             </div>
 
@@ -297,12 +282,12 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Firma / Yetkili Adı</label>
-                        <input type="text" name="name" placeholder="{{ $city->name }} Sanayi Kuruluşu"
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">{{ __('rfq_company') }}</label>
+                        <input type="text" name="name" placeholder="{{ $city->name }}"
                                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-orange-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Telefon Numarası *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">{{ __('rfq_phone') }} *</label>
                         <input type="tel" name="phone" required placeholder="05XX XXX XX XX"
                                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-orange-500">
                     </div>
@@ -310,44 +295,44 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Etiket / Ambalaj Türü</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">{{ __('rfq_label_type') }}</label>
                         <select name="product_type" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-orange-500">
-                            <option value="Rulo Kuşe Etiket">Rulo Kuşe Etiket</option>
-                            <option value="Direkt Eko Termal">Eko Termal Rulo Etiket</option>
-                            <option value="Lamine Termal">Lamine Termal (Top Termal)</option>
-                            <option value="PP Opak Plastik">PP Opak (Plastik Su Geçirmez)</option>
-                            <option value="Japon Akmaz">Japon Akmaz Kumaş</option>
-                            <option value="Dokuma Etiket">Jakarlı Dokuma Arma</option>
-                            <option value="Karton Kutu">Karton Kutu Ambalaj</option>
+                            <option value="{{ __('opt_rulo_kuse') }}">{{ __('opt_rulo_kuse') }}</option>
+                            <option value="{{ __('opt_eko_termal') }}">{{ __('opt_eko_termal') }}</option>
+                            <option value="{{ __('opt_lamine_termal') }}">{{ __('opt_lamine_termal') }}</option>
+                            <option value="{{ __('opt_pp_opak') }}">{{ __('opt_pp_opak') }}</option>
+                            <option value="{{ __('opt_japon_akmaz') }}">{{ __('opt_japon_akmaz') }}</option>
+                            <option value="{{ __('opt_jakarli_dokuma') }}">{{ __('opt_jakarli_dokuma') }}</option>
+                            <option value="{{ __('opt_kutu_ambalaj') }}">{{ __('opt_kutu_ambalaj') }}</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Ölçüler (En x Boy mm)</label>
-                        <input type="text" name="dimensions" placeholder="Örn: 100x150 mm"
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">{{ __('rfq_dimensions') }}</label>
+                        <input type="text" name="dimensions" placeholder="{{ __('rfq_dimensions_ph') }}"
                                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-orange-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Sipariş Miktarı</label>
-                        <input type="text" name="quantity" placeholder="Örn: 20.000 adet / 50 rulo"
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">{{ __('rfq_quantity') }}</label>
+                        <input type="text" name="quantity" placeholder="{{ __('opt_qty_10k') }}"
                                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-orange-500">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Özel Talepler / Kuka Çapı / Notlar</label>
-                    <textarea name="note" rows="2" placeholder="{{ $city->name }} OSB teslimatı veya özel hammadde gereksinimleri..."
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">{{ __('rfq_notes') }}</label>
+                    <textarea name="note" rows="2" placeholder="{{ __('rfq_notes_ph') }}"
                               class="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-orange-500"></textarea>
                 </div>
 
                 <div class="pt-2 flex flex-col sm:flex-row gap-3">
                     <button type="submit" 
                             class="flex-1 py-3.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-xs shadow-md transition-all">
-                        {{ $city->name }} İçin Ücretsiz Teklif İste &rarr;
+                        {{ __('btn_submit_quote') }} &rarr;
                     </button>
-                    <a href="https://wa.me/905330246338?text={{ urlencode('Merhaba, ' . $city->name . ' etiket siparişi için hızlı teklif almak istiyorum.') }}" target="_blank"
+                    <a href="https://wa.me/905330246338?text={{ urlencode(__('whatsapp_prefill') . ' ' . $city->name) }}" target="_blank"
                        class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all">
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
-                        <span>WhatsApp ile Sor</span>
+                        <span>{{ __('btn_ask_whatsapp') }}</span>
                     </a>
                 </div>
             </form>
@@ -361,12 +346,12 @@
             <div class="flex items-center justify-between mb-6">
                 <div>
                     <h3 class="text-base font-bold text-slate-900">
-                        {{ $city->region }} Bölgesi Diğer Etiket Fabrikası Noktaları
+                        {{ $displayRegionName }} {{ __('city_other_hubs_title') }}
                     </h3>
-                    <p class="text-xs text-slate-500">Komşu sanayi şehirlerimize doğrudan ambar sevkiyat ağımız</p>
+                    <p class="text-xs text-slate-500">{{ __('city_other_hubs_desc') }}</p>
                 </div>
                 <a href="{{ route('regional.index') }}" class="text-xs font-bold text-orange-600 hover:text-orange-700">
-                    Tüm 81 İli Gör &rarr;
+                    {{ __('btn_view_all_provinces') }} &rarr;
                 </a>
             </div>
 
