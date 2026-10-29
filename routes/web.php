@@ -24,18 +24,23 @@ Route::get('/lang/{locale}', function (string $locale) {
 // ==========================================
 Route::get('/', [CorporateController::class, 'home'])->name('home');
 Route::get('/kurumsal', [CorporateController::class, 'about'])->name('corporate.about');
-Route::get('/hakkimizda', function () {
-    return redirect()->route('corporate.about', [], 301);
-});
+Route::get('/hakkimizda', [CorporateController::class, 'about'])->name('about');
 Route::get('/makine-parkuru', [CorporateController::class, 'machinery'])->name('corporate.machinery');
+Route::get('/uretim-parkuru', [CorporateController::class, 'machinery'])->name('machinery');
 Route::get('/sektorler', [CorporateController::class, 'sectors'])->name('corporate.sectors');
+Route::get('/sektorlerimiz', [CorporateController::class, 'sectors'])->name('sectors');
 Route::get('/teklif-al', [CorporateController::class, 'rfq'])->name('corporate.rfq');
+Route::get('/hemen-fiyat-al', [CorporateController::class, 'rfq'])->name('rfq');
 
 // Core Modules
 Route::get('/etiket-cozumleri', [CorporateController::class, 'etiketCozumleri'])->name('corporate.etiket');
+Route::get('/rulo-barkod-etiketleri', [CorporateController::class, 'etiketCozumleri'])->name('products.etiket');
 Route::get('/tekstil-etiketleri', [CorporateController::class, 'tekstilEtiketleri'])->name('corporate.tekstil');
+Route::get('/tekstil-dokuma-etiketleri', [CorporateController::class, 'tekstilEtiketleri'])->name('products.tekstil');
 Route::get('/matbaa-ambalaj', [CorporateController::class, 'matbaaAmbalaj'])->name('corporate.ambalaj');
+Route::get('/matbaa-kutu-ambalaj', [CorporateController::class, 'matbaaAmbalaj'])->name('products.matbaa');
 Route::get('/iletisim', [CorporateController::class, 'contact'])->name('corporate.contact');
+Route::get('/bize-ulasin', [CorporateController::class, 'contact'])->name('contact');
 Route::post('/hizli-teklif', [CorporateController::class, 'submitQuote'])->name('corporate.quote');
 
 // Dynamic XML Sitemap

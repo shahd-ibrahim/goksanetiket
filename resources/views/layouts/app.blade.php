@@ -142,195 +142,103 @@
 </head>
 <body class="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200 selection:bg-orange-500 selection:text-white">
 
-    <!-- 1. SLIM ELEGANT TOPBAR -->
-    <div class="bg-slate-900 dark:bg-slate-950 text-slate-300 text-xs py-2 border-b border-slate-800 z-50 transition-colors">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <!-- Left Info Items -->
-            <div class="flex items-center gap-4 text-[11px] sm:text-xs">
-                <span class="flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <strong class="text-white">{{ __('factory_loc') }}</strong>
+    <!-- Top Bar -->
+    <div class="bg-slate-900 text-slate-300 text-xs border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-2">
+                    <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>1. OSB 83105 Nolu Cad. No:31 Şehitkamil / GAZİANTEP</span>
                 </span>
-                <span class="hidden md:inline text-slate-600">|</span>
                 <span class="hidden md:flex items-center gap-1 text-slate-400">
-                    <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    {{ __('working_hours') }}
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Pzt - Cmt: 08:30 - 18:30</span>
                 </span>
             </div>
-
-            <!-- Right Info, Theme Switcher & Language Toggler -->
-            <div class="flex items-center gap-3 text-xs">
-                <a href="mailto:info@goksanetiket.com" class="hover:text-orange-400 transition-colors hidden sm:flex items-center gap-1 text-slate-300">
-                    <span>✉ info@goksanetiket.com</span>
+            <div class="flex items-center gap-4">
+                <a href="mailto:info@goksanetiket.com" class="hidden sm:flex items-center gap-1.5 hover:text-white transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    <span>info@goksanetiket.com</span>
                 </a>
-                <a href="tel:+903425034652" class="hover:text-white font-semibold flex items-center gap-1 text-slate-200">
-                    <span dir="ltr">📞 +90 342 503 46 52</span>
+                <a href="tel:+903425034652" class="flex items-center gap-1.5 font-semibold text-white hover:text-orange-400 transition">
+                    <svg class="w-3.5 h-3.5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    <span dir="ltr">+90 342 503 46 52</span>
                 </a>
-
-                <!-- Theme Toggle Button (Dark / Light Mode) -->
-                <button id="themeToggleBtn" type="button" aria-label="Toggle Theme"
-                        class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-all focus:outline-none flex items-center justify-center">
-                    <!-- Sun icon: shown in dark mode to switch to light -->
-                    <svg id="sunIcon" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                    </svg>
-                    <!-- Moon icon: shown in light mode to switch to dark -->
-                    <svg id="moonIcon" class="w-4 h-4 block dark:hidden text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                    </svg>
-                </button>
-
-                <!-- Language Switcher [TR] / [AR] -->
-                <div class="flex items-center rounded-lg bg-slate-800 p-0.5 border border-slate-700 text-[11px]">
-                    <a href="{{ route('set-locale', ['locale' => 'tr']) }}" 
-                       class="px-2.5 py-0.5 rounded-md font-bold transition-all {{ $locale === 'tr' ? 'bg-orange-500 text-white shadow-xs' : 'text-slate-400 hover:text-white' }}">
-                        TR
-                    </a>
-                    <a href="{{ route('set-locale', ['locale' => 'ar']) }}" 
-                       class="px-2.5 py-0.5 rounded-md font-bold transition-all {{ $locale === 'ar' ? 'bg-orange-500 text-white shadow-xs' : 'text-slate-400 hover:text-white' }}">
-                        AR
-                    </a>
+                <div class="flex items-center gap-1 border-l border-slate-700 pl-3">
+                    <a href="{{ url('lang/tr') }}" class="px-2 py-0.5 rounded text-[11px] font-bold {{ app()->getLocale() == 'tr' ? 'bg-orange-500 text-white' : 'text-slate-400 hover:text-white' }}">TR</a>
+                    <a href="{{ url('lang/ar') }}" class="px-2 py-0.5 rounded text-[11px] font-bold {{ app()->getLocale() == 'ar' ? 'bg-orange-500 text-white' : 'text-slate-400 hover:text-white' }}">AR</a>
                 </div>
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
+                    <svg id="theme-toggle-dark-icon" class="w-4 h-4 block dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="w-4 h-4 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- 2. MAIN NAVIGATION (CLEAN ADAPTIVE THEME) -->
-    <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-xs transition-colors duration-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Dynamic Brand Logo Switching -->
-                <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <!-- Light theme logo -->
-                    <img src="{{ asset('images/darklogo.png') }}" 
-                         alt="GÖKSAN Etiket • Matbaa • Ambalaj" 
-                         class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 block dark:hidden">
-                    <!-- Dark theme logo -->
-                    <img src="{{ asset('images/lightlogo.png') }}" 
-                         alt="GÖKSAN Etiket • Matbaa • Ambalaj" 
-                         class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 hidden dark:block">
+    <!-- Main Nav -->
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
+            <!-- Logo -->
+            <a href="{{ route('home') }}" class="flex items-center shrink-0">
+                <img src="{{ asset('images/darklogo.png') }}" alt="Göksan Etiket" class="h-12 w-auto block dark:hidden object-contain">
+                <img src="{{ asset('images/lightlogo.png') }}" alt="Göksan Etiket" class="h-12 w-auto hidden dark:block object-contain">
+            </a>
 
-                    <div class="hidden xl:block {{ $isRtl ? 'border-r pr-3' : 'border-l pl-3' }} border-slate-200 dark:border-slate-800">
-                        <span class="block text-xs font-bold text-slate-900 dark:text-white tracking-wide">
-                            GÖKSAN ETİKET
-                        </span>
-                        <span class="block text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                            {{ __('factory_loc_short') }}
-                        </span>
-                    </div>
+            <!-- Nav Links -->
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700 dark:text-slate-200">
+                <a href="{{ route('home') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition {{ request()->routeIs('home') ? 'text-orange-600 font-bold' : '' }}">
+                    {{ __('Ana Sayfa') }}
                 </a>
-
-                <!-- Nav Links Desktop -->
-                <nav class="hidden lg:flex items-center gap-6 xl:gap-7 text-sm font-semibold text-slate-700 dark:text-slate-200">
-                    <a href="{{ route('home') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition-colors {{ request()->routeIs('home') ? 'text-orange-600 dark:text-orange-400 font-bold' : '' }}">
-                        {{ __('nav_home') }}
-                    </a>
-
-                    <!-- Products Dropdown -->
-                    <div class="relative group py-2">
-                        <button class="flex items-center gap-1 hover:text-orange-600 dark:hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.etiket', 'corporate.tekstil', 'corporate.ambalaj') ? 'text-orange-600 dark:text-orange-400 font-bold' : '' }}">
-                            <span>{{ __('nav_products') }}</span>
-                            <svg class="w-4 h-4 text-slate-400 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </button>
-                        <div class="absolute {{ $isRtl ? 'right-0' : 'left-0' }} top-full w-64 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl py-3 px-2 hidden group-hover:block transition-all z-50">
-                            <a href="{{ route('corporate.etiket') }}" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group/item">
-                                <span class="text-xl">🏷️</span>
-                                <div>
-                                    <span class="block text-xs font-bold text-slate-900 dark:text-white group-hover/item:text-orange-600 dark:group-hover/item:text-orange-400">{{ __('nav_rulo_etiket') }}</span>
-                                    <span class="block text-[11px] text-slate-500 dark:text-slate-400">{{ __('nav_rulo_etiket_sub') }}</span>
-                                </div>
-                            </a>
-                            <a href="{{ route('corporate.tekstil') }}" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group/item">
-                                <span class="text-xl">🧵</span>
-                                <div>
-                                    <span class="block text-xs font-bold text-slate-900 dark:text-white group-hover/item:text-orange-600 dark:group-hover/item:text-orange-400">{{ __('nav_tekstil_etiket') }}</span>
-                                    <span class="block text-[11px] text-slate-500 dark:text-slate-400">{{ __('nav_tekstil_etiket_sub') }}</span>
-                                </div>
-                            </a>
-                            <a href="{{ route('corporate.ambalaj') }}" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group/item">
-                                <span class="text-xl">📦</span>
-                                <div>
-                                    <span class="block text-xs font-bold text-slate-900 dark:text-white group-hover/item:text-orange-600 dark:group-hover/item:text-orange-400">{{ __('nav_matbaa_ambalaj') }}</span>
-                                    <span class="block text-[11px] text-slate-500 dark:text-slate-400">{{ __('nav_matbaa_ambalaj_sub') }}</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <a href="{{ route('corporate.machinery') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.machinery') ? 'text-orange-600 dark:text-orange-400 font-bold' : '' }}">
-                        {{ __('nav_machinery') }}
-                    </a>
-
-                    <a href="{{ route('corporate.sectors') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.sectors') ? 'text-orange-600 dark:text-orange-400 font-bold' : '' }}">
-                        {{ __('nav_sectors') }}
-                    </a>
-
-                    <a href="{{ route('regional.index') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition-colors {{ request()->routeIs('regional.*') ? 'text-orange-600 dark:text-orange-400 font-bold' : '' }}">
-                        {{ __('nav_regions') }}
-                    </a>
-
-                    <a href="{{ route('corporate.about') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.about') ? 'text-orange-600 dark:text-orange-400 font-bold' : '' }}">
-                        {{ __('nav_about') }}
-                    </a>
-
-                    <a href="{{ route('corporate.contact') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition-colors {{ request()->routeIs('corporate.contact') ? 'text-orange-600 dark:text-orange-400 font-bold' : '' }}">
-                        {{ __('nav_contact') }}
-                    </a>
-                </nav>
-
-                <!-- Right CTAs -->
-                <div class="flex items-center gap-3">
-                    <!-- Glowing WhatsApp Quick CTA -->
-                    <a href="https://wa.me/905330246338?text={{ urlencode(__('whatsapp_prefill')) }}" target="_blank"
-                       class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md glow-wa transition-all">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
-                        <span class="hidden sm:inline">{{ __('btn_whatsapp') }}</span>
-                    </a>
-
-                    <!-- Request Quote Button -->
-                    <a href="{{ route('corporate.rfq') }}" 
-                       class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-xs shadow-md shadow-orange-500/20 hover:-translate-y-0.5 transition-all">
-                        <span>{{ __('btn_quote') }}</span>
-                        <svg class="w-3.5 h-3.5 {{ $isRtl ? 'rotate-180' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                    </a>
-
-                    <!-- Mobile Menu Trigger -->
-                    <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none" aria-label="Toggle Navigation">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <!-- Products Dropdown -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1 hover:text-orange-600 dark:hover:text-orange-400 transition py-2">
+                        <span>{{ __('Ürünlerimiz') }}</span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
+                    <div class="absolute top-full left-0 hidden group-hover:block w-64 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 py-3 z-50">
+                        <a href="{{ route('products.etiket') }}" class="block px-4 py-2 hover:bg-orange-50 dark:hover:bg-slate-700 hover:text-orange-600 text-xs font-semibold">{{ __('Rulo & Barkod Etiketleri') }}</a>
+                        <a href="{{ route('products.tekstil') }}" class="block px-4 py-2 hover:bg-orange-50 dark:hover:bg-slate-700 hover:text-orange-600 text-xs font-semibold">{{ __('Tekstil & Dokuma Etiketleri') }}</a>
+                        <a href="{{ route('products.matbaa') }}" class="block px-4 py-2 hover:bg-orange-50 dark:hover:bg-slate-700 hover:text-orange-600 text-xs font-semibold">{{ __('Matbaa & Kutu Ambalaj') }}</a>
+                    </div>
                 </div>
+                <a href="{{ route('machinery') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition">{{ __('Üretim Parkuru') }}</a>
+                <a href="{{ route('sectors') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition">{{ __('Sektörler') }}</a>
+                <a href="{{ route('regional.index') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition">{{ __('Hizmet Bölgelerimiz') }}</a>
+                <a href="{{ route('about') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition">{{ __('Hakkımızda') }}</a>
+                <a href="{{ route('contact') }}" class="hover:text-orange-600 dark:hover:text-orange-400 transition">{{ __('İletişim') }}</a>
+            </nav>
+
+            <!-- Action CTAs -->
+            <div class="flex items-center gap-3 shrink-0">
+                <a href="https://wa.me/905330246338" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="{{ route('rfq') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs shadow-sm transition">
+                    <span>{{ __('Hemen Fiyat Al') }}</span>
+                    <svg class="w-3.5 h-3.5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <!-- Mobile Menu Trigger -->
+                <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
             </div>
         </div>
 
         <!-- Mobile Drawer Menu -->
         <div id="mobileDrawer" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-3 pb-6 space-y-3 transition-colors">
-            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('nav_home') }}</a>
-            <div class="px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-400">{{ __('nav_products') }}</div>
-            <a href="{{ route('corporate.etiket') }}" class="block px-5 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">• {{ __('nav_rulo_etiket') }}</a>
-            <a href="{{ route('corporate.tekstil') }}" class="block px-5 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">• {{ __('nav_tekstil_etiket') }}</a>
-            <a href="{{ route('corporate.ambalaj') }}" class="block px-5 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">• {{ __('nav_matbaa_ambalaj') }}</a>
-            <a href="{{ route('corporate.machinery') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('nav_machinery') }}</a>
-            <a href="{{ route('corporate.sectors') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('nav_sectors') }}</a>
-            <a href="{{ route('regional.index') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('nav_regions') }}</a>
-            <a href="{{ route('corporate.about') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('nav_about') }}</a>
-            <a href="{{ route('corporate.contact') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('nav_contact') }}</a>
-            
-            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <span class="text-xs text-slate-500 dark:text-slate-400">{{ $isRtl ? 'المظهر / Tema:' : 'Tema / Theme:' }}</span>
-                <button id="mobileThemeToggleBtn" type="button" aria-label="Toggle Theme"
-                        class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-2 text-xs font-semibold">
-                    <span class="hidden dark:inline text-amber-400">☀️ Açık / Light</span>
-                    <span class="inline dark:hidden text-slate-700">🌙 Koyu / Dark</span>
-                </button>
-            </div>
-
-            <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <span class="text-xs text-slate-500 dark:text-slate-400">{{ $isRtl ? 'اللغة / Dil:' : 'Dil / Language:' }}</span>
-                <div class="flex items-center gap-2">
-                    <a href="{{ route('set-locale', ['locale' => 'tr']) }}" class="px-3 py-1 rounded text-xs font-bold {{ $locale === 'tr' ? 'bg-orange-500 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300' }}">Türkçe</a>
-                    <a href="{{ route('set-locale', ['locale' => 'ar']) }}" class="px-3 py-1 rounded text-xs font-bold {{ $locale === 'ar' ? 'bg-orange-500 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300' }}">العربية</a>
-                </div>
-            </div>
+            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('Ana Sayfa') }}</a>
+            <div class="px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-400">{{ __('Ürünlerimiz') }}</div>
+            <a href="{{ route('products.etiket') }}" class="block px-5 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">• {{ __('Rulo & Barkod Etiketleri') }}</a>
+            <a href="{{ route('products.tekstil') }}" class="block px-5 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">• {{ __('Tekstil & Dokuma Etiketleri') }}</a>
+            <a href="{{ route('products.matbaa') }}" class="block px-5 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">• {{ __('Matbaa & Kutu Ambalaj') }}</a>
+            <a href="{{ route('machinery') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('Üretim Parkuru') }}</a>
+            <a href="{{ route('sectors') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('Sektörler') }}</a>
+            <a href="{{ route('regional.index') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('Hizmet Bölgelerimiz') }}</a>
+            <a href="{{ route('about') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('Hakkımızda') }}</a>
+            <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">{{ __('İletişim') }}</a>
         </div>
     </header>
 
@@ -464,6 +372,7 @@
             }
         }
 
+        document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
         document.getElementById('themeToggleBtn')?.addEventListener('click', toggleTheme);
         document.getElementById('mobileThemeToggleBtn')?.addEventListener('click', toggleTheme);
     </script>
