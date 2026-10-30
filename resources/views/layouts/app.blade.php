@@ -179,11 +179,11 @@
 
     <!-- Main Nav -->
     <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 transition-colors">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between gap-6">
             <!-- Logo -->
-            <a href="{{ route('home') }}" class="flex items-center shrink-0">
-                <img src="{{ asset('images/darklogo.png') }}" alt="Göksan Etiket" class="h-12 w-auto block dark:hidden object-contain">
-                <img src="{{ asset('images/lightlogo.png') }}" alt="Göksan Etiket" class="h-12 w-auto hidden dark:block object-contain">
+            <a href="{{ route('home') }}" class="flex items-center shrink-0 py-1">
+                <img src="{{ asset('images/darklogo.png') }}" alt="Göksan Etiket" class="h-14 md:h-16 w-auto object-contain block dark:hidden">
+                <img src="{{ asset('images/lightlogo.png') }}" alt="Göksan Etiket" class="h-14 md:h-16 w-auto object-contain hidden dark:block">
             </a>
 
             <!-- Nav Links -->
