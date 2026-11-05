@@ -57,7 +57,7 @@
 @endpush
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 space-y-8 sm:space-y-12 overflow-x-hidden">
     <!-- Breadcrumb -->
     <nav class="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
         <a href="{{ url('/') }}" class="hover:text-orange-600 dark:hover:text-orange-400">{{ __('Ana Sayfa') }}</a>
@@ -70,10 +70,10 @@
     </nav>
 
     <!-- Product & City Hero -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-orange-50/30 dark:from-slate-900 dark:via-slate-900 dark:to-slate-850 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 md:p-12 shadow-xs">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-orange-50/30 dark:from-slate-900 dark:via-slate-900 dark:to-slate-850 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 sm:p-8 md:p-12 shadow-xs">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             <!-- Left: Hero Content -->
-            <div class="lg:col-span-7 space-y-5">
+            <div class="lg:col-span-7 space-y-4 sm:space-y-5">
                 <div class="flex flex-wrap items-center gap-2">
                     <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 dark:bg-orange-950/60 text-orange-800 dark:text-orange-300 border border-orange-200 dark:border-orange-800/60">
                         {{ $city->name }} {{ __('Toptan İmalat') }}
@@ -83,7 +83,7 @@
                     </span>
                 </div>
 
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                <h1 class="text-2xl sm:text-3xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
                     {{ $city->name }} {{ $product->title }}
                 </h1>
 
@@ -144,7 +144,7 @@
         <h3 class="text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 mb-4">
             {{ $city->region }} {{ __('Bölgesinde') }} {{ $product->title }} {{ __('İmalatı') }}
         </h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
             @foreach($otherCities as $oc)
                 <a href="{{ route('regional.service', ['serviceSlug' => $product->slug, 'citySlug' => $oc->slug]) }}" 
                    class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 dark:hover:border-orange-500 p-3 rounded-xl text-center shadow-xs hover:shadow-md transition-all group">

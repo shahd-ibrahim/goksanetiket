@@ -45,7 +45,7 @@
 @endpush
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 space-y-8 sm:space-y-12 overflow-x-hidden">
     <!-- Breadcrumbs -->
     <nav class="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
         <a href="{{ url('/') }}" class="hover:text-orange-600 dark:hover:text-orange-400">{{ __('nav_home') }}</a>
@@ -54,45 +54,45 @@
     </nav>
 
     <!-- Header & Live Search Bar -->
-    <section class="text-center max-w-4xl mx-auto space-y-6">
+    <section class="text-center max-w-4xl mx-auto space-y-4 sm:space-y-6">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-orange-50 dark:bg-orange-950/50 border border-orange-200 dark:border-orange-800 text-orange-700 dark:text-orange-300">
             <svg class="w-4 h-4 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             {{ __('regional_index_badge') }}
         </div>
 
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+        <h1 class="text-2xl sm:text-3xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
             {{ __('regional_index_title') }}
         </h1>
 
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
+        <p class="text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
             {{ __('regional_index_subtitle') }}
         </p>
 
         <!-- Live Instant Search Bar -->
         <div class="max-w-xl mx-auto relative pt-2">
             <input type="text" id="citySearch" placeholder="{{ __('search_placeholder') }}" 
-                   class="w-full px-5 py-4 {{ $isRtl ? 'pr-12 pl-4' : 'pl-12 pr-4' }} rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-md transition-all">
-            <svg class="w-5 h-5 text-slate-400 absolute {{ $isRtl ? 'right-4' : 'left-4' }} top-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                   class="w-full px-5 py-3.5 sm:py-4 {{ $isRtl ? 'pr-12 pl-4' : 'pl-12 pr-4' }} rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 shadow-md transition-all">
+            <svg class="w-5 h-5 text-slate-400 absolute {{ $isRtl ? 'right-4' : 'left-4' }} top-5 sm:top-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </div>
     </section>
 
     <!-- Key Metrics Stats (Light & Dark Theme) -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-center shadow-xs transition-colors">
-            <div class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">{{ __('stat_81_provinces') }}</div>
-            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ __('stat_81_provinces_sub') }}</div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 text-center shadow-xs transition-colors">
+            <div class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">{{ __('stat_81_provinces') }}</div>
+            <div class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">{{ __('stat_81_provinces_sub') }}</div>
         </div>
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-center shadow-xs transition-colors">
-            <div class="text-2xl sm:text-3xl font-black text-orange-600 dark:text-orange-400 font-mono">{{ __('stat_350_osb') }}</div>
-            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ __('stat_350_osb_sub') }}</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 text-center shadow-xs transition-colors">
+            <div class="text-xl sm:text-3xl font-black text-orange-600 dark:text-orange-400 font-mono">{{ __('stat_350_osb') }}</div>
+            <div class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">{{ __('stat_350_osb_sub') }}</div>
         </div>
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-center shadow-xs transition-colors">
-            <div class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 font-mono">{{ __('stat_fast_delivery') }}</div>
-            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ __('stat_fast_delivery_sub') }}</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 text-center shadow-xs transition-colors">
+            <div class="text-xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 font-mono">{{ __('stat_fast_delivery') }}</div>
+            <div class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">{{ __('stat_fast_delivery_sub') }}</div>
         </div>
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-center shadow-xs transition-colors">
-            <div class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">{{ __('stat_uv_flexo') }}</div>
-            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ __('stat_uv_flexo_sub') }}</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 text-center shadow-xs transition-colors">
+            <div class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">{{ __('stat_uv_flexo') }}</div>
+            <div class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">{{ __('stat_uv_flexo_sub') }}</div>
         </div>
     </div>
 

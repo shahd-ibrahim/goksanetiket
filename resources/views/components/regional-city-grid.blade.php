@@ -70,7 +70,7 @@
                         <div class="flex-1 h-px bg-slate-200 dark:bg-slate-800"></div>
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
                         @foreach($citiesList as $c)
                             @php
                                 $isCurrent = ($currentCitySlug === $c->slug);

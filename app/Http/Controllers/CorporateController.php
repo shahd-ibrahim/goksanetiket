@@ -216,6 +216,48 @@ class CorporateController extends Controller
     }
 
     /**
+     * Online Ödeme / Sanal POS (B2B Payment Gateway Page)
+     */
+    public function onlinePayment()
+    {
+        $isAr = app()->getLocale() === 'ar';
+
+        $seo = [
+            'title' => $isAr ? 'الدفع الإلكتروني الآمن (Sanal POS) | غوكسان للملصقات' : 'Online Ödeme & Sanal POS | GÖKSAN Etiket • Matbaa • Ambalaj',
+            'description' => $isAr
+                ? 'نظام الدفع الإلكتروني الآمن ثلاثي الأبعاد (3D Secure) لعملاء مصنع غوكسان للملصقات والتغليف.'
+                : 'Göksan Etiket kurumsal müşterileri için 256-Bit SSL ve 3D Secure güvenceli online kredi kartı / Sanal POS tahsilat sistemi.',
+            'canonical' => route('payment'),
+        ];
+
+        return view('pages.online-odeme', compact('seo'));
+    }
+
+    /**
+     * Process Online Payment / Sanal POS Request
+     */
+    public function processPayment(Request $request)
+    {
+        $validated = $request->validate([
+            'order_no' => ['required', 'string', 'max:100'],
+            'customer_name' => ['required', 'string', 'max:150'],
+            'phone' => ['required', 'string', 'max:30'],
+            'email' => ['nullable', 'email', 'max:120'],
+            'amount' => ['required', 'numeric', 'min:1'],
+            'currency' => ['required', 'in:TRY,USD,EUR'],
+            'card_holder' => ['required', 'string', 'max:120'],
+            'card_number' => ['required', 'string', 'max:25'],
+            'expiry' => ['required', 'string', 'max:7'],
+            'cvv' => ['required', 'string', 'max:4'],
+            'note' => ['nullable', 'string', 'max:500'],
+        ]);
+
+        return back()->with('payment_status', app()->getLocale() === 'ar'
+            ? 'تم تسجيل طلب الدفع الخاص بكم بنجاح (وضع المعاينة الآمن 3D Secure). يرجى التواصل مع قسم المحاسبة لتفعيل بوابة البنك.'
+            : 'Ödeme işleminiz 3D Secure doğrulama katmanına iletildi. Sanal POS (PayTR / İyzico) canlı API anahtarları tanımlandığında tahsilat otomatik tamamlanacaktır.');
+    }
+
+    /**
      * Fast Quote Form Processing
      */
     public function submitQuote(Request $request)

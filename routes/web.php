@@ -41,6 +41,9 @@ Route::get('/matbaa-ambalaj', [CorporateController::class, 'matbaaAmbalaj'])->na
 Route::get('/matbaa-kutu-ambalaj', [CorporateController::class, 'matbaaAmbalaj'])->name('products.matbaa');
 Route::get('/iletisim', [CorporateController::class, 'contact'])->name('corporate.contact');
 Route::get('/bize-ulasin', [CorporateController::class, 'contact'])->name('contact');
+Route::get('/online-odeme', [CorporateController::class, 'onlinePayment'])->name('payment');
+Route::get('/sanal-pos', [CorporateController::class, 'onlinePayment'])->name('corporate.payment');
+Route::post('/online-odeme', [CorporateController::class, 'processPayment'])->name('payment.submit');
 Route::post('/hizli-teklif', [CorporateController::class, 'submitQuote'])->name('corporate.quote');
 
 // Dynamic XML Sitemap
