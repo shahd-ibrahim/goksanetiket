@@ -11,13 +11,25 @@ use Illuminate\Support\Facades\Cache;
 class RegionalSeoController extends Controller
 {
     /**
+     * Safe in-memory cache helper that never writes to read-only SQLite.
+     */
+    protected function safeRemember(string $key, \Closure $callback)
+    {
+        try {
+            return Cache::store('array')->remember($key, now()->addDay(), $callback);
+        } catch (\Throwable $e) {
+            return $callback();
+        }
+    }
+
+    /**
      * Regional SEO Index page: Lists all 81 cities grouped by geographical region.
      */
     public function index()
     {
         $cacheKey = 'regional_seo_index';
 
-        $data = Cache::remember($cacheKey, now()->addDay(), function () {
+        $data = $this->safeRemember($cacheKey, function () {
             $cities = City::orderBy('plate_code', 'asc')->get();
             $groupedCities = $cities->groupBy('region');
             $products = Product::active()->get();
@@ -69,7 +81,7 @@ class RegionalSeoController extends Controller
 
         $cacheKey = "regional_city_{$citySlug}";
 
-        $data = Cache::remember($cacheKey, now()->addDay(), function () use ($city) {
+        $data = $this->safeRemember($cacheKey, function () use ($city) {
             $products = Product::active()->get();
 
             // Neighboring or same-region cities for internal SEO linking
@@ -119,7 +131,7 @@ class RegionalSeoController extends Controller
 
         $cacheKey = "regional_service_{$serviceSlug}_{$citySlug}";
 
-        $data = Cache::remember($cacheKey, now()->addDay(), function () use ($product, $city) {
+        $data = $this->safeRemember($cacheKey, function () use ($product, $city) {
             // Other products for cross-selling in this city
             $otherProducts = Product::active()
                 ->where('id', '!=', $product->id)
@@ -164,7 +176,7 @@ class RegionalSeoController extends Controller
      */
     public function sitemap(): Response
     {
-        $xml = Cache::remember('sitemap_xml', now()->addDay(), function () {
+        $xml = $this->safeRemember('sitemap_xml', function () {
             $cities = City::orderBy('plate_code', 'asc')->get();
             $products = Product::active()->get();
 

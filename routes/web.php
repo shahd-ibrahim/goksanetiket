@@ -46,6 +46,12 @@ Route::get('/sanal-pos', [CorporateController::class, 'onlinePayment'])->name('c
 Route::post('/online-odeme', [CorporateController::class, 'processPayment'])->name('payment.submit');
 Route::post('/hizli-teklif', [CorporateController::class, 'submitQuote'])->name('corporate.quote');
 
+// Legal & Corporate Compliance Routes (KVKK, Çerezler, Gizlilik, Mesafeli Satış)
+Route::get('/kvkk-aydinlatma-metni', [CorporateController::class, 'kvkk'])->name('legal.kvkk');
+Route::get('/cerez-politikasi', [CorporateController::class, 'cookiePolicy'])->name('legal.cookies');
+Route::get('/gizlilik-guvenlik', [CorporateController::class, 'privacyPolicy'])->name('legal.privacy');
+Route::get('/mesafeli-satis-sozlesmesi', [CorporateController::class, 'distanceSales'])->name('legal.sales');
+
 // Dynamic XML Sitemap
 Route::get('/sitemap.xml', [RegionalSeoController::class, 'sitemap'])->name('sitemap');
 

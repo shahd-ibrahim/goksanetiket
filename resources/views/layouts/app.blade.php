@@ -153,7 +153,7 @@
                         <span>{{ $isRtl ? 'المنتجات' : 'Ürünler' }}</span>
                         <svg class="w-4 h-4 text-slate-400 group-hover:text-orange-600 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="absolute top-full {{ $isRtl ? 'right-0' : 'left-0' }} hidden group-hover:block w-68 bg-white rounded-2xl shadow-xl border border-slate-200/90 py-2.5 z-50">
+                    <div class="absolute top-full {{ $isRtl ? 'right-0' : 'left-0' }} hidden group-hover:block w-64 bg-white rounded-2xl shadow-xl border border-slate-200/90 py-2.5 z-50">
                         <a href="{{ route('products.etiket') }}" class="block px-5 py-2.5 hover:bg-orange-50 hover:text-orange-600 text-sm font-medium text-slate-700 transition-colors">
                             {{ __('Rulo & Barkod Etiketleri') }}
                         </a>
@@ -187,21 +187,65 @@
                 </a>
             </nav>
 
-            <!-- Desktop Right Side: Language Switch (TR/AR) + Single High-Contrast Orange CTA ("Teklif Al") -->
+            <!-- Desktop Right Side: Sleek Flag Dropdown (🇹🇷 TR / 🇸🇦 AR) + Orange "Teklif Al" CTA -->
             <div class="hidden lg:flex items-center gap-4 shrink-0">
-                <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200/80 text-xs font-bold">
-                    <a href="{{ url('lang/tr') }}" class="px-2.5 py-1 rounded-lg transition {{ app()->getLocale() == 'tr' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500 hover:text-slate-900' }}">TR</a>
-                    <a href="{{ url('lang/ar') }}" class="px-2.5 py-1 rounded-lg transition {{ app()->getLocale() == 'ar' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500 hover:text-slate-900' }}">AR</a>
+                <!-- Flag Language Dropdown -->
+                <div class="relative group" id="langDropdownWrapper">
+                    <button type="button" id="langDropdownBtn" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/90 text-xs font-bold text-slate-800 transition cursor-pointer">
+                        <span class="text-base leading-none">{{ $locale === 'ar' ? '🇸🇦' : '🇹🇷' }}</span>
+                        <span>{{ $locale === 'ar' ? 'AR' : 'TR' }}</span>
+                        <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div id="langDropdownMenu" class="absolute top-full {{ $isRtl ? 'left-0' : 'right-0' }} pt-2 hidden group-hover:block z-50 w-44">
+                        <div class="bg-white rounded-2xl shadow-xl border border-slate-200/90 py-1.5 overflow-hidden">
+                            <a href="{{ url('lang/tr') }}" class="flex items-center justify-between px-4 py-2.5 text-xs font-semibold transition {{ $locale === 'tr' ? 'bg-orange-50 text-orange-600 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
+                                <span class="flex items-center gap-2.5">
+                                    <span class="text-base leading-none">🇹🇷</span>
+                                    <span>Türkçe (TR)</span>
+                                </span>
+                                @if($locale === 'tr')
+                                    <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                                @endif
+                            </a>
+                            <a href="{{ url('lang/ar') }}" class="flex items-center justify-between px-4 py-2.5 text-xs font-semibold transition {{ $locale === 'ar' ? 'bg-orange-50 text-orange-600 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
+                                <span class="flex items-center gap-2.5">
+                                    <span class="text-base leading-none">🇸🇦</span>
+                                    <span>العربية (AR)</span>
+                                </span>
+                                @if($locale === 'ar')
+                                    <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                                @endif
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Single High-Contrast Orange CTA Button -->
                 <a href="{{ route('rfq') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm shadow-sm shadow-orange-600/20 transition-all">
                     <span>{{ $isRtl ? 'اطلب عرض سعر' : 'Teklif Al' }}</span>
                     <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
             </div>
 
-            <!-- Mobile Header Right: Super Clean (Hamburger Icon Only) -->
-            <div class="flex lg:hidden items-center shrink-0">
+            <!-- Mobile Header Right: Compact Flag Dropdown + Hamburger Icon -->
+            <div class="flex lg:hidden items-center gap-2 shrink-0">
+                <!-- Mobile Flag Dropdown -->
+                <div class="relative">
+                    <button type="button" id="mobileLangBtn" class="inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800">
+                        <span class="text-sm leading-none">{{ $locale === 'ar' ? '🇸🇦' : '🇹🇷' }}</span>
+                        <span>{{ $locale === 'ar' ? 'AR' : 'TR' }}</span>
+                        <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div id="mobileLangMenu" class="hidden absolute top-full {{ $isRtl ? 'left-0' : 'right-0' }} mt-1.5 w-40 bg-white rounded-2xl shadow-xl border border-slate-200 py-1.5 z-50">
+                        <a href="{{ url('lang/tr') }}" class="flex items-center gap-2 px-3.5 py-2 text-xs font-semibold {{ $locale === 'tr' ? 'bg-orange-50 text-orange-600 font-bold' : 'text-slate-700' }}">
+                            <span>🇹🇷</span> <span>Türkçe (TR)</span>
+                        </a>
+                        <a href="{{ url('lang/ar') }}" class="flex items-center gap-2 px-3.5 py-2 text-xs font-semibold {{ $locale === 'ar' ? 'bg-orange-50 text-orange-600 font-bold' : 'text-slate-700' }}">
+                            <span>🇸🇦</span> <span>العربية (AR)</span>
+                        </a>
+                    </div>
+                </div>
+
                 <button id="mobileMenuBtn" type="button" class="inline-flex items-center justify-center p-2.5 rounded-xl text-slate-800 hover:bg-slate-100 border border-slate-200 focus:outline-none transition" aria-label="Menüyü Aç" aria-expanded="false">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
@@ -211,10 +255,8 @@
 
     <!-- Off-Canvas Mobile Slide-Out Drawer -->
     <div id="mobileDrawerContainer" class="fixed inset-0 z-[60] lg:hidden pointer-events-none" aria-hidden="true">
-        <!-- Backdrop -->
         <div id="mobileDrawerBackdrop" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs opacity-0 transition-opacity duration-300"></div>
 
-        <!-- Slide-out Drawer Panel -->
         <aside id="mobileDrawerPanel" class="fixed top-0 {{ $isRtl ? 'left-0 -translate-x-full' : 'right-0 translate-x-full' }} h-full w-[85vw] max-w-sm bg-white shadow-2xl border-{{ $isRtl ? 'r' : 'l' }} border-slate-200 flex flex-col justify-between transition-transform duration-300 ease-in-out overflow-y-auto">
             <div>
                 <!-- Drawer Top Header -->
@@ -230,9 +272,13 @@
                 <!-- Language Switcher Inside Drawer -->
                 <div class="px-5 py-3 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
                     <span class="text-xs font-semibold text-slate-500">{{ $isRtl ? 'اللغة' : 'Dil Seçimi' }}</span>
-                    <div class="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200">
-                        <a href="{{ url('lang/tr') }}" class="px-3 py-1 rounded-lg text-xs font-bold transition {{ app()->getLocale() == 'tr' ? 'bg-orange-600 text-white' : 'text-slate-600 hover:text-slate-900' }}">TR</a>
-                        <a href="{{ url('lang/ar') }}" class="px-3 py-1 rounded-lg text-xs font-bold transition {{ app()->getLocale() == 'ar' ? 'bg-orange-600 text-white' : 'text-slate-600 hover:text-slate-900' }}">AR</a>
+                    <div class="flex items-center gap-1.5 bg-white p-1 rounded-xl border border-slate-200">
+                        <a href="{{ url('lang/tr') }}" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition {{ $locale === 'tr' ? 'bg-orange-600 text-white' : 'text-slate-600 hover:text-slate-900' }}">
+                            <span>🇹🇷</span> <span>TR</span>
+                        </a>
+                        <a href="{{ url('lang/ar') }}" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition {{ $locale === 'ar' ? 'bg-orange-600 text-white' : 'text-slate-600 hover:text-slate-900' }}">
+                            <span>🇸🇦</span> <span>AR</span>
+                        </a>
                     </div>
                 </div>
 
@@ -242,7 +288,6 @@
                         <span>{{ $isRtl ? 'الرئيسية' : 'Ana Sayfa' }}</span>
                     </a>
 
-                    <!-- Products Accordion -->
                     <div class="rounded-xl overflow-hidden">
                         <button id="mobileProductsToggle" type="button" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-800 hover:bg-slate-50 transition">
                             <span>{{ $isRtl ? 'المنتجات' : 'Ürünler' }}</span>
@@ -316,10 +361,10 @@
                     </div>
                 </div>
 
-                <!-- Col 2: Ürünler & Çözümler -->
+                <!-- Col 2: Ürünler (Products) -->
                 <div class="space-y-3 text-{{ $isRtl ? 'right' : 'left' }}">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200">
-                        {{ $isRtl ? 'المنتجات والحلول' : 'Ürünler & Çözümler' }}
+                        {{ $isRtl ? 'المنتجات' : 'Ürünlerimiz' }}
                     </h4>
                     <ul class="space-y-2.5 text-xs text-slate-600">
                         <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-600 transition-colors">{{ __('cat_rulo') }}</a></li>
@@ -327,64 +372,96 @@
                         <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-600 transition-colors">{{ __('cat_guvenlik') }}</a></li>
                         <li><a href="{{ route('corporate.tekstil') }}" class="hover:text-orange-600 transition-colors">{{ __('cat_tekstil') }}</a></li>
                         <li><a href="{{ route('corporate.ambalaj') }}" class="hover:text-orange-600 transition-colors">{{ __('cat_ozel') }}</a></li>
-                        <li><a href="{{ route('machinery') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'الإنتاج والتكنولوجيا' : 'Üretim & Teknoloji' }}</a></li>
+                        <li><a href="{{ route('sectors') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'القطاعات الصناعية' : 'Sektörel Etiket Çözümleri' }}</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 3: Kurumsal & Hızlı Erişim -->
+                <!-- Col 3: Kurumsal (Corporate) -->
                 <div class="space-y-3 text-{{ $isRtl ? 'right' : 'left' }}">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200">
-                        {{ $isRtl ? 'روابط سريعة' : 'Kurumsal & Hızlı Erişim' }}
+                        {{ $isRtl ? 'الشركة' : 'Kurumsal' }}
                     </h4>
                     <ul class="space-y-2.5 text-xs text-slate-600">
                         <li><a href="{{ route('about') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'من نحن وإدارة الشركة' : 'Hakkımızda & Yönetim Kadromuz' }}</a></li>
+                        <li><a href="{{ route('machinery') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'الإنتاج والتكنولوجيا' : 'Üretim & Teknoloji' }}</a></li>
                         <li><a href="{{ route('payment') }}" class="hover:text-orange-600 font-semibold text-orange-600 transition-colors">{{ $isRtl ? 'الدفع الإلكتروني (Sanal POS)' : 'Online Ödeme (Sanal POS)' }}</a></li>
                         <li><a href="{{ route('rfq') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'طلب عرض سعر' : 'Online Teklif Al (RFQ)' }}</a></li>
-                        <li><a href="{{ route('sectors') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'القطاعات الصناعية' : 'Hizmet Verilen Sektörler' }}</a></li>
                         <li><a href="{{ route('regional.index') }}" class="hover:text-orange-600 transition-colors">{{ __('Hizmet Bölgelerimiz') }} (81 İl)</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'اتصل بنا' : 'İletişim & Fabrika Ulaşım' }}</a></li>
+                        <li><a href="{{ route('contact') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'اتصل بنا' : 'İletişim & Ulaşım' }}</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 4: Online Ödeme & Teklif Kısayolu -->
+                <!-- Col 4: Yasal & Kurumsal Politikalar (Legal) -->
                 <div class="space-y-3 text-{{ $isRtl ? 'right' : 'left' }}">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200">
-                        {{ $isRtl ? 'الاعتمادات والدفع' : 'Kalite & Online İşlemler' }}
+                        {{ $isRtl ? 'السياسات القانونية وحماية البيانات' : 'Yasal & Kurumsal Politikalar' }}
                     </h4>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        {{ __('footer_trust_desc') }}
-                    </p>
-                    <div class="flex flex-wrap gap-1.5 pt-1">
-                        <span class="px-2.5 py-1 rounded-lg bg-white text-[10px] font-bold text-slate-700 border border-slate-200">ISO 9001:2015</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-white text-[10px] font-bold text-slate-700 border border-slate-200">8 Renk UV Flexo</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-white text-[10px] font-bold text-slate-700 border border-slate-200">3D Secure POS</span>
-                    </div>
-                    <div class="pt-3 grid grid-cols-1 gap-2">
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li><a href="{{ route('legal.kvkk') }}" class="hover:text-orange-600 transition-colors">KVKK Aydınlatma Metni</a></li>
+                        <li><a href="{{ route('legal.cookies') }}" class="hover:text-orange-600 transition-colors">Çerez (Cookie) Politikası</a></li>
+                        <li><a href="{{ route('legal.privacy') }}" class="hover:text-orange-600 transition-colors">Gizlilik ve Güvenlik Politikası</a></li>
+                        <li><a href="{{ route('legal.sales') }}" class="hover:text-orange-600 transition-colors">Mesafeli Satış & İade Sözleşmesi</a></li>
+                        <li><a href="{{ route('sitemap') }}" class="hover:text-orange-600 transition-colors">{{ __('footer_sitemap') }}</a></li>
+                    </ul>
+                    <div class="pt-2">
                         <a href="{{ route('rfq') }}" class="block w-full py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs text-center transition-colors shadow-xs">
                             {{ $isRtl ? 'اطلب عرض سعر' : 'Teklif Al' }} &rarr;
-                        </a>
-                        <a href="{{ route('payment') }}" class="block w-full py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-xs text-center transition-colors">
-                            💳 {{ $isRtl ? 'الدفع الإلكتروني (Sanal POS)' : 'Online Ödeme (Sanal POS)' }}
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Copyright -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                <div>
+            <!-- Bottom Copyright & Shaya Soft Developer Credit -->
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <div class="text-center md:text-left">
                     &copy; {{ date('Y') }} GÖKSAN Etiket • Matbaa • Ambalaj San. Tic. Ltd. Şti. {{ __('footer_copyright') }}
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="{{ route('payment') }}" class="hover:text-orange-600 font-medium">{{ $isRtl ? 'الدفع الإلكتروني' : 'Sanal POS' }}</a>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs">
+                    <a href="{{ route('legal.kvkk') }}" class="hover:text-slate-800">KVKK</a>
                     <span>•</span>
-                    <a href="{{ route('sitemap') }}" class="hover:text-slate-800">{{ __('footer_sitemap') }}</a>
+                    <a href="{{ route('legal.cookies') }}" class="hover:text-slate-800">Çerezler</a>
                     <span>•</span>
-                    <a href="{{ route('corporate.contact') }}" class="hover:text-slate-800">{{ __('nav_contact') }}</a>
+                    <a href="{{ route('legal.privacy') }}" class="hover:text-slate-800">Gizlilik</a>
+                    <span>•</span>
+                    <span>
+                        Tasarım &amp; Geliştirici:
+                        <a href="https://shayasoft.com" target="_blank" rel="noopener noreferrer" class="font-bold text-orange-600 hover:text-orange-500 underline transition">Shaya Soft</a>
+                    </span>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Floating Cookie Consent Banner (Çerez Politikası Notice) -->
+    <div id="cookieConsentBanner" class="hidden fixed bottom-4 inset-x-4 sm:inset-x-auto sm:left-6 sm:max-w-md z-50 bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-2xl">
+        <div class="flex items-start gap-3.5">
+            <span class="w-9 h-9 rounded-xl bg-orange-50 border border-orange-100 text-orange-600 flex items-center justify-center text-base shrink-0 mt-0.5">
+                🍪
+            </span>
+            <div class="space-y-2.5 text-xs text-slate-600 leading-relaxed">
+                <div class="font-bold text-slate-900 text-sm">
+                    {{ $isRtl ? 'إشعار ملفات تعريف الارتباط (Çerez Politikası)' : 'Çerez (Cookie) Kullanımı' }}
+                </div>
+                <p>
+                    {{ $isRtl
+                        ? 'نستخدم ملفات تعريف الارتباط لضمان أفضل تجربة تصفح وأمان على موقعنا.'
+                        : 'Size daha iyi ve güvenli bir kurumsal deneyim sunabilmek için sitemizde çerezler kullanılmaktadır.' }}
+                    <a href="{{ route('legal.cookies') }}" class="font-bold text-orange-600 hover:underline">
+                        {{ $isRtl ? 'سياسة ملفات تعريف الارتباط' : 'Çerez Politikası' }}
+                    </a>
+                </p>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" id="acceptCookiesBtn" class="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition cursor-pointer">
+                        {{ $isRtl ? 'قبول (Kabul Et)' : 'Kabul Et' }}
+                    </button>
+                    <a href="{{ route('legal.kvkk') }}" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition">
+                        KVKK
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Subtle Floating WhatsApp Quick Button -->
     <div class="fixed {{ $isRtl ? 'left-5' : 'right-5' }} bottom-5 z-40">
@@ -395,7 +472,7 @@
         </a>
     </div>
 
-    <!-- Scripts: Off-Canvas Mobile Drawer -->
+    <!-- Scripts: Off-Canvas Mobile Drawer, Language Popover & Cookie Consent -->
     <script>
         (function() {
             const isRtl = {{ $isRtl ? 'true' : 'false' }};
@@ -408,6 +485,17 @@
             const productsToggle = document.getElementById('mobileProductsToggle');
             const productsMenu = document.getElementById('mobileProductsMenu');
             const productsChevron = document.getElementById('mobileProductsChevron');
+
+            // Mobile Language Popover Toggle
+            const mobileLangBtn = document.getElementById('mobileLangBtn');
+            const mobileLangMenu = document.getElementById('mobileLangMenu');
+            mobileLangBtn?.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileLangMenu?.classList.toggle('hidden');
+            });
+            document.addEventListener('click', function() {
+                mobileLangMenu?.classList.add('hidden');
+            });
 
             function openMobileDrawer() {
                 if (!container || !backdrop || !panel) return;
@@ -453,6 +541,17 @@
                 if (!productsMenu) return;
                 productsMenu.classList.toggle('hidden');
                 productsChevron?.classList.toggle('rotate-180');
+            });
+
+            // Cookie Consent Banner Logic
+            const cookieBanner = document.getElementById('cookieConsentBanner');
+            const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
+            if (cookieBanner && !localStorage.getItem('goksan_cookie_consent')) {
+                cookieBanner.classList.remove('hidden');
+            }
+            acceptCookiesBtn?.addEventListener('click', function() {
+                localStorage.setItem('goksan_cookie_consent', 'accepted');
+                cookieBanner?.classList.add('hidden');
             });
         })();
     </script>

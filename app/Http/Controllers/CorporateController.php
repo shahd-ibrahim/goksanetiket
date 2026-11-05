@@ -276,4 +276,60 @@ class CorporateController extends Controller
             ? 'تم استلام طلبكم بنجاح! سيتواصل معكم فريق المبيعات خلال 15 دقيقة.' 
             : 'Talebiniz başarıyla alındı! Satış mühendislerimiz 15 dakika içinde sizinle iletişime geçecektir.');
     }
+
+    /**
+     * KVKK Aydınlatma Metni (/kvkk-aydinlatma-metni)
+     */
+    public function kvkk()
+    {
+        $seo = [
+            'title' => 'KVKK Aydınlatma Metni | GÖKSAN Etiket • Matbaa • Ambalaj',
+            'description' => '6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında Göksan Etiket aydınlatma metni ve veri güvenliği politikası.',
+            'canonical' => route('legal.kvkk'),
+        ];
+
+        return view('pages.legal.kvkk', compact('seo'));
+    }
+
+    /**
+     * Çerez Politikası (/cerez-politikasi)
+     */
+    public function cookiePolicy()
+    {
+        $seo = [
+            'title' => 'Çerez (Cookie) Politikası | GÖKSAN Etiket • Matbaa • Ambalaj',
+            'description' => 'Göksan Etiket web sitesinde kullanılan çerez türleri, kullanım amaçları ve çerez tercihlerinin yönetimi hakkında bilgilendirme.',
+            'canonical' => route('legal.cookies'),
+        ];
+
+        return view('pages.legal.cerez-politikasi', compact('seo'));
+    }
+
+    /**
+     * Gizlilik ve Güvenlik Politikası (/gizlilik-guvenlik)
+     */
+    public function privacyPolicy()
+    {
+        $seo = [
+            'title' => 'Gizlilik ve Güvenlik Politikası | GÖKSAN Etiket • Matbaa • Ambalaj',
+            'description' => 'Göksan Etiket kurumsal gizlilik ilkeleri, bilgi güvenliği standartları ve 256-Bit SSL veri koruma taahhüdü.',
+            'canonical' => route('legal.privacy'),
+        ];
+
+        return view('pages.legal.gizlilik-guvenlik', compact('seo'));
+    }
+
+    /**
+     * Mesafeli Satış ve Tahsilat Sözleşmesi (/mesafeli-satis-sozlesmesi)
+     */
+    public function distanceSales()
+    {
+        $seo = [
+            'title' => 'Mesafeli Satış ve Sanal POS Tahsilat Sözleşmesi | GÖKSAN Etiket',
+            'description' => 'Göksan Etiket online ödeme (Sanal POS) kullanım koşulları, B2B ticari tahsilat, iptal ve iade şartları sözleşmesi.',
+            'canonical' => route('legal.sales'),
+        ];
+
+        return view('pages.legal.mesafeli-satis', compact('seo'));
+    }
 }

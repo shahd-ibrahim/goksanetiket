@@ -5,7 +5,7 @@
     $isRtl = ($locale === 'ar');
 
     if (!$groupedCities) {
-        $groupedCities = \Illuminate\Support\Facades\Cache::remember('all_cities_by_region', now()->addDay(), function () {
+        $fetchGroupedCities = function () {
             $cities = \App\Models\City::orderBy('plate_code', 'asc')->get();
             $grouped = $cities->groupBy('region');
             
@@ -22,7 +22,13 @@
             return collect($regionOrder)->mapWithKeys(function ($reg) use ($grouped) {
                 return [$reg => $grouped->get($reg, collect())];
             });
-        });
+        };
+
+        try {
+            $groupedCities = \Illuminate\Support\Facades\Cache::store('array')->remember('all_cities_by_region', now()->addDay(), $fetchGroupedCities);
+        } catch (\Throwable $e) {
+            $groupedCities = $fetchGroupedCities();
+        }
     }
 @endphp
 

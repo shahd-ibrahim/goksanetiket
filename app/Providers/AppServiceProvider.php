@@ -20,6 +20,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Force in-memory cache and cookie session so SQLite is never written to for cache/sessions
+        if (config('cache.default') === 'database') {
+            config(['cache.default' => 'array']);
+        }
+        if (config('session.driver') === 'database') {
+            config(['session.driver' => 'cookie']);
+        }
+
         if (
             config('app.env') === 'production' ||
             !empty($_SERVER['VERCEL']) ||
