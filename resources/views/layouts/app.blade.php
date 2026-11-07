@@ -133,16 +133,16 @@
 </head>
 <body class="min-h-screen flex flex-col overflow-x-hidden bg-white text-slate-900 selection:bg-orange-500 selection:text-white">
 
-    <!-- MINIMALIST SPACIOUS EUROPEAN WHITE HEADER (NO TOPBAR) -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between gap-4 lg:gap-8">
-            <!-- Prominent Company Logo -->
+    <!-- MINIMALIST SPACIOUS EUROPEAN PURE WHITE HEADER (NO TOPBAR) -->
+    <header class="sticky top-0 z-50 bg-white border-b border-slate-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 lg:h-24 flex items-center justify-between gap-6">
+            <!-- Large Prominent Company Logo on the Left -->
             <a href="{{ route('home') }}" class="shrink-0 flex items-center py-2">
-                <img src="{{ asset('images/darklogo.png') }}" alt="Göksan Etiket" class="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain {{ $isRtl ? 'object-right' : 'object-left' }}">
+                <img src="{{ asset('images/darklogo.png') }}" alt="Göksan Etiket" class="h-12 md:h-16 w-auto object-contain {{ $isRtl ? 'object-right' : 'object-left' }}">
             </a>
 
-            <!-- Desktop Navigation Links -->
-            <nav class="hidden lg:flex items-center gap-7 xl:gap-8 text-[15px] font-semibold text-slate-700">
+            <!-- Clean Minimal Nav Links in the Center -->
+            <nav class="hidden lg:flex items-center gap-8 xl:gap-9 text-[15px] font-medium text-slate-700">
                 <a href="{{ route('home') }}" class="hover:text-orange-600 transition-colors {{ request()->routeIs('home') ? 'text-orange-600 font-bold' : '' }}">
                     {{ $isRtl ? 'الرئيسية' : 'Ana Sayfa' }}
                 </a>
@@ -153,7 +153,7 @@
                         <span>{{ $isRtl ? 'المنتجات' : 'Ürünler' }}</span>
                         <svg class="w-4 h-4 text-slate-400 group-hover:text-orange-600 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="absolute top-full {{ $isRtl ? 'right-0' : 'left-0' }} hidden group-hover:block w-64 bg-white rounded-2xl shadow-xl border border-slate-200/90 py-2.5 z-50">
+                    <div class="absolute top-full {{ $isRtl ? 'right-0' : 'left-0' }} hidden group-hover:block w-64 bg-white rounded-2xl shadow-xl border border-slate-100 py-2.5 z-50">
                         <a href="{{ route('products.etiket') }}" class="block px-5 py-2.5 hover:bg-orange-50 hover:text-orange-600 text-sm font-medium text-slate-700 transition-colors">
                             {{ __('Rulo & Barkod Etiketleri') }}
                         </a>
@@ -170,10 +170,6 @@
                     </div>
                 </div>
 
-                <a href="{{ route('machinery') }}" class="hover:text-orange-600 transition-colors {{ request()->routeIs('machinery', 'corporate.machinery') ? 'text-orange-600 font-bold' : '' }}">
-                    {{ $isRtl ? 'الإنتاج والتكنولوجيا' : 'Üretim & Teknoloji' }}
-                </a>
-
                 <a href="{{ route('about') }}" class="hover:text-orange-600 transition-colors {{ request()->routeIs('about', 'corporate.about') ? 'text-orange-600 font-bold' : '' }}">
                     {{ $isRtl ? 'من نحن' : 'Hakkımızda' }}
                 </a>
@@ -187,17 +183,17 @@
                 </a>
             </nav>
 
-            <!-- Desktop Right Side: Sleek Flag Dropdown (🇹🇷 TR / 🇸🇦 AR) + Orange "Teklif Al" CTA -->
+            <!-- Right Side: Flag Dropdown Switcher (🇹🇷 TR / 🇸🇦 AR) + ONE Solid Orange CTA Button -->
             <div class="hidden lg:flex items-center gap-4 shrink-0">
                 <!-- Flag Language Dropdown -->
                 <div class="relative group" id="langDropdownWrapper">
-                    <button type="button" id="langDropdownBtn" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/90 text-xs font-bold text-slate-800 transition cursor-pointer">
+                    <button type="button" id="langDropdownBtn" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs font-bold text-slate-800 transition cursor-pointer">
                         <span class="text-base leading-none">{{ $locale === 'ar' ? '🇸🇦' : '🇹🇷' }}</span>
                         <span>{{ $locale === 'ar' ? 'AR' : 'TR' }}</span>
                         <svg class="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
                     <div id="langDropdownMenu" class="absolute top-full {{ $isRtl ? 'left-0' : 'right-0' }} pt-2 hidden group-hover:block z-50 w-44">
-                        <div class="bg-white rounded-2xl shadow-xl border border-slate-200/90 py-1.5 overflow-hidden">
+                        <div class="bg-white rounded-2xl shadow-xl border border-slate-100 py-1.5 overflow-hidden">
                             <a href="{{ url('lang/tr') }}" class="flex items-center justify-between px-4 py-2.5 text-xs font-semibold transition {{ $locale === 'tr' ? 'bg-orange-50 text-orange-600 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
                                 <span class="flex items-center gap-2.5">
                                     <span class="text-base leading-none">🇹🇷</span>
@@ -220,10 +216,9 @@
                     </div>
                 </div>
 
-                <!-- Single High-Contrast Orange CTA Button -->
-                <a href="{{ route('rfq') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm shadow-sm shadow-orange-600/20 transition-all">
+                <!-- ONE Solid Orange CTA Button -->
+                <a href="{{ route('rfq') }}" class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm shadow-sm shadow-orange-600/20 transition-all">
                     <span>{{ $isRtl ? 'اطلب عرض سعر' : 'Teklif Al' }}</span>
-                    <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
             </div>
 
@@ -306,14 +301,11 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('machinery') }}" class="drawer-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-800 hover:bg-slate-50 transition">
-                        <span>{{ $isRtl ? 'الإنتاج والتكنولوجيا' : 'Üretim & Teknoloji' }}</span>
-                    </a>
                     <a href="{{ route('about') }}" class="drawer-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-800 hover:bg-slate-50 transition">
                         <span>{{ $isRtl ? 'من نحن' : 'Hakkımızda' }}</span>
                     </a>
                     <a href="{{ route('payment') }}" class="drawer-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-800 hover:bg-slate-50 transition">
-                        <span>{{ $isRtl ? 'الدفع الإلكتروني (Sanal POS)' : 'Online Ödeme (Sanal POS)' }}</span>
+                        <span>{{ $isRtl ? 'الدفع الإلكتروني' : 'Online Ödeme' }}</span>
                     </a>
                     <a href="{{ route('contact') }}" class="drawer-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-800 hover:bg-slate-50 transition">
                         <span>{{ $isRtl ? 'اتصل بنا' : 'İletişim' }}</span>
@@ -341,93 +333,62 @@
         @yield('content')
     </main>
 
-    <!-- CLEAN EUROPEAN B2B FOOTER -->
-    <footer class="bg-slate-50 text-slate-600 pt-14 sm:pt-16 pb-10 border-t border-slate-200/80">
+    <!-- CLEAN EUROPEAN B2B FOOTER (3 NEAT COLUMNS + SHAYA SOFT CREDIT) -->
+    <footer class="bg-slate-50 text-slate-600 py-16 lg:py-20 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-200/80">
-                <!-- Col 1: Brand Info -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 pb-12 border-b border-slate-200/80">
+                <!-- Col 1: Kurumsal -->
                 <div class="space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
-                    <a href="{{ route('home') }}" class="inline-block">
-                        <img src="{{ asset('images/darklogo.png') }}" alt="Göksan Etiket" class="h-14 w-auto object-contain">
-                    </a>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        {{ __('footer_desc') }}
-                    </p>
-                    <div class="text-xs text-slate-600 space-y-1.5 pt-1">
-                        <div>📍 {{ __('factory_loc') }}</div>
-                        <div>📞 <a href="tel:+903425034652" class="hover:text-orange-600 font-semibold text-slate-800" dir="ltr">+90 342 503 46 52</a></div>
-                        <div>📱 <a href="https://wa.me/905330246338" target="_blank" class="hover:text-orange-600 font-semibold text-slate-800" dir="ltr">+90 533 024 63 38 (WhatsApp)</a></div>
-                        <div>✉ <a href="mailto:info@goksanetiket.com" class="hover:text-orange-600">info@goksanetiket.com</a></div>
-                    </div>
-                </div>
-
-                <!-- Col 2: Ürünler (Products) -->
-                <div class="space-y-3 text-{{ $isRtl ? 'right' : 'left' }}">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200">
-                        {{ $isRtl ? 'المنتجات' : 'Ürünlerimiz' }}
-                    </h4>
-                    <ul class="space-y-2.5 text-xs text-slate-600">
-                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-600 transition-colors">{{ __('cat_rulo') }}</a></li>
-                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-600 transition-colors">{{ __('cat_plastik') }}</a></li>
-                        <li><a href="{{ route('corporate.etiket') }}" class="hover:text-orange-600 transition-colors">{{ __('cat_guvenlik') }}</a></li>
-                        <li><a href="{{ route('corporate.tekstil') }}" class="hover:text-orange-600 transition-colors">{{ __('cat_tekstil') }}</a></li>
-                        <li><a href="{{ route('corporate.ambalaj') }}" class="hover:text-orange-600 transition-colors">{{ __('cat_ozel') }}</a></li>
-                        <li><a href="{{ route('sectors') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'القطاعات الصناعية' : 'Sektörel Etiket Çözümleri' }}</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3: Kurumsal (Corporate) -->
-                <div class="space-y-3 text-{{ $isRtl ? 'right' : 'left' }}">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200/80">
                         {{ $isRtl ? 'الشركة' : 'Kurumsal' }}
                     </h4>
-                    <ul class="space-y-2.5 text-xs text-slate-600">
+                    <ul class="space-y-3 text-xs text-slate-600">
                         <li><a href="{{ route('about') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'من نحن وإدارة الشركة' : 'Hakkımızda & Yönetim Kadromuz' }}</a></li>
                         <li><a href="{{ route('machinery') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'الإنتاج والتكنولوجيا' : 'Üretim & Teknoloji' }}</a></li>
                         <li><a href="{{ route('payment') }}" class="hover:text-orange-600 font-semibold text-orange-600 transition-colors">{{ $isRtl ? 'الدفع الإلكتروني (Sanal POS)' : 'Online Ödeme (Sanal POS)' }}</a></li>
-                        <li><a href="{{ route('rfq') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'طلب عرض سعر' : 'Online Teklif Al (RFQ)' }}</a></li>
                         <li><a href="{{ route('regional.index') }}" class="hover:text-orange-600 transition-colors">{{ __('Hizmet Bölgelerimiz') }} (81 İl)</a></li>
                         <li><a href="{{ route('contact') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'اتصل بنا' : 'İletişim & Ulaşım' }}</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 4: Yasal & Kurumsal Politikalar (Legal) -->
-                <div class="space-y-3 text-{{ $isRtl ? 'right' : 'left' }}">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200">
-                        {{ $isRtl ? 'السياسات القانونية وحماية البيانات' : 'Yasal & Kurumsal Politikalar' }}
+                <!-- Col 2: Ürünler -->
+                <div class="space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200/80">
+                        {{ $isRtl ? 'المنتجات' : 'Ürünler' }}
                     </h4>
-                    <ul class="space-y-2 text-xs text-slate-600">
+                    <ul class="space-y-3 text-xs text-slate-600">
+                        <li><a href="{{ route('products.etiket') }}" class="hover:text-orange-600 transition-colors">{{ __('Rulo & Barkod Etiketleri') }}</a></li>
+                        <li><a href="{{ route('products.tekstil') }}" class="hover:text-orange-600 transition-colors">{{ __('Tekstil & Dokuma Etiketleri') }}</a></li>
+                        <li><a href="{{ route('products.matbaa') }}" class="hover:text-orange-600 transition-colors">{{ __('Matbaa & Kutu Ambalaj') }}</a></li>
+                        <li><a href="{{ route('sectors') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'القطاعات الصناعية' : 'Sektörel Etiket Çözümleri' }}</a></li>
+                        <li><a href="{{ route('rfq') }}" class="hover:text-orange-600 font-medium text-orange-600 transition-colors">{{ $isRtl ? 'طلب عرض سعر' : 'Online Teklif Al (RFQ)' }} &rarr;</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Yasal (KVKK, Çerez Politikası, Gizlilik) -->
+                <div class="space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200/80">
+                        {{ $isRtl ? 'السياسات القانونية' : 'Yasal' }}
+                    </h4>
+                    <ul class="space-y-3 text-xs text-slate-600">
                         <li><a href="{{ route('legal.kvkk') }}" class="hover:text-orange-600 transition-colors">KVKK Aydınlatma Metni</a></li>
                         <li><a href="{{ route('legal.cookies') }}" class="hover:text-orange-600 transition-colors">Çerez (Cookie) Politikası</a></li>
-                        <li><a href="{{ route('legal.privacy') }}" class="hover:text-orange-600 transition-colors">Gizlilik ve Güvenlik Politikası</a></li>
-                        <li><a href="{{ route('legal.sales') }}" class="hover:text-orange-600 transition-colors">Mesafeli Satış & İade Sözleşmesi</a></li>
+                        <li><a href="{{ route('legal.privacy') }}" class="hover:text-orange-600 transition-colors">Gizlilik ve Güvenlik</a></li>
+                        <li><a href="{{ route('legal.sales') }}" class="hover:text-orange-600 transition-colors">Mesafeli Satış Sözleşmesi</a></li>
                         <li><a href="{{ route('sitemap') }}" class="hover:text-orange-600 transition-colors">{{ __('footer_sitemap') }}</a></li>
                     </ul>
-                    <div class="pt-2">
-                        <a href="{{ route('rfq') }}" class="block w-full py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs text-center transition-colors shadow-xs">
-                            {{ $isRtl ? 'اطلب عرض سعر' : 'Teklif Al' }} &rarr;
-                        </a>
-                    </div>
                 </div>
             </div>
 
-            <!-- Bottom Copyright & Shaya Soft Developer Credit -->
-            <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                <div class="text-center md:text-left">
-                    &copy; {{ date('Y') }} GÖKSAN Etiket • Matbaa • Ambalaj San. Tic. Ltd. Şti. {{ __('footer_copyright') }}
+            <!-- Bottom Bar: Geliştirici: Shaya Soft (https://shayasoft.com) -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <div class="text-center sm:text-left">
+                    &copy; {{ date('Y') }} GÖKSAN Etiket. {{ __('footer_copyright') }}
                 </div>
 
-                <div class="flex flex-wrap items-center justify-center gap-3 text-xs">
-                    <a href="{{ route('legal.kvkk') }}" class="hover:text-slate-800">KVKK</a>
-                    <span>•</span>
-                    <a href="{{ route('legal.cookies') }}" class="hover:text-slate-800">Çerezler</a>
-                    <span>•</span>
-                    <a href="{{ route('legal.privacy') }}" class="hover:text-slate-800">Gizlilik</a>
-                    <span>•</span>
-                    <span>
-                        Tasarım &amp; Geliştirici:
-                        <a href="https://shayasoft.com" target="_blank" rel="noopener noreferrer" class="font-bold text-orange-600 hover:text-orange-500 underline transition">Shaya Soft</a>
-                    </span>
+                <div class="text-center sm:text-right">
+                    Geliştirici:
+                    <a href="https://shayasoft.com" target="_blank" rel="noopener noreferrer" class="font-bold text-orange-600 hover:text-orange-500 underline transition">Shaya Soft</a>
                 </div>
             </div>
         </div>
