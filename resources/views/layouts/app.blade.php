@@ -94,6 +94,30 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+
+        /* Smooth Scroll-Reveal Animation Classes (stikalabels.be inspired) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(2rem);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-100 { transition-delay: 100ms; }
+        .reveal-delay-200 { transition-delay: 200ms; }
+        .reveal-delay-300 { transition-delay: 300ms; }
+        .reveal-delay-400 { transition-delay: 400ms; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 
     <!-- Schema.org Manufacturer & LocalBusiness JSON-LD -->
@@ -334,7 +358,7 @@
     </main>
 
     <!-- CLEAN EUROPEAN B2B FOOTER (3 NEAT COLUMNS + SHAYA SOFT CREDIT) -->
-    <footer class="bg-slate-50 text-slate-600 py-16 lg:py-20 border-t border-slate-100">
+    <footer class="bg-slate-50 text-slate-600 pt-16 lg:pt-20 pb-20 md:pb-12 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 pb-12 border-b border-slate-200/80">
                 <!-- Col 1: Kurumsal -->
@@ -424,12 +448,14 @@
         </div>
     </div>
 
-    <!-- Subtle Floating WhatsApp Quick Button -->
+    <!-- Floating WhatsApp Button (Official Green #25D366, Compact Circular Icon) -->
     <div class="fixed {{ $isRtl ? 'left-5' : 'right-5' }} bottom-5 z-40">
-        <a href="https://wa.me/905330246338?text={{ urlencode(__('whatsapp_prefill')) }}" target="_blank"
-           class="flex items-center gap-2 px-4 py-3 rounded-full bg-slate-900 hover:bg-orange-600 text-white font-bold text-xs shadow-lg transition-all">
-            <svg class="w-4 h-4 fill-current text-orange-400" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
-            <span class="hidden md:inline">{{ __('btn_whatsapp') }}</span>
+        <a href="https://wa.me/905330246338?text={{ urlencode(__('whatsapp_prefill')) }}"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="WhatsApp"
+           class="w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#1ebe57] text-white shadow-lg flex items-center justify-center transition-all hover:scale-105">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
         </a>
     </div>
 
@@ -514,6 +540,45 @@
                 localStorage.setItem('goksan_cookie_consent', 'accepted');
                 cookieBanner?.classList.add('hidden');
             });
+
+            // Smooth Scroll-Reveal Observer (Performance Optimized, Single Trigger)
+            function initScrollReveal() {
+                const reveals = document.querySelectorAll('.reveal');
+                if (!reveals.length) return;
+
+                if (!('IntersectionObserver' in window)) {
+                    reveals.forEach(function(el) { el.classList.add('active'); });
+                    return;
+                }
+
+                const observer = new IntersectionObserver(function(entries, obs) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    root: null,
+                    rootMargin: '0px 0px -40px 0px',
+                    threshold: 0.05
+                });
+
+                reveals.forEach(function(el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        el.classList.add('active');
+                    } else {
+                        observer.observe(el);
+                    }
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initScrollReveal);
+            } else {
+                initScrollReveal();
+            }
         })();
     </script>
 </body>

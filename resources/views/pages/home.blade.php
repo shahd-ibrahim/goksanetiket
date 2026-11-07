@@ -14,7 +14,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
                 <!-- Left Column: Short Bold Headline, 1 Short Subtitle, 1 Primary Orange Button -->
-                <div class="lg:col-span-6 space-y-6 text-{{ $isRtl ? 'right' : 'left' }}">
+                <div class="lg:col-span-6 space-y-6 text-{{ $isRtl ? 'right' : 'left' }} reveal">
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
                         {{ $isRtl ? 'إنتاج ملصقات الرول الصناعية' : 'Endüstriyel Rulo Etiket Üretimi' }}
                     </h1>
@@ -34,7 +34,7 @@
                 </div>
 
                 <!-- Right Column: Clean 16:9 Factory Video Container (NO badges, NO stat pills, NO borders) -->
-                <div class="lg:col-span-6">
+                <div class="lg:col-span-6 reveal reveal-delay-200">
                     <div class="rounded-2xl overflow-hidden aspect-video bg-slate-900 relative shadow-sm group">
                         <video id="factoryHeroVideo"
                                class="w-full h-full object-cover"
@@ -62,23 +62,23 @@
         </div>
     </section>
 
-    <!-- 2. MINIMALIST PRODUCT SHOWCASE: 3-COLUMN CLEAN GRID (ZERO BADGES, ZERO BULLET LISTS) -->
-    <section class="py-20 lg:py-28 bg-white border-b border-slate-100">
+    <!-- 2. MINIMALIST PRODUCT SHOWCASE: 3-COLUMN CLEAN GRID (BG-SLATE-50/60) -->
+    <section class="py-20 lg:py-28 bg-slate-50/60 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12 lg:mb-16 text-{{ $isRtl ? 'right' : 'left' }}">
+            <div class="mb-12 lg:mb-16 text-{{ $isRtl ? 'right' : 'left' }} reveal">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                     {{ $isRtl ? 'منتجاتنا' : 'Ürünlerimiz' }}
                 </h2>
                 <p class="text-slate-500 text-base mt-2">
-                    {{ $isRtl ? 'حلول متكاملة للملصقات والتغليف الصناعي' : 'Endüstriyel etiketleme ve ambalaj çözümleri' }}
+                    {{ $isRtl ? 'حلول متكاملة للملصقات والتغليف الصناعي' : 'Endüstriyel etiketleme ve ambalaj çözümlerimiz' }}
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Card 1: Rulo & Barkod Etiketleri -->
-                <div class="group text-{{ $isRtl ? 'right' : 'left' }}">
+                <div class="group text-{{ $isRtl ? 'right' : 'left' }} reveal reveal-delay-100">
                     <a href="{{ route('products.etiket') }}" class="block">
-                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative">
+                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-white shadow-xs relative">
                             <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=900&auto=format&fit=crop"
                                  alt="{{ __('cat_rulo') }}"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -95,9 +95,9 @@
                 </div>
 
                 <!-- Card 2: Tekstil & Dokuma Etiketleri -->
-                <div class="group text-{{ $isRtl ? 'right' : 'left' }}">
+                <div class="group text-{{ $isRtl ? 'right' : 'left' }} reveal reveal-delay-200">
                     <a href="{{ route('products.tekstil') }}" class="block">
-                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative">
+                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-white shadow-xs relative">
                             <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=900&auto=format&fit=crop"
                                  alt="{{ __('cat_tekstil') }}"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -114,9 +114,9 @@
                 </div>
 
                 <!-- Card 3: Matbaa & Kutu Ambalaj -->
-                <div class="group text-{{ $isRtl ? 'right' : 'left' }}">
+                <div class="group text-{{ $isRtl ? 'right' : 'left' }} reveal reveal-delay-300">
                     <a href="{{ route('products.matbaa') }}" class="block">
-                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative">
+                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-white shadow-xs relative">
                             <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=900&auto=format&fit=crop"
                                  alt="{{ __('cat_ozel') }}"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -135,13 +135,13 @@
         </div>
     </section>
 
-    <!-- 3. CLEAN ABOUT & MANAGEMENT SECTION (BG-SLATE-50) -->
-    <section class="py-20 lg:py-28 bg-slate-50 border-b border-slate-100">
+    <!-- 3. CLEAN ABOUT & MANAGEMENT SECTION (BG-WHITE) -->
+    <section class="py-20 lg:py-28 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Top Part: Simple 2-Column Split (Short 3-Line Company Intro + Clean Factory Photo) -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-                <div class="lg:col-span-6 space-y-6 text-{{ $isRtl ? 'right' : 'left' }}">
+                <div class="lg:col-span-6 space-y-6 text-{{ $isRtl ? 'right' : 'left' }} reveal">
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                         {{ $isRtl ? 'من نحن' : 'Hakkımızda' }}
                     </h2>
@@ -164,8 +164,8 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-6">
-                    <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-slate-200 shadow-sm">
+                <div class="lg:col-span-6 reveal reveal-delay-200">
+                    <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 shadow-sm">
                         <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop"
                              alt="Göksan Etiket Fabrikası"
                              class="w-full h-full object-cover">
@@ -175,7 +175,7 @@
 
             <!-- Bottom Part: Yönetim Kadromuz (2-Column Centered Portrait Cards) -->
             <div class="mt-20 lg:mt-24">
-                <div class="text-center mb-12">
+                <div class="text-center mb-12 reveal">
                     <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                         {{ $isRtl ? 'إدارة الشركة' : 'Yönetim Kadromuz' }}
                     </h3>
@@ -183,8 +183,8 @@
 
                 <div class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12">
                     <!-- Portrait Card 1 -->
-                    <div class="text-center group">
-                        <div class="aspect-[4/5] rounded-xl overflow-hidden bg-slate-200 mb-4 shadow-sm">
+                    <div class="text-center group reveal reveal-delay-100">
+                        <div class="aspect-[4/5] rounded-xl overflow-hidden bg-slate-100 mb-4 shadow-sm">
                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop"
                                  alt="Gökhan Şan"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
@@ -196,8 +196,8 @@
                     </div>
 
                     <!-- Portrait Card 2 -->
-                    <div class="text-center group">
-                        <div class="aspect-[4/5] rounded-xl overflow-hidden bg-slate-200 mb-4 shadow-sm">
+                    <div class="text-center group reveal reveal-delay-200">
+                        <div class="aspect-[4/5] rounded-xl overflow-hidden bg-slate-100 mb-4 shadow-sm">
                             <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop"
                                  alt="Gökmen Şan"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
@@ -213,9 +213,9 @@
         </div>
     </section>
 
-    <!-- 4. SIMPLE CONTACT / CTA STRIP: 1 HEADLINE + 2 BUTTONS (TEKLİF FORMU & WHATSAPP) -->
-    <section class="py-20 lg:py-28 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+    <!-- 4. SIMPLE CONTACT / CTA STRIP (BG-SLATE-50/60): 1 HEADLINE + 2 BUTTONS (TEKLİF FORMU & WHATSAPP) -->
+    <section class="py-20 lg:py-28 bg-slate-50/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 reveal">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
                 {{ $isRtl ? 'احصل على عرض سعر لمشروعك' : 'Projeniz için fiyat teklifi alın' }}
             </h2>
