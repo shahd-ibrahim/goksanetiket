@@ -158,7 +158,7 @@
 <body class="min-h-screen flex flex-col overflow-x-hidden bg-white text-slate-900 selection:bg-orange-500 selection:text-white">
 
     <!-- MINIMALIST SPACIOUS EUROPEAN PURE WHITE HEADER (NO TOPBAR) -->
-    <header class="sticky top-0 z-50 bg-white border-b border-slate-100 transition-all">
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 lg:h-24 flex items-center justify-between gap-6">
             <!-- Large Prominent Company Logo on the Left -->
             <a href="{{ route('home') }}" class="shrink-0 flex items-center py-2">
@@ -357,49 +357,65 @@
         @yield('content')
     </main>
 
-    <!-- CLEAN EUROPEAN B2B FOOTER (3 NEAT COLUMNS + SHAYA SOFT CREDIT) -->
-    <footer class="bg-slate-50 text-slate-600 pt-16 lg:pt-20 pb-20 md:pb-12 border-t border-slate-100">
+    <!-- DARK EUROPEAN B2B FOOTER (STIKALABELS.BE STYLE: BG-BLACK TEXT-WHITE) -->
+    <footer class="bg-black text-slate-400 pt-16 lg:pt-20 pb-20 md:pb-12 border-t border-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 pb-12 border-b border-slate-200/80">
-                <!-- Col 1: Kurumsal -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-12 pb-12 border-b border-slate-800">
+                <!-- Col 1: Brand Logo & Short Desc -->
                 <div class="space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200/80">
-                        {{ $isRtl ? 'الشركة' : 'Kurumsal' }}
-                    </h4>
-                    <ul class="space-y-3 text-xs text-slate-600">
-                        <li><a href="{{ route('about') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'من نحن وإدارة الشركة' : 'Hakkımızda & Yönetim Kadromuz' }}</a></li>
-                        <li><a href="{{ route('machinery') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'الإنتاج والتكنولوجيا' : 'Üretim & Teknoloji' }}</a></li>
-                        <li><a href="{{ route('payment') }}" class="hover:text-orange-600 font-semibold text-orange-600 transition-colors">{{ $isRtl ? 'الدفع الإلكتروني (Sanal POS)' : 'Online Ödeme (Sanal POS)' }}</a></li>
-                        <li><a href="{{ route('regional.index') }}" class="hover:text-orange-600 transition-colors">{{ __('Hizmet Bölgelerimiz') }} (81 İl)</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'اتصل بنا' : 'İletişim & Ulaşım' }}</a></li>
-                    </ul>
+                    <a href="{{ route('home') }}" class="inline-block">
+                        <img src="{{ asset('images/lightlogo.png') }}" alt="Göksan Etiket" class="h-12 w-auto object-contain">
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-xs">
+                        {{ $isRtl
+                            ? 'مصنع رائد في إنتاج ملصقات الرول الصناعية والتغليف والباركود في غازي عنتاب بمعايير جودة أوروبية.'
+                            : 'Gaziantep 1. OSB modern tesislerimizde Avrupa standartlarında endüstriyel rulo etiket, dokuma arma ve ambalaj üretimi gerçekleştiriyoruz.' }}
+                    </p>
+                    <div class="text-xs text-slate-400 space-y-1.5 pt-1">
+                        <div>📍 {{ __('factory_loc_short') }}</div>
+                        <div dir="ltr">📞 +90 342 503 46 52</div>
+                        <div>✉ info@goksanetiket.com</div>
+                    </div>
                 </div>
 
                 <!-- Col 2: Ürünler -->
                 <div class="space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200/80">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white pb-2 border-b border-slate-800">
                         {{ $isRtl ? 'المنتجات' : 'Ürünler' }}
                     </h4>
-                    <ul class="space-y-3 text-xs text-slate-600">
-                        <li><a href="{{ route('products.etiket') }}" class="hover:text-orange-600 transition-colors">{{ __('Rulo & Barkod Etiketleri') }}</a></li>
-                        <li><a href="{{ route('products.tekstil') }}" class="hover:text-orange-600 transition-colors">{{ __('Tekstil & Dokuma Etiketleri') }}</a></li>
-                        <li><a href="{{ route('products.matbaa') }}" class="hover:text-orange-600 transition-colors">{{ __('Matbaa & Kutu Ambalaj') }}</a></li>
-                        <li><a href="{{ route('sectors') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'القطاعات الصناعية' : 'Sektörel Etiket Çözümleri' }}</a></li>
-                        <li><a href="{{ route('rfq') }}" class="hover:text-orange-600 font-medium text-orange-600 transition-colors">{{ $isRtl ? 'طلب عرض سعر' : 'Online Teklif Al (RFQ)' }} &rarr;</a></li>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li><a href="{{ route('products.etiket') }}" class="hover:text-orange-400 transition-colors">{{ __('Rulo & Barkod Etiketleri') }}</a></li>
+                        <li><a href="{{ route('products.tekstil') }}" class="hover:text-orange-400 transition-colors">{{ __('Tekstil & Dokuma Etiketleri') }}</a></li>
+                        <li><a href="{{ route('products.matbaa') }}" class="hover:text-orange-400 transition-colors">{{ __('Matbaa & Kutu Ambalaj') }}</a></li>
+                        <li><a href="{{ route('rfq') }}" class="hover:text-orange-400 font-medium text-orange-400 transition-colors">{{ $isRtl ? 'طلب عرض سعر' : 'Online Teklif Al (RFQ)' }} &rarr;</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 3: Yasal (KVKK, Çerez Politikası, Gizlilik) -->
+                <!-- Col 3: Sektörler & Kurumsal -->
                 <div class="space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 pb-2 border-b border-slate-200/80">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white pb-2 border-b border-slate-800">
+                        {{ $isRtl ? 'الشركة والقطاعات' : 'Kurumsal & Sektörler' }}
+                    </h4>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li><a href="{{ route('about') }}" class="hover:text-orange-400 transition-colors">{{ $isRtl ? 'من نحن' : 'Hakkımızda' }}</a></li>
+                        <li><a href="{{ route('sectors') }}" class="hover:text-orange-400 transition-colors">{{ $isRtl ? 'القطاعات الصناعية' : 'Sektörel Çözümler' }}</a></li>
+                        <li><a href="{{ route('machinery') }}" class="hover:text-orange-400 transition-colors">{{ $isRtl ? 'الإنتاج والتكنولوجيا' : 'Üretim & Teknoloji' }}</a></li>
+                        <li><a href="{{ route('payment') }}" class="hover:text-orange-400 transition-colors">{{ $isRtl ? 'الدفع الإلكتروني' : 'Online Ödeme (Sanal POS)' }}</a></li>
+                        <li><a href="{{ route('contact') }}" class="hover:text-orange-400 transition-colors">{{ $isRtl ? 'اتصل بنا' : 'İletişim & Ulaşım' }}</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Yasal (KVKK, Çerez Politikası, Gizlilik) -->
+                <div class="space-y-4 text-{{ $isRtl ? 'right' : 'left' }}">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white pb-2 border-b border-slate-800">
                         {{ $isRtl ? 'السياسات القانونية' : 'Yasal' }}
                     </h4>
-                    <ul class="space-y-3 text-xs text-slate-600">
-                        <li><a href="{{ route('legal.kvkk') }}" class="hover:text-orange-600 transition-colors">KVKK Aydınlatma Metni</a></li>
-                        <li><a href="{{ route('legal.cookies') }}" class="hover:text-orange-600 transition-colors">Çerez (Cookie) Politikası</a></li>
-                        <li><a href="{{ route('legal.privacy') }}" class="hover:text-orange-600 transition-colors">Gizlilik ve Güvenlik</a></li>
-                        <li><a href="{{ route('legal.sales') }}" class="hover:text-orange-600 transition-colors">Mesafeli Satış Sözleşmesi</a></li>
-                        <li><a href="{{ route('sitemap') }}" class="hover:text-orange-600 transition-colors">{{ __('footer_sitemap') }}</a></li>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li><a href="{{ route('legal.kvkk') }}" class="hover:text-orange-400 transition-colors">KVKK Aydınlatma Metni</a></li>
+                        <li><a href="{{ route('legal.cookies') }}" class="hover:text-orange-400 transition-colors">Çerez (Cookie) Politikası</a></li>
+                        <li><a href="{{ route('legal.privacy') }}" class="hover:text-orange-400 transition-colors">Gizlilik ve Güvenlik</a></li>
+                        <li><a href="{{ route('legal.sales') }}" class="hover:text-orange-400 transition-colors">Mesafeli Satış Sözleşmesi</a></li>
+                        <li><a href="{{ route('sitemap') }}" class="hover:text-orange-400 transition-colors">{{ __('footer_sitemap') }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -412,7 +428,7 @@
 
                 <div class="text-center sm:text-right">
                     Geliştirici:
-                    <a href="https://shayasoft.com" target="_blank" rel="noopener noreferrer" class="font-bold text-orange-600 hover:text-orange-500 underline transition">Shaya Soft</a>
+                    <a href="https://shayasoft.com" target="_blank" rel="noopener noreferrer" class="font-bold text-orange-400 hover:text-orange-300 underline transition">Shaya Soft</a>
                 </div>
             </div>
         </div>
