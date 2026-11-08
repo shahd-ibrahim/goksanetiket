@@ -11,10 +11,10 @@
     <section class="py-16 lg:py-24 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Breadcrumb -->
-            <nav class="flex items-center space-x-2 text-xs text-slate-400 mb-8 sm:mb-12">
+            <nav class="flex items-center gap-2 text-xs text-slate-400 mb-8 sm:mb-12">
                 <a href="{{ route('home') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'الرئيسية' : 'Ana Sayfa' }}</a>
                 <span>/</span>
-                <span class="text-slate-900 font-medium">{{ $isRtl ? 'الطباعة والتغليف' : 'Matbaa & Kutu Ambalaj' }}</span>
+                <span class="text-slate-900 font-medium">{{ $isRtl ? 'الطباعة وتغليف الصناديق' : 'Matbaa & Kutu Ambalaj' }}</span>
             </nav>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">

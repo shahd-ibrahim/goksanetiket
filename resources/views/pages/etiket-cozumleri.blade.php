@@ -11,7 +11,7 @@
     <section class="py-16 lg:py-24 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Breadcrumb -->
-            <nav class="flex items-center space-x-2 text-xs text-slate-400 mb-8 sm:mb-12">
+            <nav class="flex items-center gap-2 text-xs text-slate-400 mb-8 sm:mb-12">
                 <a href="{{ route('home') }}" class="hover:text-orange-600 transition-colors">{{ $isRtl ? 'الرئيسية' : 'Ana Sayfa' }}</a>
                 <span>/</span>
                 <span class="text-slate-900 font-medium">{{ $isRtl ? 'ملصقات الرول والباركود' : 'Rulo & Barkod Etiketleri' }}</span>

@@ -282,9 +282,12 @@ class CorporateController extends Controller
      */
     public function kvkk()
     {
+        $isAr = app()->getLocale() === 'ar';
         $seo = [
-            'title' => 'KVKK Aydınlatma Metni | GÖKSAN Etiket • Matbaa • Ambalaj',
-            'description' => '6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında Göksan Etiket aydınlatma metni ve veri güvenliği politikası.',
+            'title' => $isAr ? 'سياسة حماية البيانات (KVKK) | غوكسان للملصقات' : 'KVKK Aydınlatma Metni | GÖKSAN Etiket • Matbaa • Ambalaj',
+            'description' => $isAr 
+                ? 'بيان توضيحي وسياسة حماية وتأمين البيانات الشخصية بموجب قانون KVKK في مصنع غوكسان.' 
+                : '6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında Göksan Etiket aydınlatma metni ve veri güvenliği politikası.',
             'canonical' => route('legal.kvkk'),
         ];
 
@@ -296,9 +299,12 @@ class CorporateController extends Controller
      */
     public function cookiePolicy()
     {
+        $isAr = app()->getLocale() === 'ar';
         $seo = [
-            'title' => 'Çerez (Cookie) Politikası | GÖKSAN Etiket • Matbaa • Ambalaj',
-            'description' => 'Göksan Etiket web sitesinde kullanılan çerez türleri, kullanım amaçları ve çerez tercihlerinin yönetimi hakkında bilgilendirme.',
+            'title' => $isAr ? 'سياسة ملفات تعريف الارتباط (الكوكيز) | غوكسان للملصقات' : 'Çerez (Cookie) Politikası | GÖKSAN Etiket • Matbaa • Ambalaj',
+            'description' => $isAr 
+                ? 'معلومات توضيحية حول أنواع ملفات تعريف الارتباط المستخدمة على موقع غوكسان وإدارة تفضيلات الخصوصية.' 
+                : 'Göksan Etiket web sitesinde kullanılan çerez türleri, kullanım amaçları ve çerez tercihlerinin yönetimi hakkında bilgilendirme.',
             'canonical' => route('legal.cookies'),
         ];
 
@@ -310,9 +316,12 @@ class CorporateController extends Controller
      */
     public function privacyPolicy()
     {
+        $isAr = app()->getLocale() === 'ar';
         $seo = [
-            'title' => 'Gizlilik ve Güvenlik Politikası | GÖKSAN Etiket • Matbaa • Ambalaj',
-            'description' => 'Göksan Etiket kurumsal gizlilik ilkeleri, bilgi güvenliği standartları ve 256-Bit SSL veri koruma taahhüdü.',
+            'title' => $isAr ? 'الخصوصية والأمان ومعايير حماية البيانات | غوكسان' : 'Gizlilik ve Güvenlik Politikası | GÖKSAN Etiket • Matbaa • Ambalaj',
+            'description' => $isAr 
+                ? 'مبادئ السرية المؤسسية في غوكسان، ومعايير أمان البيانات والدفع الإلكتروني المشفر 256-Bit SSL.' 
+                : 'Göksan Etiket kurumsal gizlilik ilkeleri, bilgi güvenliği standartları ve 256-Bit SSL veri koruma taahhüdü.',
             'canonical' => route('legal.privacy'),
         ];
 
@@ -324,9 +333,12 @@ class CorporateController extends Controller
      */
     public function distanceSales()
     {
+        $isAr = app()->getLocale() === 'ar';
         $seo = [
-            'title' => 'Mesafeli Satış ve Sanal POS Tahsilat Sözleşmesi | GÖKSAN Etiket',
-            'description' => 'Göksan Etiket online ödeme (Sanal POS) kullanım koşulları, B2B ticari tahsilat, iptal ve iade şartları sözleşmesi.',
+            'title' => $isAr ? 'اتفاقية البيع عن بعد والتحصيل الإلكتروني B2B | غوكسان' : 'Mesafeli Satış ve Sanal POS Tahsilat Sözleşmesi | GÖKSAN Etiket',
+            'description' => $isAr 
+                ? 'شروط الاستخدام، التحصيل التجاري B2B عبر Sanal POS، وشروط التسليم والاسترجاع للطلبات المصنعة.' 
+                : 'Göksan Etiket online ödeme (Sanal POS) kullanım koşulları, B2B ticari tahsilat, iptal ve iade şartları sözleşmesi.',
             'canonical' => route('legal.sales'),
         ];
 
