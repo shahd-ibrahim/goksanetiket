@@ -11,10 +11,11 @@
     <meta name="description" content="{{ $seo['description'] ?? 'Gaziantep 1. OSB tesislerimizde toptan rulo etiket, dokuma etiket, karton kutu ambalaj ve barkod çözümleri. 81 ilimize 24-48 saatte doğrudan sevkiyat.' }}">
     <link rel="canonical" href="{{ $seo['canonical'] ?? url()->current() }}">
 
-    <!-- Favicon Setup with ?v=2 Cache-Busting -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=2">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=2">
-    <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}?v=2">
+    <!-- Favicon Setup (SVG Vector + PNG Fallback with ?v=3 Cache-Busting) -->
+    <link rel="icon" type="image/svg+xml" href="{{ secure_asset('favicon.svg') }}?v=3">
+    <link rel="alternate icon" type="image/png" href="{{ secure_asset('images/darklogo.png') }}?v=3">
+    <link rel="apple-touch-icon" href="{{ secure_asset('favicon.png') }}?v=3">
+    <link rel="shortcut icon" href="{{ secure_asset('favicon.ico') }}?v=3">
 
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website">
@@ -37,33 +38,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS with Göksan Warm Industrial Orange Brand Palette -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            navy: '#0f172a',
-                            slate: '#1e293b',
-                            orange: '#f97316',
-                            orangeDark: '#ea580c',
-                            orangeHover: '#c2410c'
-                        }
-                    },
-                    spacing: {
-                        '18': '4.5rem',
-                        '22': '5.5rem'
-                    },
-                    fontFamily: {
-                        sans: {!! $isRtl ? "['Cairo', 'sans-serif']" : "['Plus Jakarta Sans', 'Inter', 'sans-serif']" !!}
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Compiled Assets via Vite (Tailwind CSS & JavaScript) -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
         html, body {

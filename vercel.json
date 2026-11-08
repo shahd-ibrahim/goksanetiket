@@ -8,11 +8,11 @@
     },
     "routes": [
         {
-            "src": "/(css|js|images|assets)/(.*)",
+            "src": "/(build|css|js|images|assets)/(.*)",
             "dest": "/public/$1/$2"
         },
         {
-            "src": "/(favicon.ico|robots.txt|sitemap.xml)",
+            "src": "/(favicon.ico|favicon.svg|favicon.png|robots.txt|sitemap.xml)",
             "dest": "/public/$1"
         },
         {
