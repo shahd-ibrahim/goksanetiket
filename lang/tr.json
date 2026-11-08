@@ -291,5 +291,13 @@
   "contact_city_label": "Bulunduğunuz Şehir",
   "contact_msg_label": "Mesajınız / Teknik İstekleriniz",
   "contact_msg_ph": "Ürün ölçüleri, hammadde talebiniz veya sormak istedikleriniz...",
-  "btn_send_message": "Mesajı Gönder"
+  "btn_send_message": "Mesajı Gönder",
+  "Rulo & Barkod Etiketleri": "Rulo & Barkod Etiketleri",
+  "Tekstil & Dokuma Etiketleri": "Tekstil & Dokuma Etiketleri",
+  "Matbaa & Kutu Ambalaj": "Matbaa & Kutu Ambalaj",
+  "KVKK Aydınlatma Metni": "KVKK Aydınlatma Metni",
+  "Çerez (Cookie) Politikası": "Çerez (Cookie) Politikası",
+  "Gizlilik ve Güvenlik": "Gizlilik ve Güvenlik",
+  "Mesafeli Satış Sözleşmesi": "Mesafeli Satış Sözleşmesi",
+  "footer_developer": "Geliştirici:"
 }

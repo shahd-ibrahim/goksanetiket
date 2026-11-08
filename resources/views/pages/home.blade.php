@@ -6,11 +6,14 @@
 @endphp
 
 @section('content')
-<div class="overflow-x-hidden">
+<div class="overflow-x-hidden relative">
 
     <!-- 1. HERO SECTION: PURE WHITE, SPACIOUS PY-12 LG:PY-20, ROUNDED-FULL PILL CTA + CIRCULAR ACCENT -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-white border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative overflow-hidden py-12 sm:py-16 lg:py-20 bg-white border-b border-slate-100">
+        <!-- Decorative Half-Circle on Left Screen Edge (Stikalabels.be style) -->
+        <div class="absolute top-1/4 -left-24 sm:-left-32 w-52 h-52 sm:w-72 sm:h-72 rounded-full border border-orange-500/20 bg-orange-500/5 pointer-events-none -z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
                 <!-- Left Column: Bold Headline, 1 Short Subtitle, 1 Rounded-Full Pill CTA -->
@@ -53,8 +56,11 @@
     </section>
 
     <!-- 2. "DOĞRUDAN ÜRETİCİDEN ALIN" SECTION: LARGE CIRCULAR PHOTO + 4 CLEAN MINIMALIST ROWS -->
-    <section class="py-20 lg:py-28 bg-slate-50/60 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative overflow-hidden py-20 lg:py-28 bg-slate-50/60 border-b border-slate-100">
+        <!-- Decorative Half-Circle on Right Screen Edge (Stikalabels.be style) -->
+        <div class="absolute top-1/3 -right-28 sm:-right-40 w-64 h-64 sm:w-88 sm:h-88 rounded-full border border-orange-500/15 bg-orange-100/30 pointer-events-none -z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
                 <!-- Left Side: Large Circular Photo of Colorful Label Rolls -->
@@ -164,8 +170,11 @@
     </section>
 
     <!-- 4. "HER UYGULAMA İÇİN" SECTION: CENTERED TITLE + ORANGE UNDERLINE + 3 MINIMALIST OUTLINE SVG ICONS -->
-    <section id="uygulamalar" class="py-20 lg:py-28 bg-slate-50/60 border-y border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section id="uygulamalar" class="relative overflow-hidden py-20 lg:py-28 bg-slate-50/60 border-y border-slate-100">
+        <!-- Decorative Half-Circle on Left Screen Edge (Stikalabels.be style) -->
+        <div class="absolute top-1/2 -left-28 sm:-left-36 -translate-y-1/2 w-56 h-56 sm:w-80 sm:h-80 rounded-full border-2 border-orange-500/15 bg-orange-500/5 pointer-events-none -z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
 
             <div class="reveal">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -219,8 +228,11 @@
     </section>
 
     <!-- 5. QUOTE + CIRCULAR PHOTO SECTION (SPLIT LAYOUT) -->
-    <section class="py-20 lg:py-28 bg-white border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative overflow-hidden py-20 lg:py-28 bg-white border-b border-slate-100">
+        <!-- Decorative Half-Circle on Right Screen Edge (Stikalabels.be style) -->
+        <div class="absolute top-1/2 -right-24 sm:-right-32 -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 rounded-full border border-orange-500/20 bg-orange-500/5 pointer-events-none -z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
                 <!-- Left: Large Orange Quotation Mark + Bold Statement -->
@@ -251,8 +263,11 @@
     </section>
 
     <!-- 6. "HER SEKTÖR İÇİN" SECTION: CIRCULAR PHOTOS WITH BOTTOM-RIGHT ORANGE CRESCENT/ARC ACCENT -->
-    <section class="py-20 lg:py-28 bg-slate-50/60 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section class="relative overflow-hidden py-20 lg:py-28 bg-slate-50/60 border-b border-slate-100">
+        <!-- Decorative Half-Circle on Left Screen Edge (Stikalabels.be style) -->
+        <div class="absolute bottom-12 -left-28 sm:-left-36 w-60 h-60 sm:w-80 sm:h-80 rounded-full border border-orange-500/20 bg-orange-100/40 pointer-events-none -z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
 
             <div class="reveal">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -289,7 +304,7 @@
                              class="w-full h-full rounded-full object-cover shadow-md relative z-10 group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
-                        {{ $isRtl ? 'Tekstil & Hazır Giyim' : 'Tekstil & Hazır Giyim' }}
+                        {{ $isRtl ? 'المنسوجات والملابس' : 'Tekstil & Hazır Giyim' }}
                     </h3>
                 </a>
 

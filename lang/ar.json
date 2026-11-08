@@ -291,5 +291,13 @@
   "contact_city_label": "المدينة / المحافظة",
   "contact_msg_label": "رسالتك / المتطلبات الفنية",
   "contact_msg_ph": "المقاسات المطلوبة، نوع الخامة، أو أي استفسارات تود طرحها...",
-  "btn_send_message": "إرسال الرسالة"
+  "btn_send_message": "إرسال الرسالة",
+  "Rulo & Barkod Etiketleri": "ملصقات الرول والباركود",
+  "Tekstil & Dokuma Etiketleri": "ملصقات النسيج والملابس",
+  "Matbaa & Kutu Ambalaj": "الطباعة وتغليف الصناديق",
+  "KVKK Aydınlatma Metni": "سياسة حماية البيانات (KVKK)",
+  "Çerez (Cookie) Politikası": "سياسة ملفات تعريف الارتباط (الكوكيز)",
+  "Gizlilik ve Güvenlik": "الخصوصية والأمان",
+  "Mesafeli Satış Sözleşmesi": "اتفاقية البيع عن بعد",
+  "footer_developer": "تطوير:"
 }
